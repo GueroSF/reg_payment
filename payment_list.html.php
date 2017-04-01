@@ -11,7 +11,7 @@
 <content>
 	<div class="month_name"><span><?php echo $monthName;?></span></div>
 	<div class="paymentAdd">
-		<form action="payment.php" method="post">
+		<form class="table" action="payment.php" method="post">
 			<input type="date" name="date" value="<?php echo date('Y-m-d'); ?>">
 			<select name="category" required>
 				<option></option>
@@ -33,18 +33,16 @@
 			<div class="td3">Назначение</div>
 		</div>
 		<?php foreach ($paymentMonth as $payment): ?>
-			<div class="table">
-				<form action="payment.php" method="post">
-					<div class="td1"><?php echo $payment['pd']; ?></div>
-					<div class="td2"><input type="text" name="sum" value="<?php echo $payment['money']; ?>"></div>
-					<div class="td3"><?php echo $payment['name']; ?></div>
-					<div class="td4">
-						<input type="hidden" name="id_payment" value="<?php echo $payment['id']; ?>">
-						<input type="hidden" name="action" value="edit_payment">
-						<input type="submit" value="Изменить">
-					</div>						
-				</form>
-			</div>
+			<form class="table" action="payment.php" method="post">
+				<div class="td1"><?php echo $payment['pd']; ?></div>
+				<div class="td2"><input type="number" step="0.01" name="sum" value="<?php echo $payment['money']; ?>"></div>
+				<div class="td3"><?php echo $payment['name']; ?></div>
+				<div class="td4">
+					<input type="hidden" name="id_payment" value="<?php echo $payment['id']; ?>">
+					<input type="hidden" name="action" value="edit_payment">
+					<input type="submit" value="Изменить">
+				</div>						
+			</form>
 		<?php endforeach ?>
 	</div>
 
