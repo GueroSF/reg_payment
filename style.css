@@ -9,6 +9,7 @@ header {
 	width: 100%;
 	background: silver;
 }
+.table,
 .month {
 	margin: 2px 2px 0 2px;
 	/*border: 1px solid grey;*/
@@ -33,4 +34,7 @@ header {
 .view_detail {
 	width: 100%;
 	text-align: center;
+}
+.td1, .td3 {
+	width: 92px;
 }
