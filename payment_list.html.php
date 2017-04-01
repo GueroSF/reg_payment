@@ -13,13 +13,13 @@
 	<div class="paymentAdd">
 		<form action="payment.php" method="post">
 			<input type="date" name="date" value="<?php echo date('Y-m-d'); ?>">
-			<input type="text" name="money">
 			<select name="category" required>
 				<option></option>
 				<?php foreach ($paymentCategory as $cat): ?>
 					<option value="<?php echo $cat['id']; ?>"><?php echo $cat['name']; ?></option>
 				<?php endforeach ?>				
 			</select>
+			<input type="number" step="0.01" name="money">
 			<input type="hidden" name="month" value="<?php echo $month;?>">
 			<input type="hidden" name="action" value="paymentAdd">
 			<input type="submit" value="Добавит">
