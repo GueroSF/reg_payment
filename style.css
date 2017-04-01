@@ -10,15 +10,27 @@ header {
 	background: silver;
 }
 .month {
-	margin-top: 2px;
+	margin: 2px 2px 0 2px;
 	/*border: 1px solid grey;*/
 	background-color: #ffeb3b;
 	border-radius: 5px;
 	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
 }
+.view_detail,
+.month_name,
 .salary,
 .swallow {
 	border-radius: 5px;
 	margin: 3px;
+}
+.salary,
+.swallow {
 	background: white;
+}
+.month_name,
+.view_detail {
+	width: 100%;
+	text-align: center;
 }
