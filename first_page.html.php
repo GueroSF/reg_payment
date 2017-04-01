@@ -44,6 +44,7 @@
 		<div class="view_detail">
 			<form action="payment.php" method="post">
 				<input type="hidden" name="month" value="<?php echo $monthDisplay[$i]['num'];?>">
+				<input type="hidden" name="monthName" value="<?php echo $monthDisplay[$i]['name'];?>">
 				<input type="hidden" name="month_payment" value="edit">
 				<input type="submit" value="Просмотр">
 			</form>
