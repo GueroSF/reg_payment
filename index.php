@@ -16,7 +16,7 @@ try {
 		for ($i=0;$i<4;$i++){
 			$result->bindValue(':month', $monthDisplay[$i]['num']);
 			$result->execute();
-			$moneyCat[$c][] = $result->fetchCOLUMN();
+			$moneyCat[$c][] = round($result->fetchCOLUMN(),2);
 		}
 	}
 } catch (PDOException $e) {

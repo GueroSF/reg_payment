@@ -28,7 +28,7 @@ if (isset($_POST['month_payment'])&&$_POST['month_payment']=='edit'){
 }
 if (isset($_POST['action'])&&$_POST['action']=='paymentAdd') {
 	$date = $_POST['date'];
-	$money = $_POST['money'];
+	$money = round($_POST['money'], 2);
 	$category = $_POST['category'];
 	$month = $_POST['month'];
 	try {
