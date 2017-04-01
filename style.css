@@ -1,0 +1,24 @@
+body {
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+header {
+	text-align: center;
+	width: 100%;
+	background: silver;
+}
+.month {
+	margin-top: 2px;
+	/*border: 1px solid grey;*/
+	background-color: #ffeb3b;
+	border-radius: 5px;
+	display: flex;
+}
+.salary,
+.swallow {
+	border-radius: 5px;
+	margin: 3px;
+	background: white;
+}
