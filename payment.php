@@ -1,5 +1,5 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'].'reg/includes/path.inc.php';
+include $_SERVER['DOCUMENT_ROOT'].'/reg/includes/path.inc.php';
 include $pathFileInc.'db_connect.inc.php';
 include $pathFileInc.'error.inc.php';
 try {
@@ -44,8 +44,8 @@ if (isset($_POST['action'])&&$_POST['action']=='paymentAdd') {
 		$insert->bindValue(':pd', $date);
 		$insert->execute();
 	} catch (PDOException $e) {
-		errorMessage('Ощибка при добавлении платежа');
+		errorMessage('Ошибка при добавлении платежа');
 	}
-	header('Location:'.'http://172.16.135.2/reg/index.php');
+	header('Location:http://'.$_SERVER['HTTP_HOST'].'/reg/index.php');
 	exit();
 }
