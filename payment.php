@@ -46,6 +46,6 @@ if (isset($_POST['action'])&&$_POST['action']=='paymentAdd') {
 	} catch (PDOException $e) {
 		errorMessage('Ошибка при добавлении платежа');
 	}
-	header('Location:http://'.$_SERVER['HTTP_HOST'].'/reg/index.php');
+	header('Location:'.$pathURL.'index.php');
 	exit();
 }
