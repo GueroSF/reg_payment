@@ -7,22 +7,22 @@
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-<header><span>Учёт</span></header>
+<header><a href=".">Назад</a></header>
 <content>
-	<div class="month_name"><span><?php echo $monthName;?></span></div>
 	<div class="paymentAdd">
+		<div class="month_name"><span>Внести платёж за месяц: <b><?php echo $monthName;?></b></span></div>
 		<form class="table" action="payment.php" method="post">
 			<input type="date" name="date" value="<?php echo date('Y-m-d'); ?>">
+			<input type="number" step="0.01" name="money">
 			<select name="category" required>
 				<option></option>
 				<?php foreach ($paymentCategory as $cat): ?>
 					<option value="<?php echo $cat['id']; ?>"><?php echo $cat['name']; ?></option>
 				<?php endforeach ?>				
 			</select>
-			<input type="number" step="0.01" name="money">
 			<input type="hidden" name="month" value="<?php echo $month;?>">
 			<input type="hidden" name="action" value="paymentAdd">
-			<input type="submit" value="Добавит">
+			<input type="submit" value="Добавить">
 		</form>
 		
 	</div>

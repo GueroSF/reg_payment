@@ -45,10 +45,24 @@ header {
 	display: flex;
 	justify-content: space-around;
 	flex-wrap: wrap;
-	margin-top: 3px;
+	padding-top: 2px;
 	padding-bottom: 2px;
-	border-bottom: 1px solid silver;
+	text-align: center;
+	/*border-bottom: 1px solid silver;*/
 }
 .table [type='number'] {
 	width: 60px;
+}
+.paymentAdd {
+	background: powderblue;
+	padding-bottom: 5px;
+}
+.paymentList .table:nth-child(2n) {
+	background: lightgrey;
+}
+
+@media screen and (max-width: 320px){
+	header a {
+		font-size: xx-large;
+	}
 }
