@@ -1,5 +1,5 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'].'reg/includes/path.inc.php';
+include $_SERVER['DOCUMENT_ROOT'].'/reg/includes/path.inc.php';
 include $pathFileInc.'db_connect.inc.php';
 include $pathFileInc.'error.inc.php';
 $month = ['1'=>'Январь','Февраль','Март','Апрель', 'Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'];
