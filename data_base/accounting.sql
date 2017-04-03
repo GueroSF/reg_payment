@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Апр 01 2017 г., 14:48
+-- Время создания: Апр 03 2017 г., 10:49
 -- Версия сервера: 5.6.12-log
 -- Версия PHP: 5.4.16
 
@@ -37,7 +37,18 @@ CREATE TABLE IF NOT EXISTS `payment` (
   PRIMARY KEY (`id`),
   KEY `Payment_for_month` (`Payment_for_month`),
   KEY `payment_category` (`payment_category`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+
+--
+-- Дамп данных таблицы `payment`
+--
+
+INSERT INTO `payment` (`id`, `money`, `payment_category`, `Payment_for_month`, `Payment_date`) VALUES
+(1, 100, 1, '2_2017', '2017-04-03'),
+(2, 3000, 2, '2_2017', '2017-04-03'),
+(3, 350, 3, '2_2017', '2017-04-03'),
+(4, 2000, 2, '3_2017', '2017-04-03'),
+(5, 320, 3, '3_2017', '2017-04-03');
 
 -- --------------------------------------------------------
 
@@ -49,10 +60,19 @@ CREATE TABLE IF NOT EXISTS `payment_category` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(20) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 --
+-- Дамп данных таблицы `payment_category`
+--
 
+INSERT INTO `payment_category` (`id`, `name`) VALUES
+(1, 'Офицальная'),
+(2, 'Неофицальная'),
+(3, 'Ласточка');
+
+--
+-- Ограничения внешнего ключа сохраненных таблиц
 --
 
 --
