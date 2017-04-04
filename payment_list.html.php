@@ -32,7 +32,7 @@
 				<div class="td3"><?php echo $payment['name']; ?></div>
 				<div class="td4">
 					<input type="hidden" name="id_payment" value="<?php echo $payment['id']; ?>">
-					<input type="hidden" name="action" value="edit_payment">
+					<input type="hidden" name="action" value="paymentEdit">
 					<input type="submit" value="Изменить">
 				</div>						
 			</form>
