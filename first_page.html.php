@@ -1,5 +1,6 @@
 <body>
-<header><span>Учёт</span></header>
+<header><a href="?logOut=exit">Выход</a></header>
+<?php var_dump($GLOBALS); ?>
 <content>
 <?php for($i=0;$i<4;$i++): ?>
 	<div class="month">

@@ -1,7 +1,16 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'].'/reg/includes/path.inc.php';
+include $_SERVER['DOCUMENT_ROOT'].'reg/includes/path.inc.php';
 include $pathFileInc.'db_connect.inc.php';
-include $pathFileInc.'error.inc.php';
+include_once $pathFileInc.'error.inc.php';
+include 'login.php';
+
+if(!was_login()){
+	$titleName = 'Вход';
+	include 'head_page.html.php';
+	include 'login.html.php';
+	exit;
+}
+
 $titleName = 'Платежи';
 include 'head_page.html.php';
 try {

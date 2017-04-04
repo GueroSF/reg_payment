@@ -1,6 +1,6 @@
 
 <body>
-<header><a href=".">Назад</a></header>
+<header><a href=".">Назад</a><a href="?logOut=exit">Выход</a></header>
 <content>
 	<div class="paymentAdd">
 		<div class="month_name"><span>Внести платёж за месяц: <b><?php echo $monthName;?></b></span></div>

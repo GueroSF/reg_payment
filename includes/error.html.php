@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<link rel="apple-touch-icon" sizes="180x180" href="<?php echo $pathURL; ?>icon/apple-touch-icon.png">
+	<link rel="icon" type="image/png" href="<?php echo $pathURL; ?>icon/favicon-32x32.png" sizes="32x32">
 	<meta charset="utf-8">
 	<title>Ошибка</title>
 </head>
