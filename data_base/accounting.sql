@@ -30,14 +30,14 @@ USE `accounting`;
 
 CREATE TABLE IF NOT EXISTS `payment` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `money` float NOT NULL,
+  `money` decimal(7,2) NOT NULL,
   `payment_category` int(1) NOT NULL,
   `Payment_for_month` varchar(7) NOT NULL,
   `Payment_date` date NOT NULL,
   PRIMARY KEY (`id`),
   KEY `Payment_for_month` (`Payment_for_month`),
   KEY `payment_category` (`payment_category`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Дамп данных таблицы `payment`
