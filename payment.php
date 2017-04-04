@@ -2,6 +2,8 @@
 include $_SERVER['DOCUMENT_ROOT'].'/reg/includes/path.inc.php';
 include $pathFileInc.'db_connect.inc.php';
 include $pathFileInc.'error.inc.php';
+$titleName = 'Платежи';
+include 'head_page.html.php';
 try {
 	$r = $pdo->query('SELECT * FROM payment_category');
 } catch (PDOException $e) {

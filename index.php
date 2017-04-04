@@ -2,6 +2,9 @@
 include $_SERVER['DOCUMENT_ROOT'].'/reg/includes/path.inc.php';
 include $pathFileInc.'db_connect.inc.php';
 include $pathFileInc.'error.inc.php';
+$titleName = 'Главная';
+include 'head_page.html.php';
+
 $month = ['1'=>'Январь','Февраль','Март','Апрель', 'Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'];
 $monthDisplay[0] = ["num"=>date('n_Y', strtotime('-2 month')), "name"=>$month[date('n', strtotime('-2 month'))],];
 $monthDisplay[1] = ["num"=>date('n_Y', strtotime('-1 month')), "name"=>$month[date('n', strtotime('-1 month'))],];
