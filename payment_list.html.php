@@ -20,6 +20,7 @@
 
 	</div>
 	<div class="paymentList">
+		<div class="month_name">Платежи внесенные ранее:</div>
 		<div class="table">
 			<div class="td1">Дата платежа</div>
 			<div class="td2">Сумма</div>
