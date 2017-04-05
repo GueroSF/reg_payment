@@ -33,11 +33,15 @@ if (isset($_POST['month_payment'])&&$_POST['month_payment']=='edit'){
 		errorMessage('Ошибка при извлечении платежей за месяц');
 	}
 	$paymentMonth = $r->fetchALL(PDO::FETCH_ASSOC);
-	//var_dump($paymentMonth);
 	include 'payment_list.html.php';
 	exit();
 }
 if (isset($_POST['action'])&&$_POST['action']=='paymentAdd') {
+	if(empty($_POST['money'])||$_POST['money']==0){
+		$error = 'Поле не может быть пустым или равняться нулю';
+		include $pathFileInc.'error.html.php';
+		exit;
+	}
 	$date = $_POST['date'];
 	$money = $_POST['money'];
 	$category = $_POST['category'];
@@ -59,4 +63,22 @@ if (isset($_POST['action'])&&$_POST['action']=='paymentAdd') {
 	}
 	header('Location:'.$pathURL.'index.php');
 	exit();
+}
+if (isset($_POST['action'])&&$_POST['action']=='paymentEdit') {
+	if(empty($_POST['money'])||$_POST['money']==0){
+		$error = 'Поле не может быть пустым или равняться нулю';
+		include $pathFileInc.'error.html.php';
+		exit;
+	}
+	try {
+		$sql = 'UPDATE payment SET money = :money WHERE id = :id';
+		$u = $pdo->prepare($sql);
+		$u->bindValue(':money', $_POST['money']);
+		$u->bindValue(':id', $_POST['id_payment']);
+		$u->execute();
+	} catch (PDOException $e) {
+		errorMessage('Ошибка при обновлении платежа');
+	}
+	header('Location:.');
+	exit;
 }
