@@ -34,7 +34,7 @@ try {
 		}
 	}
 } catch (PDOException $e) {
-	errorMessage('Ошибка при подсчете сумм офф зарплаты');
+	errorMessage('Ошибка при подсчете сумм платежей зарплаты');
 }
 
 //var_dump($moneyCat);

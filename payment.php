@@ -36,7 +36,8 @@ if (isset($_POST['action'])&&$_POST['action']=='paymentAdd') {
 	} catch (PDOException $e) {
 		errorMessage('Ошибка при добавлении платежа');
 	}
-	header('Location:.');
+	$url = $_SERVER['HTTP_REFERER'];
+	header("Location: $url");
 	exit();
 }
 if (isset($_POST['action'])&&$_POST['action']=='paymentEdit') {
@@ -54,7 +55,8 @@ if (isset($_POST['action'])&&$_POST['action']=='paymentEdit') {
 	} catch (PDOException $e) {
 		errorMessage('Ошибка при обновлении платежа');
 	}
-	header('Location:.');
+	$url = $_SERVER['HTTP_REFERER'];
+	header("Location: $url");
 	exit;
 }
 
@@ -66,6 +68,7 @@ try {
 	errorMessage('Ошибка получения списка категорий платежей');
 }
 $paymentCategory = $r->fetchALL(PDO::FETCH_ASSOC);
+if (isset($_REQUEST['month'])){
 //if (isset($_REQUST['month_payment'])&&$_REQUST['month_payment']=='edit'){
 	$month = $_REQUEST['month'];
 	$monthName = $_REQUEST['monthName'];
@@ -82,4 +85,4 @@ $paymentCategory = $r->fetchALL(PDO::FETCH_ASSOC);
 	$paymentMonth = $r->fetchALL(PDO::FETCH_ASSOC);
 	include 'payment_list.html.php';
 	exit();
-//}
+}

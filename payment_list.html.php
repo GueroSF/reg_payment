@@ -1,5 +1,6 @@
 
 <body>
+<?php// var_dump($GLOBALS); ?>
 <header><a href=".">Назад</a><a href="?logOut=exit">Выход</a></header>
 <content>
 	<div class="paymentAdd">
