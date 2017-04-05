@@ -6,6 +6,15 @@
 	<link rel="icon" type="image/png" href="<?php echo $pathURL; ?>icon/favicon-32x32.png" sizes="32x32">
 	<meta charset="utf-8">
 	<title>Ошибка</title>
+	<style type="text/css">
+		.errorMessage {
+			background: orangered;
+			margin-top: 30%;
+			text-align: center;
+			padding: 10px;
+			border-radius: 5px;
+		}
+	</style>
 </head>
 <body>
 	<div class="errorMessage">
