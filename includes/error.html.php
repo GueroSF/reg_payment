@@ -8,6 +8,8 @@
 	<title>Ошибка</title>
 </head>
 <body>
-	<?php echo $error; ?> 
+	<div class="errorMessage">
+		<?php echo $error; ?> 
+	</div>
 </body>
 </html>
