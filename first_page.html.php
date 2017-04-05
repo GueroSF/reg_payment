@@ -3,7 +3,7 @@
 <content>
 <?php for($i=0;$i<4;$i++): ?>
 	<div class="month<?php if($i==2) echo " today";?>">
-		<div class="month_name"><span><?php echo $monthDisplay[$i]['name'];?></span></div>
+		<div class="month_name"><span><?php nameMonth($monthDisplay[$i]);?></span></div>
 		<div class="salary">
 			<table>
 				<tr>
@@ -34,10 +34,9 @@
 			</table>
 		</div>
 		<div class="view_detail">
-			<a href="payment.php?month=<?php echo $monthDisplay[$i]['num'];?>&monthName=<?php echo $monthDisplay[$i]['name'];?>">Просмотр</a>	
+			<a href="payment.php?month=<?php echo $monthDisplay[$i];?>">Просмотр</a>	
 			<form action="payment.php" method="get">
-				<input type="hidden" name="month" value="<?php echo $monthDisplay[$i]['num'];?>">
-				<input type="hidden" name="monthName" value="<?php echo $monthDisplay[$i]['name'];?>">
+				<input type="hidden" name="month" value="<?php echo $monthDisplay[$i];?>">
 				<input type="hidden" name="month_payment" value="edit">
 				<input type="submit" value="Просмотр">
 			</form>

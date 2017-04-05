@@ -1,10 +1,8 @@
-
 <body>
-<?php// var_dump($GLOBALS); ?>
 <header><a href=".">Назад</a><a href="?logOut=exit">Выход</a></header>
 <content>
 	<div class="paymentAdd">
-		<div class="month_name"><span>Внести платёж за месяц: <b><?php echo $monthName;?></b></span></div>
+		<div class="month_name"><span>Внести платёж за месяц: <b><?php nameMonth($_REQUEST['month']);?></b></span></div>
 		<form id="paymentAdd" class="table" action="payment.php" method="post">
 			<input type="date" name="date" value="<?php echo date('Y-m-d'); ?>">
 			<input type="number" step="0.01" name="money">

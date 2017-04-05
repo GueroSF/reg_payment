@@ -4,6 +4,7 @@
 include $_SERVER['DOCUMENT_ROOT'].'/reg/includes/path.inc.php';
 include $pathFileInc.'db_connect.inc.php';
 include_once $pathFileInc.'error.inc.php';
+include $pathFileInc.'month_name.inc.php';
 include 'login.php';
 
 if(!was_login()){
@@ -16,11 +17,10 @@ if(!was_login()){
 $titleName = 'Главная';
 include 'head_page.html.php';
 
-$month = ['1'=>'Январь','Февраль','Март','Апрель', 'Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'];
-$monthDisplay[0] = ["num"=>date('n_Y', strtotime('-2 month')), "name"=>$month[date('n', strtotime('-2 month'))],];
-$monthDisplay[1] = ["num"=>date('n_Y', strtotime('-1 month')), "name"=>$month[date('n', strtotime('-1 month'))],];
-$monthDisplay[2] = ["num"=>date('n_Y'), "name"=>$month[date('n')],];
-$monthDisplay[3] = ["num"=>date('n_Y', strtotime('+1 month')), "name"=>$month[date('n', strtotime('+1 month'))],];
+$monthDisplay[0] = date('n_Y', strtotime('-2 month'));
+$monthDisplay[1] = date('n_Y', strtotime('-1 month'));
+$monthDisplay[2] = date('n_Y');
+$monthDisplay[3] = date('n_Y', strtotime('+1 month'));
 
 try {
 	$sql = 'SELECT SUM(money) FROM payment WHERE payment_category = :category AND payment_for_month = :month';
@@ -28,7 +28,7 @@ try {
 	for ($c=1;$c<4;$c++){
 		$result->bindValue(':category', $c);
 		for ($i=0;$i<4;$i++){
-			$result->bindValue(':month', $monthDisplay[$i]['num']);
+			$result->bindValue(':month', $monthDisplay[$i]);
 			$result->execute();
 			$moneyCat[$c][] = $result->fetchCOLUMN();
 		}
