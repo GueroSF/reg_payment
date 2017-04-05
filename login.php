@@ -1,7 +1,5 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'].'/reg/includes/path.inc.php';
-include $pathFileInc.'db_connect.inc.php';
-include_once $pathFileInc.'error.inc.php';
+include 'setting_path_inc.php';
 function was_login()
 {
 	if(session_status()!=2)session_start();

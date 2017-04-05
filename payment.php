@@ -1,9 +1,5 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'].'/reg/includes/path.inc.php';
-include $pathFileInc.'db_connect.inc.php';
-include_once $pathFileInc.'error.inc.php';
-include $pathFileInc.'month_name.inc.php';
-include 'login.php';
+include 'setting_path_inc.php';
 
 if(!was_login()){
 	$titleName = 'Вход';
@@ -70,9 +66,7 @@ try {
 }
 $paymentCategory = $r->fetchALL(PDO::FETCH_ASSOC);
 if (isset($_REQUEST['month'])){
-//if (isset($_REQUST['month_payment'])&&$_REQUST['month_payment']=='edit'){
 	$month = $_REQUEST['month'];
-	//$monthName = $_REQUEST['monthName'];
 	try {
 		$sql = 'SELECT p.id, p.money, c.name, p.payment_date pd FROM payment p
 				INNER JOIN payment_category c ON c.id = p.payment_category
