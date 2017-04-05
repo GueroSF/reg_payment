@@ -2,7 +2,7 @@
 <header><a href="?logOut=exit">Выход</a></header>
 <content>
 <?php for($i=0;$i<4;$i++): ?>
-	<div class="month">
+	<div class="month<?php if($i==2) echo " today";?>">
 		<div class="month_name"><span><?php echo $monthDisplay[$i]['name'];?></span></div>
 		<div class="salary">
 			<table>

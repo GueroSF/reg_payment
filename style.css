@@ -16,11 +16,14 @@ header {
 .month {
 	margin: 2px 2px 0 2px;
 	/*border: 1px solid grey;*/
-	background-color: #ffeb3b;
+	background-color: lightsteelblue;
 	border-radius: 5px;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
+}
+.today {
+	background: darkseagreen;
 }
 .view_detail,
 .month_name,
