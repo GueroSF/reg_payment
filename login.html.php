@@ -1,11 +1,9 @@
 <body>
-<div>
-	<form action="login.php" method="post">
-		<label>Имя:<input type="text" name="name"></label>
-		<label>Пароль:</label><input type="password" name="pass">
+	<form class="table login" action="" method="post">
+		<label><span>Имя:</span><input type="text" name="name"></label><br>
+		<label><span> Пароль:</span><input type="password" name="pass"></label><br>
 		<input type="hidden" name="action" value="login">
 		<input type="submit" value="Вход">
 	</form>
-</div>
 </body>
 </html>

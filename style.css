@@ -60,6 +60,15 @@ header {
 .paymentList .table:nth-child(2n) {
 	background: lightgrey;
 }
+.login {
+	flex-direction: column;
+	margin-top: 30%;
+}
+.login span {
+	width: 60px;
+	display: inline-block;
+}
+
 
 @media screen and (max-width: 320px){
 	header a {
