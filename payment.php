@@ -11,31 +11,6 @@ if(!was_login()){
 	exit;
 }
 
-$titleName = 'Платежи';
-include 'head_page.html.php';
-try {
-	$r = $pdo->query('SELECT * FROM payment_category');
-} catch (PDOException $e) {
-	errorMessage('Ошибка получения списка категорий платежей');
-}
-$paymentCategory = $r->fetchALL(PDO::FETCH_ASSOC);
-if (isset($_POST['month_payment'])&&$_POST['month_payment']=='edit'){
-	$month = $_POST['month'];
-	$monthName = $_POST['monthName'];
-	try {
-		$sql = 'SELECT p.id, p.money, c.name, p.payment_date pd FROM payment p
-				INNER JOIN payment_category c ON c.id = p.payment_category
-				WHERE p.payment_for_month = :month';
-		$r = $pdo -> prepare($sql);
-		$r -> bindValue(':month', $month);
-		$r -> execute();
-	} catch (PDOException $e) {
-		errorMessage('Ошибка при извлечении платежей за месяц');
-	}
-	$paymentMonth = $r->fetchALL(PDO::FETCH_ASSOC);
-	include 'payment_list.html.php';
-	exit();
-}
 if (isset($_POST['action'])&&$_POST['action']=='paymentAdd') {
 	if(empty($_POST['money'])||$_POST['money']==0){
 		$error = 'Поле не может быть пустым или равняться нулю';
@@ -45,7 +20,7 @@ if (isset($_POST['action'])&&$_POST['action']=='paymentAdd') {
 	$date = $_POST['date'];
 	$money = $_POST['money'];
 	$category = $_POST['category'];
-	$month = $_POST['month'];
+	$month = $_REQUEST['month'];
 	try {
 		$sql = 'INSERT INTO payment SET
 					money = :money,
@@ -61,7 +36,7 @@ if (isset($_POST['action'])&&$_POST['action']=='paymentAdd') {
 	} catch (PDOException $e) {
 		errorMessage('Ошибка при добавлении платежа');
 	}
-	header('Location:'.$pathURL.'index.php');
+	header('Location:.');
 	exit();
 }
 if (isset($_POST['action'])&&$_POST['action']=='paymentEdit') {
@@ -82,3 +57,29 @@ if (isset($_POST['action'])&&$_POST['action']=='paymentEdit') {
 	header('Location:.');
 	exit;
 }
+
+$titleName = 'Платежи';
+include 'head_page.html.php';
+try {
+	$r = $pdo->query('SELECT * FROM payment_category');
+} catch (PDOException $e) {
+	errorMessage('Ошибка получения списка категорий платежей');
+}
+$paymentCategory = $r->fetchALL(PDO::FETCH_ASSOC);
+//if (isset($_REQUST['month_payment'])&&$_REQUST['month_payment']=='edit'){
+	$month = $_REQUEST['month'];
+	$monthName = $_REQUEST['monthName'];
+	try {
+		$sql = 'SELECT p.id, p.money, c.name, p.payment_date pd FROM payment p
+				INNER JOIN payment_category c ON c.id = p.payment_category
+				WHERE p.payment_for_month = :month';
+		$r = $pdo -> prepare($sql);
+		$r -> bindValue(':month', $month);
+		$r -> execute();
+	} catch (PDOException $e) {
+		errorMessage('Ошибка при извлечении платежей за месяц');
+	}
+	$paymentMonth = $r->fetchALL(PDO::FETCH_ASSOC);
+	include 'payment_list.html.php';
+	exit();
+//}
