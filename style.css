@@ -54,7 +54,6 @@ header a {
 	padding-top: 2px;
 	padding-bottom: 2px;
 	text-align: center;
-	/*border-bottom: 1px solid silver;*/
 }
 .table [type='number'] {
 	width: 60px;
@@ -68,16 +67,22 @@ header a {
 }
 .login {
 	flex-direction: column;
-	margin-top: 30%;
+	margin-top: 20%;
 }
 .login span {
 	width: 60px;
 	display: inline-block;
+}
+.login [type='submit'] {
+	margin: auto;
 }
 
 
 @media screen and (max-width: 320px){
 	header a {
 		font-size: xx-large;
+	}
+	.view_detail a {
+		font-size: x-large;
 	}
 }

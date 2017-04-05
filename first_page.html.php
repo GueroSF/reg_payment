@@ -35,11 +35,6 @@
 		</div>
 		<div class="view_detail">
 			<a href="payment.php?month=<?php echo $monthDisplay[$i];?>">Просмотр</a>	
-			<form action="payment.php" method="get">
-				<input type="hidden" name="month" value="<?php echo $monthDisplay[$i];?>">
-				<input type="hidden" name="month_payment" value="edit">
-				<input type="submit" value="Просмотр">
-			</form>
 		</div>
 	</div>
 <?php endfor; ?>
