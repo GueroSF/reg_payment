@@ -1,0 +1,88 @@
+body {
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+content {
+	display: flex;
+	flex-direction: column;
+}
+header {
+	text-align: center;
+	width: 100%;
+	background: silver;
+}
+header a {
+	padding: 5px;
+}
+.month {
+	margin: 2px 2px 0 2px;
+	/*border: 1px solid grey;*/
+	background-color: lightsteelblue;
+	border-radius: 5px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+.today {
+	background: darkseagreen;
+}
+.view_detail,
+.month_name,
+.salary,
+.swallow {
+	border-radius: 5px;
+	margin: 3px;
+}
+.salary,
+.swallow {
+	background: white;
+}
+.month_name,
+.view_detail {
+	width: 100%;
+	text-align: center;
+}
+.td1, .td3 {
+	width: 92px;
+}
+.table {
+	display: flex;
+	justify-content: space-around;
+	flex-wrap: wrap;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	text-align: center;
+}
+.table [type='number'] {
+	width: 60px;
+}
+.paymentAdd {
+	background: powderblue;
+	padding-bottom: 5px;
+}
+.paymentList .table:nth-child(2n) {
+	background: lightgrey;
+}
+.login {
+	flex-direction: column;
+	margin-top: 20%;
+}
+.login span {
+	width: 60px;
+	display: inline-block;
+}
+.login [type='submit'] {
+	margin: auto;
+}
+
+
+@media screen and (max-width: 320px){
+	header a {
+		font-size: xx-large;
+	}
+	.view_detail a {
+		font-size: x-large;
+	}
+}
