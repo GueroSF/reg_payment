@@ -10,7 +10,7 @@
 				<option></option>
 				<?php foreach ($paymentCategory as $cat): ?>
 					<option value="<?php echo $cat['id']; ?>"><?php echo $cat['name']; ?></option>
-				<?php endforeach ?>				
+				<?php endforeach ?>
 			</select>
 			<input type="hidden" name="month" value="<?php echo $month;?>">
 			<input type="hidden" name="action" value="paymentAdd">
