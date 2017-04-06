@@ -3,7 +3,7 @@
 <content>
 	<div class="paymentAdd">
 		<div class="month_name"><span>Внести платёж: <b><?php echo $category['name'];?></b></span></div>
-		<form id="paymentAdd" class="table" action="payment.php" method="post">
+		<form id="paymentAdd" class="table" action="" method="post">
 			<input type="date" name="date" value="<?php echo date('Y-m-d'); ?>">
 			<input type="number" step="0.01" name="money">
 			<select name="operation">
@@ -12,6 +12,7 @@
 					<option value="<?php echo $op['id']; ?>"><?php echo $op['name']; ?></option>
 				<?php endforeach ?>
 			</select>
+			<textarea name="comment" maxlength="100" rows="2"></textarea>
 			<input type="hidden" name="account" value="<?php echo $idAccount;?>">
 			<input type="hidden" name="category" value="<?php echo $idCat;?>">
 			<input type="hidden" name="action" value="paymentAdd">

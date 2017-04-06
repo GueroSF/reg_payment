@@ -7,6 +7,42 @@ if(!was_login()){
 	include 'login.html.php';
 	exit;
 }
+if (isset($_POST['action'])&&$_POST['action']=='paymentAdd'){
+	$idAcc = $_POST['account'];
+	$idCat = $_POST['category'];
+	$idOp = $_POST['operation'];
+	$money = $_POST['money'];
+	$date = $_POST['date'];
+	$comm = $_POST['comment'];
+	try {
+		$sql = 'INSERT INTO `buh_transaction`(`account`, `operations`, `category`, `money`, `date_operations`) VALUES (:idAcc,:idOp,:idCat,:money,:date)';
+		$insert = $pdo ->prepare($sql);
+		$insert->bindValue(':idAcc', $idAcc);
+		$insert->bindValue(':idOp', $idOp);
+		$insert->bindValue(':idCat', $idCat);
+		$insert->bindValue(':money', $money);
+		$insert->bindValue(':date', $date);
+		$insert->execute();
+	} catch (PDOException $e) {
+		errorMessage('Ошибка при добавление платежа');
+	}
+	if(!empty($comm)){
+		$lastId = $pdo -> lastInsertId();
+		try {
+			$sql = 'INSERT INTO `buh_comment_payment`(`transaction_id`, `comment`) VALUES (:id, :text)';
+			$insert = $pdo ->prepare($sql);
+			$insert->bindValue(':id', $lastId);
+			$insert->bindValue(':text', $comm);
+			$insert->execute();
+		} catch (PDOException $e) {
+			errorMessage('Ошибка при добавлении комментария к платежу');
+		}
+	}
+	$url = $_SERVER['HTTP_REFERER'];
+	header("Location: $url");
+	exit();
+}
+
 if (isset($_GET['category'])&&isset($_GET['account'])){
 	$idCat = $_GET['category'];
 	$idAccount = $_GET['account'];
@@ -38,7 +74,6 @@ if (isset($_GET['category'])&&isset($_GET['account'])){
 		errorMessage('Ошибка получения инфо о платежах в категории');
 	}
 	$payments = $result->fetchALL(PDO::FETCH_ASSOC);
-	//var_dump($payment);
 	include 'payment_list.html.php';
 	exit;
 }
