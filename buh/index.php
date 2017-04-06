@@ -16,6 +16,12 @@ if (isset($_GET['category'])&&isset($_GET['account'])){
 		errorMessage('Ошибка получения name категории');
 	}
 	$category = $s->fetch(PDO::FETCH_ASSOC);
+	try {
+		$s = $pdo->query('SELECT * FROM `buh_operation`');
+	} catch (PDOException $e) {
+		errorMessage('Ошибка получения вида операций');
+	}
+	$operations = $s->fetchALL(PDO::FETCH_ASSOC);
 	$titleName = $category['name'];
 	include 'head_page.html.php';
 	try {

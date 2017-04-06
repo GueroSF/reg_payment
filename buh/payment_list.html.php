@@ -6,6 +6,12 @@
 		<form id="paymentAdd" class="table" action="payment.php" method="post">
 			<input type="date" name="date" value="<?php echo date('Y-m-d'); ?>">
 			<input type="number" step="0.01" name="money">
+			<select name="operation">
+				<option></option>
+				<?php foreach ($operations as $op): ?>
+					<option value="<?php echo $op['id']; ?>"><?php echo $op['name']; ?></option>
+				<?php endforeach ?>
+			</select>
 			<input type="hidden" name="account" value="<?php echo $idAccount;?>">
 			<input type="hidden" name="category" value="<?php echo $idCat;?>">
 			<input type="hidden" name="action" value="paymentAdd">
