@@ -7,6 +7,10 @@ if(!was_login()){
 	include 'login.html.php';
 	exit;
 }
+if (isset($_SESSION['buh'])){
+	header('Location: '.$pathURL.'buh/');
+	exit;
+}
 
 $titleName = 'Главная';
 include 'head_page.html.php';
