@@ -2,7 +2,7 @@
 <header><a href=".">Назад</a><a href="?logOut=exit">Выход</a></header>
 <content>
 	<div class="paymentAdd">
-		<div class="month_name"><span>Внести платёж: <b><?php echo $category['name'];?></b></span></div>
+		<div class="month_name"><span>Внести платёж: <b><?php echo $category['name'];?></b> <?php echo $moneySumCat;?></span></div>
 		<form id="paymentAdd" class="table" action="" method="post">
 			<input type="date" name="date" value="<?php echo date('Y-m-d'); ?>">
 			<input type="number" step="0.01" name="money">

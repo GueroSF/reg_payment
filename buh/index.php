@@ -61,6 +61,16 @@ if (isset($_GET['category'])&&isset($_GET['account'])){
 	$titleName = $category['name'];
 	include 'head_page.html.php';
 	try {
+		$sql = 'SELECT SUM(money) - (SELECT SUM(money) FROM `buh_transaction` WHERE `operations` = 2 AND `account` = :account AND `category` = :cat) sum FROM `buh_transaction` WHERE `operations` = 1 AND `account` = :account AND `category` = :cat';
+		$result = $pdo->prepare($sql);
+		$result -> bindValue(':account', $idAccount);
+		$result -> bindValue(':cat', $idCat);
+		$result -> execute();
+	} catch (PDOException $e) {
+		errorMessage('Ошибка подсчета сумм категорий');
+	}
+	$moneySumCat = $result->fetchCOLUMN();
+	try {
 		$sql = 'SELECT `buh_transaction`.`id`,`name`, `money`,`date_operations` `date`
 				FROM `buh_transaction`
 				INNER JOIN buh_operation ON buh_operation.id = buh_transaction.`operations`
@@ -91,16 +101,13 @@ if (isset($_GET['account'])){
 	}
 	$categorys = $s->fetchALL(PDO::FETCH_ASSOC);
 	try {
-		$sql = 'SELECT `operations`, SUM(money) sum FROM `buh_transaction` WHERE `operations` = 1 AND `account` = :account AND `category` = :cat
-			UNION ALL
-			SELECT `operations`, SUM(money) sum FROM `buh_transaction` WHERE `operations` = 2 AND `account` = :account AND `category` = :cat';
+		$sql = 'SELECT SUM(money) - (SELECT SUM(money) FROM `buh_transaction` WHERE `operations` = 2 AND `account` = :account AND `category` = :cat) sum FROM `buh_transaction` WHERE `operations` = 1 AND `account` = :account AND `category` = :cat';
 		$result = $pdo->prepare($sql);
 		foreach ($categorys as $key =>$cat) {
 			$result -> bindValue(':account', $id);
 			$result -> bindValue(':cat', $cat['id']);
 			$result -> execute();
-			$money= $result->fetchALL(PDO::FETCH_ASSOC);
-			$categorys[$key]['sum'] = $money[0]['sum']-$money[1]['sum'];
+			$categorys[$key]['sum'] = $result->fetchCOLUMN();
 		}
 	} catch (PDOException $e) {
 		errorMessage('Ошибка подсчета сумм категорий');
@@ -119,15 +126,12 @@ try {
 }
 $account = $s->fetchALL(PDO::FETCH_ASSOC);
 try {
-	$sql = 'SELECT `operations`, SUM(money) sum FROM `buh_transaction` WHERE `operations` = 1 AND `account` = :account 
-			UNION ALL
-			SELECT `operations`, SUM(money) sum FROM `buh_transaction` WHERE `operations` = 2 AND `account` = :account';
+	$sql = 'SELECT SUM(money) - (SELECT SUM(money) FROM `buh_transaction` WHERE `operations` = 2 AND `account` = :account) sum FROM `buh_transaction` WHERE `operations` = 1 AND `account` = :account';
 	$result = $pdo->prepare($sql);
 	foreach ($account as $key => $value) {
 		$result -> bindValue(':account', $value['id']);
 		$result -> execute();
-		$money = $result->fetchALL(PDO::FETCH_ASSOC);
-		$account[$key]['sum'] = $money[0]['sum']-$money[1]['sum'];
+		$account[$key]['sum'] = $result->fetchCOLUMN();
 	}
 } catch (PDOException $e) {
 	errorMessage('Ошибка при получении сумм счетов');
