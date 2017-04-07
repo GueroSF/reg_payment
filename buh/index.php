@@ -61,7 +61,7 @@ if (isset($_GET['category'])&&isset($_GET['account'])){
 	$titleName = $category['name'];
 	include 'head_page.html.php';
 	try {
-		$sql = 'SELECT SUM(money) - (SELECT SUM(money) FROM `buh_transaction` WHERE `operations` = 2 AND `account` = :account AND `category` = :cat) sum FROM `buh_transaction` WHERE `operations` = 1 AND `account` = :account AND `category` = :cat';
+		$sql = 'SELECT IFNULL(SUM(money),0) - (SELECT IFNULL(SUM(money),0) FROM `buh_transaction` WHERE `operations` = 2 AND `account` = :account AND `category` = :cat) sum FROM `buh_transaction` WHERE `operations` = 1 AND `account` = :account AND `category` = :cat';
 		$result = $pdo->prepare($sql);
 		$result -> bindValue(':account', $idAccount);
 		$result -> bindValue(':cat', $idCat);
@@ -101,7 +101,7 @@ if (isset($_GET['account'])){
 	}
 	$categorys = $s->fetchALL(PDO::FETCH_ASSOC);
 	try {
-		$sql = 'SELECT SUM(money) - (SELECT SUM(money) FROM `buh_transaction` WHERE `operations` = 2 AND `account` = :account AND `category` = :cat) sum FROM `buh_transaction` WHERE `operations` = 1 AND `account` = :account AND `category` = :cat';
+		$sql = 'SELECT IFNULL(SUM(money),0) - (SELECT IFNULL(SUM(money),0) FROM `buh_transaction` WHERE `operations` = 2 AND `account` = :account AND `category` = :cat) sum FROM `buh_transaction` WHERE `operations` = 1 AND `account` = :account AND `category` = :cat';
 		$result = $pdo->prepare($sql);
 		foreach ($categorys as $key =>$cat) {
 			$result -> bindValue(':account', $id);
@@ -126,7 +126,7 @@ try {
 }
 $account = $s->fetchALL(PDO::FETCH_ASSOC);
 try {
-	$sql = 'SELECT SUM(money) - (SELECT SUM(money) FROM `buh_transaction` WHERE `operations` = 2 AND `account` = :account) sum FROM `buh_transaction` WHERE `operations` = 1 AND `account` = :account';
+	$sql = 'SELECT IFNULL(SUM(money),0) - (SELECT IFNULL(SUM(money),0) FROM `buh_transaction` WHERE `operations` = 2 AND `account` = :account) sum FROM `buh_transaction` WHERE `operations` = 1 AND `account` = :account';
 	$result = $pdo->prepare($sql);
 	foreach ($account as $key => $value) {
 		$result -> bindValue(':account', $value['id']);
