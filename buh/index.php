@@ -186,4 +186,11 @@ try {
 	errorMessage('Ошибка получения суммы заёма по всем счетам');
 }
 $category5 = $s->fetchCOLUMN();
+$todayMonth = date('n_Y', strtotime('-8 days'));
+try {
+	$s = $pdo->query("SELECT SUM(payment) FROM `buh_product_oil` WHERE `month` = '$todayMonth'");
+} catch (PDOException $e) {
+	errorMessage('Ошибка при подсчёте денег на продукты');
+}
+$prOilSum = $s->fetchCOLUMN();
 include 'account_page.html.php';

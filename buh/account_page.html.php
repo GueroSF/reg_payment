@@ -30,6 +30,10 @@
 		</table>
 	</div>
 </div>
+<div class="month">
+	<div class="month_name">Продукты/бензин</div>
+	<div class="salary"><?php echo $prOilSum; ?></div>
+</div>
 </content>
 </body>
 </html>

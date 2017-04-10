@@ -1,3 +1,4 @@
+<?php //echo date('n_Y', strtotime('-10 days')); ?>
 <?php //var_dump($GLOBALS); ?>
 <div class="paymentAdd">
 	<div class="month_name"><span>Внести платёж: <b><?php echo $category['name'];?></b> <?php echo $moneySumCat;?></span></div>
