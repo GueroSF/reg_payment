@@ -19,6 +19,19 @@
 		</div>
 	</div>
 <?php endforeach; ?>
+<div class="month">
+	<div class="month_name"><span>Одолжено</span></div>
+	<div class="salary">
+		<table>
+			<tr>
+				<td>"-" должен</td>
+			</tr>
+			<tr>
+				<td><?php echo $category5;?></td>
+			</tr>
+		</table>
+	</div>
+</div>
 </content>
 </body>
 </html>

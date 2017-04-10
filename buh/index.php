@@ -136,4 +136,10 @@ try {
 } catch (PDOException $e) {
 	errorMessage('Ошибка при получении сумм счетов');
 }
+try {
+	$s = $pdo->query('SELECT IFNULL(SUM(money),0) - (SELECT IFNULL(SUM(money),0) FROM `buh_transaction` WHERE `operations` = 2 AND `category`= 5) sum FROM `buh_transaction` WHERE `operations` = 1 AND `category`= 5');
+} catch (PDOException $e) {
+	errorMessage('Ошибка получения суммы заёма по всем счетам');
+}
+$category5 = $s->fetchCOLUMN();
 include 'account_page.html.php';
