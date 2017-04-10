@@ -7,6 +7,24 @@ if(!was_login()){
 	include 'login.html.php';
 	exit;
 }
+function selectCat(){
+	include 'setting_path_inc.php';
+	try {
+		$s = $pdo->query('SELECT * FROM buh_account');
+	} catch (PDOException $e) {
+		errorMessage('Ошибка получения счетов');
+	}
+	return $s->fetchALL(PDO::FETCH_ASSOC);
+}
+function selectOper(){
+	include 'setting_path_inc.php';
+	try {
+		$s = $pdo->query('SELECT * FROM `buh_operation`');
+	} catch (PDOException $e) {
+		errorMessage('Ошибка получения вида операций');
+	}
+	return $s->fetchALL(PDO::FETCH_ASSOC);
+}
 if (isset($_POST['action'])&&$_POST['action']=='paymentAdd'){
 	$idAcc = $_POST['account'];
 	$idCat = $_POST['category'];
@@ -42,7 +60,46 @@ if (isset($_POST['action'])&&$_POST['action']=='paymentAdd'){
 	header("Location: $url");
 	exit();
 }
-
+if (isset($_POST['action'])&&$_POST['action']=='addCategory') {
+	$idAcc = $_POST['account'];
+	$nameCategory = $_POST['category'];
+	$idOp = $_POST['operation'];
+	$money = $_POST['money'];
+	$date = $_POST['date'];
+	$comm = $_POST['comment'];
+	try {
+		$sql = 'INSERT INTO `buh_category` SET `name` = :name';
+		$insert = $pdo ->prepare($sql);
+		$insert->bindValue(':name', $nameCategory);
+		$insert->execute();
+	} catch (PDOException $e) {
+		errorMessage('Ошибка добавления категории');
+	}
+	$idCat = $pdo -> lastInsertId();
+	try {
+		$sql = 'INSERT INTO `buh_transaction`(`account`, `operations`, `category`, `money`, `date_operations`) VALUES (:idAcc,:idOp,:idCat,:money,:date)';
+		$insert = $pdo ->prepare($sql);
+		$insert->bindValue(':idAcc', $idAcc);
+		$insert->bindValue(':idOp', $idOp);
+		$insert->bindValue(':idCat', $idCat);
+		$insert->bindValue(':money', $money);
+		$insert->bindValue(':date', $date);
+		$insert->execute();
+	} catch (PDOException $e) {
+		errorMessage('Ошибка при добавление платежа');
+	}
+	$url = $pathURL."buh/?category=$idCat&account=$idAcc";
+	header("Location: $url");
+	exit();
+}
+if (isset($_GET['add'])) {
+	$titleName = 'Добавить';
+	include 'head_page.html.php';
+	$accounts = selectCat();
+	$operations = selectOper();
+	include 'add_category.html.php';
+	exit;
+}
 if (isset($_GET['category'])&&isset($_GET['account'])){
 	$idCat = $_GET['category'];
 	$idAccount = $_GET['account'];
@@ -52,12 +109,7 @@ if (isset($_GET['category'])&&isset($_GET['account'])){
 		errorMessage('Ошибка получения name категории');
 	}
 	$category = $s->fetch(PDO::FETCH_ASSOC);
-	try {
-		$s = $pdo->query('SELECT * FROM `buh_operation`');
-	} catch (PDOException $e) {
-		errorMessage('Ошибка получения вида операций');
-	}
-	$operations = $s->fetchALL(PDO::FETCH_ASSOC);
+	$operations = selectOper();
 	$titleName = $category['name'];
 	include 'head_page.html.php';
 	try {
@@ -87,7 +139,6 @@ if (isset($_GET['category'])&&isset($_GET['account'])){
 	include 'payment_list.html.php';
 	exit;
 }
-
 if (isset($_GET['account'])){
 	$titleName = 'Категории';
 	include 'head_page.html.php';
@@ -115,23 +166,16 @@ if (isset($_GET['account'])){
 	include 'category_page.html.php';
 	exit;
 }
-
-
 $titleName = 'Счета';
 include 'head_page.html.php';
-try {
-	$s = $pdo->query('SELECT * FROM buh_account');
-} catch (PDOException $e) {
-	errorMessage('Ошибка получения счетов');
-}
-$account = $s->fetchALL(PDO::FETCH_ASSOC);
+$accounts = selectCat();
 try {
 	$sql = 'SELECT IFNULL(SUM(money),0) - (SELECT IFNULL(SUM(money),0) FROM `buh_transaction` WHERE `operations` = 2 AND `account` = :account) sum FROM `buh_transaction` WHERE `operations` = 1 AND `account` = :account';
 	$result = $pdo->prepare($sql);
-	foreach ($account as $key => $value) {
+	foreach ($accounts as $key => $value) {
 		$result -> bindValue(':account', $value['id']);
 		$result -> execute();
-		$account[$key]['sum'] = $result->fetchCOLUMN();
+		$accounts[$key]['sum'] = $result->fetchCOLUMN();
 	}
 } catch (PDOException $e) {
 	errorMessage('Ошибка при получении сумм счетов');
