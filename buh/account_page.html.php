@@ -1,6 +1,3 @@
-<body>
-<header><a href="?logOut=exit">Выход</a></header>
-<content>
 <?php foreach ($account as $acc): ?>
 	<div class="month">
 		<div class="month_name"><span><?php echo $acc['name'];?></span></div>
