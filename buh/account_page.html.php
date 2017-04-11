@@ -33,6 +33,9 @@
 <div class="month">
 	<div class="month_name">Продукты/бензин</div>
 	<div class="salary"><?php echo $prOilSum; ?></div>
+	<div class="view_detail">
+			<a href="product_oil.php">Просмотр</a>	
+		</div>
 </div>
 </content>
 </body>
