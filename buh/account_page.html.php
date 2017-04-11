@@ -1,4 +1,3 @@
-<div><a href="?add">Добавить категорию</a></div>
 <?php foreach ($accounts as $acc): ?>
 	<div class="month">
 		<div class="month_name"><span><?php echo $acc['name'];?></span></div>
@@ -37,6 +36,7 @@
 			<a href="product_oil.php">Просмотр</a>	
 		</div>
 </div>
+<div class="link_to_add"><a href="?add">Добавить категорию</a></div>
 </content>
 </body>
 </html>

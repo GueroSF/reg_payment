@@ -1,6 +1,6 @@
 <div class="paymentAdd">
 	<div class="month_name"><span>Внести платёж</span></div>
-	<form id="addPayment" action="product_oil.php" method="post">
+	<form id="addPayment" action="product_oil.php" method="post" class="table">
 		<input type="date" name="date" value="<?php echo date('Y-m-d'); ?>">
 		<input type="number" step="0.01" name="payment">
 		<label for="month">За:</label>
