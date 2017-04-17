@@ -90,9 +90,9 @@ header a {
 	border: 1px solid silver;
 }
 .comment {
-	border-top-style: solid;
+	border-top-style: dashed;
 	border-top-width: 1px;
-	border-top-color: white;
+	border-top-color: lightslategray;
 	display: flex;
 }
 
