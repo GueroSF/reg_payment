@@ -27,16 +27,19 @@
 		<div class="td3">Операция</div>
 	</div>
 	<?php foreach ($payments as $payment): ?>
-		<form class="table" action="" method="post">
-			<div class="td1"><?php echo $payment['date']; ?></div>
-			<div class="td2"><?php echo $payment['money']; ?></div>
-			<div class="td3"><?php echo $payment['name']; ?></div>
-			<!--<div class="td4">
-				<input type="hidden" name="id_payment" value="<?php echo $payment['id']; ?>">
-				<input type="hidden" name="action" value="paymentEdit">
-				<input type="submit" value="Изменить">
-			</div>	-->					
-		</form>
+		<div class="payment">
+			<div class="table">
+				<div class="td1"><?php echo $payment['date']; ?></div>
+				<div class="td2"><?php echo $payment['money']; ?></div>
+				<div class="td3"><?php echo $payment['name']; ?></div>
+			</div>
+			<?php if($payment['comm']!=='false'): ?>
+				<div class="comment">
+					<span class="td1">Комм:</span>
+					<span class="comm"><?= $payment['comm']; ?></span>
+				</div>
+			<?php endif; ?>
+		</div>
 	<?php endforeach ?>
 </div>
 </content>

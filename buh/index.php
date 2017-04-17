@@ -113,7 +113,7 @@ if (isset($_GET['category'])&&isset($_GET['account'])){
 	$titleName = $category['name'];
 	include 'head_page.html.php';
 	try {
-		$sql = 'SELECT IFNULL(SUM(money),0) - (SELECT IFNULL(SUM(money),0) FROM `buh_transaction` WHERE `operations` = 2 AND `account` = :account AND `category` = :cat) sum FROM `buh_transaction` WHERE `operations` = 1 AND `account` = :account AND `category` = :cat';
+		$sql = 'SELECT IFNULL(SUM(money),0) - (SELECT IFNULL(SUM(`money`),0) FROM `buh_transaction` WHERE `operations` = 2 AND `account` = :account AND `category` = :cat) sum FROM `buh_transaction` WHERE `operations` = 1 AND `account` = :account AND `category` = :cat';
 		$result = $pdo->prepare($sql);
 		$result -> bindValue(':account', $idAccount);
 		$result -> bindValue(':cat', $idCat);
@@ -123,9 +123,10 @@ if (isset($_GET['category'])&&isset($_GET['account'])){
 	}
 	$moneySumCat = $result->fetchCOLUMN();
 	try {
-		$sql = 'SELECT `buh_transaction`.`id`,`name`, `money`,`date_operations` `date`
+		$sql = 'SELECT `buh_transaction`.`id`,`name`, `money`,`date_operations` `date`, IFNULL(`comment`,\'false\') `comm`
 				FROM `buh_transaction`
 				INNER JOIN buh_operation ON buh_operation.id = buh_transaction.`operations`
+				LEFT JOIN `buh_comment_payment` ON `buh_comment_payment`.`transaction_id` = `buh_transaction`.`id`
 				WHERE `account` = :acc AND `category` = :cat
 				ORDER BY `date_operations` DESC';
 		$result = $pdo->prepare($sql);

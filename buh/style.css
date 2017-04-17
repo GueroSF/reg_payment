@@ -78,9 +78,25 @@ header a {
 	border-radius: 5px;
 	margin-bottom: 5px;
 }
-.paymentList .table:nth-child(2n) {
+.paymentList>.table{
+	background: silver;
+}
+.paymentList .payment:nth-child(2n) {
 	background: lightgrey;
 }
+.payment {
+	margin-top: 1px;
+	border-radius: 5px;
+	border: 1px solid silver;
+}
+.comment {
+	border-top-style: solid;
+	border-top-width: 1px;
+	border-top-color: white;
+	display: flex;
+}
+
+
 .login {
 	flex-direction: column;
 	margin-top: 20%;
