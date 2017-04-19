@@ -23,7 +23,7 @@ $monthDisplay[3] = date('n_Y', strtotime('+1 month'));
 try {
 	$sql = 'SELECT SUM(money) FROM payment WHERE payment_category = :category AND payment_for_month = :month';
 	$result = $pdo->prepare($sql);
-	for ($c=1;$c<4;$c++){
+	for ($c=1;$c<5;$c++){
 		$result->bindValue(':category', $c);
 		for ($i=0;$i<4;$i++){
 			$result->bindValue(':month', $monthDisplay[$i]);
