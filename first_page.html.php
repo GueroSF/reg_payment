@@ -15,6 +15,9 @@
 				<tr>
 					<td>не офицально:</td><td><?= $moneyCat[2][$i];?></td>
 				</tr>
+				<tr>
+					<td>Всего:</td><td><?= $moneyCat[1][$i]+$moneyCat[2][$i];?></td>
+				</tr>
 			</table>
 		</div>
 		<div class="swallow">

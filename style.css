@@ -47,6 +47,14 @@ header a {
 .td1, .td3 {
 	width: 92px;
 }
+.salary table {
+	border-collapse: collapse;
+	margin: 2px;
+}
+.salary table tr:nth-child(4) {
+	border-top-width: 1px;
+	border-top-style: solid;
+}
 .table {
 	display: flex;
 	justify-content: space-around;
