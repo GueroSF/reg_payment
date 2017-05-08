@@ -14,7 +14,7 @@ function was_login()
 if (isset($_POST['action'])&&$_POST['action']=='login'){
 	$pass = md5($_POST['pass']);
 	try {
-		$sql = 'SELECT COUNT(*), id FROM user WHERE name = :name AND pass = :pass';
+		$sql = 'SELECT COUNT(id), id FROM user WHERE name = :name AND pass = :pass GROUP BY id';
 		$r = $pdo->prepare($sql);
 		$r -> bindValue(':name', $_POST['name']);
 		$r -> bindValue('pass', $pass);
