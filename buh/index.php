@@ -7,19 +7,26 @@ if(!was_login()){
 	include 'login.html.php';
 	exit;
 }
-function selectCat(){
-	include 'setting_path_inc.php';
-	try {
-		$s = $pdo->query('SELECT * FROM buh_account');
-	} catch (PDOException $e) {
-		errorMessage('Ошибка получения счетов');
-	}
-	return $s->fetchALL(PDO::FETCH_ASSOC);
+function selectAccount($id = 0){
+	if ($id === 0) {
+		try {
+			$s = $GLOBALS['pdo']->query('SELECT * FROM buh_account');
+		} catch (PDOException $e) {
+			errorMessage('Ошибка получения счетов');
+		}
+		return $s->fetchALL(PDO::FETCH_ASSOC);
+	} else {
+		try {
+			$s = $GLOBALS['pdo']->query("SELECT name FROM buh_account WHERE id = $id");
+		} catch (PDOException $e) {
+			errorMessage('Ошибка получения счетов');
+		}
+		return $s->fetchCOLUMN();
+	}	
 }
 function selectOper(){
-	include 'setting_path_inc.php';
 	try {
-		$s = $pdo->query('SELECT * FROM `buh_operation`');
+		$s = $GLOBALS['pdo']->query('SELECT * FROM `buh_operation`');
 	} catch (PDOException $e) {
 		errorMessage('Ошибка получения вида операций');
 	}
@@ -95,7 +102,7 @@ if (isset($_POST['action'])&&$_POST['action']=='addCategory') {
 if (isset($_GET['add'])) {
 	$titleName = 'Добавить';
 	include 'head_page.html.php';
-	$accounts = selectCat();
+	$accounts = selectAccount();
 	$operations = selectOper();
 	include 'add_category.html.php';
 	exit;
@@ -103,6 +110,7 @@ if (isset($_GET['add'])) {
 if (isset($_GET['category'])&&isset($_GET['account'])){
 	$idCat = $_GET['category'];
 	$idAccount = $_GET['account'];
+	$accountName = selectAccount($idAccount);
 	try {
 		$s = $pdo->query("SELECT * FROM `buh_category` WHERE `id` = $idCat");
 	} catch (PDOException $e) {
@@ -142,8 +150,9 @@ if (isset($_GET['category'])&&isset($_GET['account'])){
 }
 if (isset($_GET['account'])){
 	$titleName = 'Категории';
-	include 'head_page.html.php';
 	$id = $_GET['account'];
+	$accountName = selectAccount($id);
+	include 'head_page.html.php';
 	try {
 		$s = $pdo->query("SELECT DISTINCT category id, name FROM `buh_transaction`
 							INNER JOIN buh_category ON buh_category.id = buh_transaction.category
@@ -169,7 +178,7 @@ if (isset($_GET['account'])){
 }
 $titleName = 'Счета';
 include 'head_page.html.php';
-$accounts = selectCat();
+$accounts = selectAccount();
 try {
 	$sql = 'SELECT IFNULL(SUM(money),0) - (SELECT IFNULL(SUM(money),0) FROM `buh_transaction` WHERE `operations` = 2 AND `account` = :account) sum FROM `buh_transaction` WHERE `operations` = 1 AND `account` = :account';
 	$result = $pdo->prepare($sql);

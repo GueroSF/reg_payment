@@ -9,5 +9,10 @@
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-<header><a href=".">Назад</a><a href="?logOut=exit">Выход</a></header>
+<header>
+	<a href=".">Назад</a><a href="?logOut=exit">Выход</a>
+	<?php if (isset($accountName)): ?>
+		<span><?=$accountName?></span>
+	<?php endif; ?>
+</header>
 <content>
