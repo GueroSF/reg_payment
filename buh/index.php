@@ -128,7 +128,7 @@ if (isset($_GET['category'])&&isset($_GET['account'])){
 				INNER JOIN buh_operation ON buh_operation.id = buh_transaction.`operations`
 				LEFT JOIN `buh_comment_payment` ON `buh_comment_payment`.`transaction_id` = `buh_transaction`.`id`
 				WHERE `account` = :acc AND `category` = :cat
-				ORDER BY `date_operations` DESC';
+				ORDER BY `date_operations` DESC ,`buh_transaction`.`id` DESC';
 		$result = $pdo->prepare($sql);
 		$result -> bindValue(':acc', $idAccount);
 		$result -> bindValue(':cat', $idCat);
