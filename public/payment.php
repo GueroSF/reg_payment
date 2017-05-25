@@ -1,14 +1,7 @@
 <?php
 include_once 'path.conf.php';
 chdir(__DIR__);
-/*
-if(!was_login()){
-	$titleName = 'Вход';
-	include 'head_page.html.php';
-	include 'login.html.php';
-	exit;
-}
-*/
+
 if (isset($_POST['action'])&&$_POST['action']=='paymentAdd') {
 	if(empty($_POST['money'])||$_POST['money']==0){
 		$error = 'Поле не может быть пустым или равняться нулю';

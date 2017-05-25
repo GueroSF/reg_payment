@@ -1,16 +1,7 @@
 <?php
-//include 'setting_path_inc.php';
-/*function was_login()
-{
-	if(session_status()!=2)session_start();
-	if (isset($_SESSION['loggedIn']))
-		return true;
-	else {
-		unset($_SESSION['loggedIn']);
-		session_destroy();
-		return false;
-	}
-}*/
+include_once 'path.conf.php';
+chdir(__DIR__);
+
 if (isset($_POST['action'])&&$_POST['action']=='login'){
 	$pass = md5($_POST['pass']);
 	try {
@@ -44,13 +35,3 @@ if (isset($_POST['action'])&&$_POST['action']=='login'){
 		exit;
 	}
 }
-/*
-if (isset($_GET['logOut'])&&$_GET['logOut']=='exit'){
-	if(session_status()!=2)session_start();
-	unset($_SESSION['loggedIn']);
-	unset($_SESSION['buh']);
-	session_destroy();
-	header('Location:'.$pathURL);
-	exit;
-}
-*/
