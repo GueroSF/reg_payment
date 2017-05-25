@@ -1,6 +1,6 @@
 <?php
-include 'setting_path_inc.php';
-function was_login()
+//include 'setting_path_inc.php';
+/*function was_login()
 {
 	if(session_status()!=2)session_start();
 	if (isset($_SESSION['loggedIn']))
@@ -10,12 +10,12 @@ function was_login()
 		session_destroy();
 		return false;
 	}
-}
+}*/
 if (isset($_POST['action'])&&$_POST['action']=='login'){
 	$pass = md5($_POST['pass']);
 	try {
 		$sql = 'SELECT COUNT(id), id FROM user WHERE name = :name AND pass = :pass GROUP BY id';
-		$r = $pdo->prepare($sql);
+		$r = $GLOBALS['pdo']->prepare($sql);
 		$r -> bindValue(':name', $_POST['name']);
 		$r -> bindValue('pass', $pass);
 		$r -> execute();
@@ -33,7 +33,7 @@ if (isset($_POST['action'])&&$_POST['action']=='login'){
 		$_SESSION['loggedIn'] = true;
 		header('Location:'.$pathURL);
 	} else {
-		if(session_status()!=2)session_start();
+		session_start();
 		unset($_SESSION['loggedIn']);
 		unset($_SESSION['buh']);
 		session_destroy();
@@ -44,6 +44,7 @@ if (isset($_POST['action'])&&$_POST['action']=='login'){
 		exit;
 	}
 }
+/*
 if (isset($_GET['logOut'])&&$_GET['logOut']=='exit'){
 	if(session_status()!=2)session_start();
 	unset($_SESSION['loggedIn']);
@@ -52,3 +53,4 @@ if (isset($_GET['logOut'])&&$_GET['logOut']=='exit'){
 	header('Location:'.$pathURL);
 	exit;
 }
+*/

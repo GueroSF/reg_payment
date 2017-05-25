@@ -1,12 +1,14 @@
 <?php
-include_once 'setting_path_inc.php';
+include_once 'path.conf.php';
+chdir(__DIR__);
 
+/*
 if(!was_login()){
 	$titleName = 'Вход';
 	include 'head_page.html.php';
 	include 'login.html.php';
 	exit;
-}
+}*/
 if (isset($_SESSION['buh'])){
 	header('Location: '.$pathURL.'buh/');
 	exit;

@@ -2264,3 +2264,161 @@
 [Thu May 25 15:26:39.781250 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2776] PHP   2. include_once() C:\\wamp\\www\\reg\\public\\buh\\index.php:2
 [Thu May 25 15:26:39.781250 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2776] PHP   3. include_once() C:\\wamp\\www\\reg\\public\\setting_path_inc.php:6
 [Thu May 25 15:26:39.781250 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2776] PHP   4. include() C:\\wamp\\www\\reg\\public\\login.php:2
+[Thu May 25 15:40:05.890625 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2917] PHP Warning:  include_once(/includes/access.comp.php): failed to open stream: No such file or directory in C:\\wamp\\www\\reg\\config.php on line 9, referer: http://reg/
+[Thu May 25 15:40:05.906250 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2917] PHP Stack trace:, referer: http://reg/
+[Thu May 25 15:40:05.906250 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2917] PHP   1. {main}() C:\\wamp\\www\\reg\\public\\buh\\index.php:0, referer: http://reg/
+[Thu May 25 15:40:05.906250 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2917] PHP   2. include_once() C:\\wamp\\www\\reg\\public\\buh\\index.php:2, referer: http://reg/
+[Thu May 25 15:40:05.906250 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2917] PHP   3. include_once() C:\\wamp\\www\\reg\\public\\path.conf.php:3, referer: http://reg/
+[Thu May 25 15:40:05.906250 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2917] PHP Warning:  include_once(): Failed opening '/includes/access.comp.php' for inclusion (include_path='.;C:\\php\\pear') in C:\\wamp\\www\\reg\\config.php on line 9, referer: http://reg/
+[Thu May 25 15:40:05.906250 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2917] PHP Stack trace:, referer: http://reg/
+[Thu May 25 15:40:05.906250 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2917] PHP   1. {main}() C:\\wamp\\www\\reg\\public\\buh\\index.php:0, referer: http://reg/
+[Thu May 25 15:40:05.906250 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2917] PHP   2. include_once() C:\\wamp\\www\\reg\\public\\buh\\index.php:2, referer: http://reg/
+[Thu May 25 15:40:05.906250 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2917] PHP   3. include_once() C:\\wamp\\www\\reg\\public\\path.conf.php:3, referer: http://reg/
+[Thu May 25 15:40:05.906250 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2917] PHP Warning:  include_once(/class/select.class.php): failed to open stream: No such file or directory in C:\\wamp\\www\\reg\\config.php on line 10, referer: http://reg/
+[Thu May 25 15:40:05.906250 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2917] PHP Stack trace:, referer: http://reg/
+[Thu May 25 15:40:05.906250 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2917] PHP   1. {main}() C:\\wamp\\www\\reg\\public\\buh\\index.php:0, referer: http://reg/
+[Thu May 25 15:40:05.906250 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2917] PHP   2. include_once() C:\\wamp\\www\\reg\\public\\buh\\index.php:2, referer: http://reg/
+[Thu May 25 15:40:05.906250 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2917] PHP   3. include_once() C:\\wamp\\www\\reg\\public\\path.conf.php:3, referer: http://reg/
+[Thu May 25 15:40:05.906250 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2917] PHP Warning:  include_once(): Failed opening '/class/select.class.php' for inclusion (include_path='.;C:\\php\\pear') in C:\\wamp\\www\\reg\\config.php on line 10, referer: http://reg/
+[Thu May 25 15:40:05.906250 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2917] PHP Stack trace:, referer: http://reg/
+[Thu May 25 15:40:05.906250 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2917] PHP   1. {main}() C:\\wamp\\www\\reg\\public\\buh\\index.php:0, referer: http://reg/
+[Thu May 25 15:40:05.906250 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2917] PHP   2. include_once() C:\\wamp\\www\\reg\\public\\buh\\index.php:2, referer: http://reg/
+[Thu May 25 15:40:05.906250 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2917] PHP   3. include_once() C:\\wamp\\www\\reg\\public\\path.conf.php:3, referer: http://reg/
+[Thu May 25 15:40:05.906250 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2917] PHP Warning:  include_once(/class/contents_account.class.php): failed to open stream: No such file or directory in C:\\wamp\\www\\reg\\config.php on line 12, referer: http://reg/
+[Thu May 25 15:40:05.906250 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2917] PHP Stack trace:, referer: http://reg/
+[Thu May 25 15:40:05.906250 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2917] PHP   1. {main}() C:\\wamp\\www\\reg\\public\\buh\\index.php:0, referer: http://reg/
+[Thu May 25 15:40:05.906250 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2917] PHP   2. include_once() C:\\wamp\\www\\reg\\public\\buh\\index.php:2, referer: http://reg/
+[Thu May 25 15:40:05.906250 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2917] PHP   3. include_once() C:\\wamp\\www\\reg\\public\\path.conf.php:3, referer: http://reg/
+[Thu May 25 15:40:05.906250 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2917] PHP Warning:  include_once(): Failed opening '/class/contents_account.class.php' for inclusion (include_path='.;C:\\php\\pear') in C:\\wamp\\www\\reg\\config.php on line 12, referer: http://reg/
+[Thu May 25 15:40:05.906250 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2917] PHP Stack trace:, referer: http://reg/
+[Thu May 25 15:40:05.906250 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2917] PHP   1. {main}() C:\\wamp\\www\\reg\\public\\buh\\index.php:0, referer: http://reg/
+[Thu May 25 15:40:05.906250 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2917] PHP   2. include_once() C:\\wamp\\www\\reg\\public\\buh\\index.php:2, referer: http://reg/
+[Thu May 25 15:40:05.906250 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2917] PHP   3. include_once() C:\\wamp\\www\\reg\\public\\path.conf.php:3, referer: http://reg/
+[Thu May 25 15:40:05.906250 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2917] PHP Warning:  include_once(/class/account_category.class.php): failed to open stream: No such file or directory in C:\\wamp\\www\\reg\\config.php on line 13, referer: http://reg/
+[Thu May 25 15:40:05.906250 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2917] PHP Stack trace:, referer: http://reg/
+[Thu May 25 15:40:05.906250 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2917] PHP   1. {main}() C:\\wamp\\www\\reg\\public\\buh\\index.php:0, referer: http://reg/
+[Thu May 25 15:40:05.906250 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2917] PHP   2. include_once() C:\\wamp\\www\\reg\\public\\buh\\index.php:2, referer: http://reg/
+[Thu May 25 15:40:05.906250 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2917] PHP   3. include_once() C:\\wamp\\www\\reg\\public\\path.conf.php:3, referer: http://reg/
+[Thu May 25 15:40:05.906250 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2917] PHP Warning:  include_once(): Failed opening '/class/account_category.class.php' for inclusion (include_path='.;C:\\php\\pear') in C:\\wamp\\www\\reg\\config.php on line 13, referer: http://reg/
+[Thu May 25 15:40:05.906250 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2917] PHP Stack trace:, referer: http://reg/
+[Thu May 25 15:40:05.906250 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2917] PHP   1. {main}() C:\\wamp\\www\\reg\\public\\buh\\index.php:0, referer: http://reg/
+[Thu May 25 15:40:05.906250 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2917] PHP   2. include_once() C:\\wamp\\www\\reg\\public\\buh\\index.php:2, referer: http://reg/
+[Thu May 25 15:40:05.906250 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2917] PHP   3. include_once() C:\\wamp\\www\\reg\\public\\path.conf.php:3, referer: http://reg/
+[Thu May 25 15:40:05.906250 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2917] PHP Fatal error:  Call to undefined function was_login() in C:\\wamp\\www\\reg\\public\\buh\\index.php on line 5, referer: http://reg/
+[Thu May 25 15:40:05.906250 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2917] PHP Stack trace:, referer: http://reg/
+[Thu May 25 15:40:05.906250 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2917] PHP   1. {main}() C:\\wamp\\www\\reg\\public\\buh\\index.php:0, referer: http://reg/
+[Thu May 25 15:40:23.046875 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2920] PHP Warning:  include_once(/includes/access.comp.php): failed to open stream: No such file or directory in C:\\wamp\\www\\reg\\config.php on line 9, referer: http://reg/
+[Thu May 25 15:40:23.046875 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2920] PHP Stack trace:, referer: http://reg/
+[Thu May 25 15:40:23.046875 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2920] PHP   1. {main}() C:\\wamp\\www\\reg\\public\\buh\\index.php:0, referer: http://reg/
+[Thu May 25 15:40:23.046875 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2920] PHP   2. include_once() C:\\wamp\\www\\reg\\public\\buh\\index.php:2, referer: http://reg/
+[Thu May 25 15:40:23.046875 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2920] PHP   3. include_once() C:\\wamp\\www\\reg\\public\\path.conf.php:3, referer: http://reg/
+[Thu May 25 15:40:23.046875 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2920] PHP Warning:  include_once(): Failed opening '/includes/access.comp.php' for inclusion (include_path='.;C:\\php\\pear') in C:\\wamp\\www\\reg\\config.php on line 9, referer: http://reg/
+[Thu May 25 15:40:23.046875 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2920] PHP Stack trace:, referer: http://reg/
+[Thu May 25 15:40:23.046875 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2920] PHP   1. {main}() C:\\wamp\\www\\reg\\public\\buh\\index.php:0, referer: http://reg/
+[Thu May 25 15:40:23.046875 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2920] PHP   2. include_once() C:\\wamp\\www\\reg\\public\\buh\\index.php:2, referer: http://reg/
+[Thu May 25 15:40:23.046875 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2920] PHP   3. include_once() C:\\wamp\\www\\reg\\public\\path.conf.php:3, referer: http://reg/
+[Thu May 25 15:40:23.046875 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2920] PHP Warning:  include_once(/class/select.class.php): failed to open stream: No such file or directory in C:\\wamp\\www\\reg\\config.php on line 10, referer: http://reg/
+[Thu May 25 15:40:23.046875 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2920] PHP Stack trace:, referer: http://reg/
+[Thu May 25 15:40:23.046875 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2920] PHP   1. {main}() C:\\wamp\\www\\reg\\public\\buh\\index.php:0, referer: http://reg/
+[Thu May 25 15:40:23.046875 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2920] PHP   2. include_once() C:\\wamp\\www\\reg\\public\\buh\\index.php:2, referer: http://reg/
+[Thu May 25 15:40:23.046875 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2920] PHP   3. include_once() C:\\wamp\\www\\reg\\public\\path.conf.php:3, referer: http://reg/
+[Thu May 25 15:40:23.046875 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2920] PHP Warning:  include_once(): Failed opening '/class/select.class.php' for inclusion (include_path='.;C:\\php\\pear') in C:\\wamp\\www\\reg\\config.php on line 10, referer: http://reg/
+[Thu May 25 15:40:23.046875 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2920] PHP Stack trace:, referer: http://reg/
+[Thu May 25 15:40:23.046875 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2920] PHP   1. {main}() C:\\wamp\\www\\reg\\public\\buh\\index.php:0, referer: http://reg/
+[Thu May 25 15:40:23.046875 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2920] PHP   2. include_once() C:\\wamp\\www\\reg\\public\\buh\\index.php:2, referer: http://reg/
+[Thu May 25 15:40:23.046875 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2920] PHP   3. include_once() C:\\wamp\\www\\reg\\public\\path.conf.php:3, referer: http://reg/
+[Thu May 25 15:40:23.046875 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2920] PHP Warning:  include_once(/class/contents_account.class.php): failed to open stream: No such file or directory in C:\\wamp\\www\\reg\\config.php on line 12, referer: http://reg/
+[Thu May 25 15:40:23.046875 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2920] PHP Stack trace:, referer: http://reg/
+[Thu May 25 15:40:23.046875 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2920] PHP   1. {main}() C:\\wamp\\www\\reg\\public\\buh\\index.php:0, referer: http://reg/
+[Thu May 25 15:40:23.046875 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2920] PHP   2. include_once() C:\\wamp\\www\\reg\\public\\buh\\index.php:2, referer: http://reg/
+[Thu May 25 15:40:23.046875 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2920] PHP   3. include_once() C:\\wamp\\www\\reg\\public\\path.conf.php:3, referer: http://reg/
+[Thu May 25 15:40:23.046875 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2920] PHP Warning:  include_once(): Failed opening '/class/contents_account.class.php' for inclusion (include_path='.;C:\\php\\pear') in C:\\wamp\\www\\reg\\config.php on line 12, referer: http://reg/
+[Thu May 25 15:40:23.046875 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2920] PHP Stack trace:, referer: http://reg/
+[Thu May 25 15:40:23.046875 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2920] PHP   1. {main}() C:\\wamp\\www\\reg\\public\\buh\\index.php:0, referer: http://reg/
+[Thu May 25 15:40:23.046875 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2920] PHP   2. include_once() C:\\wamp\\www\\reg\\public\\buh\\index.php:2, referer: http://reg/
+[Thu May 25 15:40:23.046875 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2920] PHP   3. include_once() C:\\wamp\\www\\reg\\public\\path.conf.php:3, referer: http://reg/
+[Thu May 25 15:40:23.046875 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2920] PHP Warning:  include_once(/class/account_category.class.php): failed to open stream: No such file or directory in C:\\wamp\\www\\reg\\config.php on line 13, referer: http://reg/
+[Thu May 25 15:40:23.046875 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2920] PHP Stack trace:, referer: http://reg/
+[Thu May 25 15:40:23.046875 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2920] PHP   1. {main}() C:\\wamp\\www\\reg\\public\\buh\\index.php:0, referer: http://reg/
+[Thu May 25 15:40:23.046875 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2920] PHP   2. include_once() C:\\wamp\\www\\reg\\public\\buh\\index.php:2, referer: http://reg/
+[Thu May 25 15:40:23.046875 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2920] PHP   3. include_once() C:\\wamp\\www\\reg\\public\\path.conf.php:3, referer: http://reg/
+[Thu May 25 15:40:23.046875 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2920] PHP Warning:  include_once(): Failed opening '/class/account_category.class.php' for inclusion (include_path='.;C:\\php\\pear') in C:\\wamp\\www\\reg\\config.php on line 13, referer: http://reg/
+[Thu May 25 15:40:23.046875 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2920] PHP Stack trace:, referer: http://reg/
+[Thu May 25 15:40:23.046875 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2920] PHP   1. {main}() C:\\wamp\\www\\reg\\public\\buh\\index.php:0, referer: http://reg/
+[Thu May 25 15:40:23.046875 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2920] PHP   2. include_once() C:\\wamp\\www\\reg\\public\\buh\\index.php:2, referer: http://reg/
+[Thu May 25 15:40:23.046875 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2920] PHP   3. include_once() C:\\wamp\\www\\reg\\public\\path.conf.php:3, referer: http://reg/
+[Thu May 25 15:40:23.046875 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2920] PHP Fatal error:  Call to undefined function was_login() in C:\\wamp\\www\\reg\\public\\buh\\index.php on line 5, referer: http://reg/
+[Thu May 25 15:40:23.046875 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2920] PHP Stack trace:, referer: http://reg/
+[Thu May 25 15:40:23.046875 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2920] PHP   1. {main}() C:\\wamp\\www\\reg\\public\\buh\\index.php:0, referer: http://reg/
+[Thu May 25 15:44:13.203125 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2972] PHP Warning:  include_once(/includes/access.comp.php): failed to open stream: No such file or directory in C:\\wamp\\www\\reg\\config.php on line 9, referer: http://reg/
+[Thu May 25 15:44:13.203125 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2972] PHP Stack trace:, referer: http://reg/
+[Thu May 25 15:44:13.203125 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2972] PHP   1. {main}() C:\\wamp\\www\\reg\\public\\buh\\index.php:0, referer: http://reg/
+[Thu May 25 15:44:13.203125 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2972] PHP   2. include_once() C:\\wamp\\www\\reg\\public\\buh\\index.php:2, referer: http://reg/
+[Thu May 25 15:44:13.203125 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2972] PHP   3. include_once() C:\\wamp\\www\\reg\\public\\path.conf.php:3, referer: http://reg/
+[Thu May 25 15:44:13.203125 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2972] PHP Warning:  include_once(): Failed opening '/includes/access.comp.php' for inclusion (include_path='.;C:\\php\\pear') in C:\\wamp\\www\\reg\\config.php on line 9, referer: http://reg/
+[Thu May 25 15:44:13.203125 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2972] PHP Stack trace:, referer: http://reg/
+[Thu May 25 15:44:13.203125 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2972] PHP   1. {main}() C:\\wamp\\www\\reg\\public\\buh\\index.php:0, referer: http://reg/
+[Thu May 25 15:44:13.203125 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2972] PHP   2. include_once() C:\\wamp\\www\\reg\\public\\buh\\index.php:2, referer: http://reg/
+[Thu May 25 15:44:13.203125 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2972] PHP   3. include_once() C:\\wamp\\www\\reg\\public\\path.conf.php:3, referer: http://reg/
+[Thu May 25 15:44:13.203125 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2972] PHP Fatal error:  Call to undefined function was_login() in C:\\wamp\\www\\reg\\public\\buh\\index.php on line 5, referer: http://reg/
+[Thu May 25 15:44:13.203125 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2972] PHP Stack trace:, referer: http://reg/
+[Thu May 25 15:44:13.203125 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:2972] PHP   1. {main}() C:\\wamp\\www\\reg\\public\\buh\\index.php:0, referer: http://reg/
+[Thu May 25 15:50:20.000000 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:3026] PHP Warning:  include_once(C:/wamp/www/reg/public/includes/path.inc.php): failed to open stream: No such file or directory in C:\\wamp\\www\\reg\\public\\setting_path_inc.php on line 2, referer: http://reg/
+[Thu May 25 15:50:20.000000 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:3026] PHP Stack trace:, referer: http://reg/
+[Thu May 25 15:50:20.000000 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:3026] PHP   1. {main}() C:\\wamp\\www\\reg\\public\\payment.php:0, referer: http://reg/
+[Thu May 25 15:50:20.000000 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:3026] PHP   2. include() C:\\wamp\\www\\reg\\public\\payment.php:2, referer: http://reg/
+[Thu May 25 15:50:20.000000 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:3026] PHP Warning:  include_once(): Failed opening 'C:/wamp/www/reg/public/includes/path.inc.php' for inclusion (include_path='.;C:\\php\\pear') in C:\\wamp\\www\\reg\\public\\setting_path_inc.php on line 2, referer: http://reg/
+[Thu May 25 15:50:20.000000 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:3026] PHP Stack trace:, referer: http://reg/
+[Thu May 25 15:50:20.000000 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:3026] PHP   1. {main}() C:\\wamp\\www\\reg\\public\\payment.php:0, referer: http://reg/
+[Thu May 25 15:50:20.000000 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:3026] PHP   2. include() C:\\wamp\\www\\reg\\public\\payment.php:2, referer: http://reg/
+[Thu May 25 15:50:20.000000 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:3026] PHP Notice:  Undefined variable: pathFileInc in C:\\wamp\\www\\reg\\public\\setting_path_inc.php on line 3, referer: http://reg/
+[Thu May 25 15:50:20.000000 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:3026] PHP Stack trace:, referer: http://reg/
+[Thu May 25 15:50:20.000000 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:3026] PHP   1. {main}() C:\\wamp\\www\\reg\\public\\payment.php:0, referer: http://reg/
+[Thu May 25 15:50:20.000000 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:3026] PHP   2. include() C:\\wamp\\www\\reg\\public\\payment.php:2, referer: http://reg/
+[Thu May 25 15:50:20.000000 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:3026] PHP Warning:  include_once(db_connect.inc.php): failed to open stream: No such file or directory in C:\\wamp\\www\\reg\\public\\setting_path_inc.php on line 3, referer: http://reg/
+[Thu May 25 15:50:20.000000 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:3026] PHP Stack trace:, referer: http://reg/
+[Thu May 25 15:50:20.000000 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:3026] PHP   1. {main}() C:\\wamp\\www\\reg\\public\\payment.php:0, referer: http://reg/
+[Thu May 25 15:50:20.000000 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:3026] PHP   2. include() C:\\wamp\\www\\reg\\public\\payment.php:2, referer: http://reg/
+[Thu May 25 15:50:20.000000 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:3026] PHP Warning:  include_once(): Failed opening 'db_connect.inc.php' for inclusion (include_path='.;C:\\php\\pear') in C:\\wamp\\www\\reg\\public\\setting_path_inc.php on line 3, referer: http://reg/
+[Thu May 25 15:50:20.000000 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:3026] PHP Stack trace:, referer: http://reg/
+[Thu May 25 15:50:20.000000 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:3026] PHP   1. {main}() C:\\wamp\\www\\reg\\public\\payment.php:0, referer: http://reg/
+[Thu May 25 15:50:20.000000 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:3026] PHP   2. include() C:\\wamp\\www\\reg\\public\\payment.php:2, referer: http://reg/
+[Thu May 25 15:50:20.000000 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:3026] PHP Notice:  Undefined variable: pathFileInc in C:\\wamp\\www\\reg\\public\\setting_path_inc.php on line 4, referer: http://reg/
+[Thu May 25 15:50:20.000000 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:3026] PHP Stack trace:, referer: http://reg/
+[Thu May 25 15:50:20.000000 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:3026] PHP   1. {main}() C:\\wamp\\www\\reg\\public\\payment.php:0, referer: http://reg/
+[Thu May 25 15:50:20.000000 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:3026] PHP   2. include() C:\\wamp\\www\\reg\\public\\payment.php:2, referer: http://reg/
+[Thu May 25 15:50:20.000000 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:3026] PHP Warning:  include_once(error.inc.php): failed to open stream: No such file or directory in C:\\wamp\\www\\reg\\public\\setting_path_inc.php on line 4, referer: http://reg/
+[Thu May 25 15:50:20.000000 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:3026] PHP Stack trace:, referer: http://reg/
+[Thu May 25 15:50:20.000000 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:3026] PHP   1. {main}() C:\\wamp\\www\\reg\\public\\payment.php:0, referer: http://reg/
+[Thu May 25 15:50:20.000000 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:3026] PHP   2. include() C:\\wamp\\www\\reg\\public\\payment.php:2, referer: http://reg/
+[Thu May 25 15:50:20.000000 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:3026] PHP Warning:  include_once(): Failed opening 'error.inc.php' for inclusion (include_path='.;C:\\php\\pear') in C:\\wamp\\www\\reg\\public\\setting_path_inc.php on line 4, referer: http://reg/
+[Thu May 25 15:50:20.000000 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:3026] PHP Stack trace:, referer: http://reg/
+[Thu May 25 15:50:20.000000 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:3026] PHP   1. {main}() C:\\wamp\\www\\reg\\public\\payment.php:0, referer: http://reg/
+[Thu May 25 15:50:20.000000 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:3026] PHP   2. include() C:\\wamp\\www\\reg\\public\\payment.php:2, referer: http://reg/
+[Thu May 25 15:50:20.000000 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:3026] PHP Notice:  Undefined variable: pathFileInc in C:\\wamp\\www\\reg\\public\\setting_path_inc.php on line 5, referer: http://reg/
+[Thu May 25 15:50:20.000000 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:3026] PHP Stack trace:, referer: http://reg/
+[Thu May 25 15:50:20.000000 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:3026] PHP   1. {main}() C:\\wamp\\www\\reg\\public\\payment.php:0, referer: http://reg/
+[Thu May 25 15:50:20.000000 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:3026] PHP   2. include() C:\\wamp\\www\\reg\\public\\payment.php:2, referer: http://reg/
+[Thu May 25 15:50:20.000000 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:3026] PHP Warning:  include_once(month_name.inc.php): failed to open stream: No such file or directory in C:\\wamp\\www\\reg\\public\\setting_path_inc.php on line 5, referer: http://reg/
+[Thu May 25 15:50:20.000000 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:3026] PHP Stack trace:, referer: http://reg/
+[Thu May 25 15:50:20.000000 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:3026] PHP   1. {main}() C:\\wamp\\www\\reg\\public\\payment.php:0, referer: http://reg/
+[Thu May 25 15:50:20.000000 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:3026] PHP   2. include() C:\\wamp\\www\\reg\\public\\payment.php:2, referer: http://reg/
+[Thu May 25 15:50:20.000000 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:3026] PHP Warning:  include_once(): Failed opening 'month_name.inc.php' for inclusion (include_path='.;C:\\php\\pear') in C:\\wamp\\www\\reg\\public\\setting_path_inc.php on line 5, referer: http://reg/
+[Thu May 25 15:50:20.000000 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:3026] PHP Stack trace:, referer: http://reg/
+[Thu May 25 15:50:20.000000 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:3026] PHP   1. {main}() C:\\wamp\\www\\reg\\public\\payment.php:0, referer: http://reg/
+[Thu May 25 15:50:20.000000 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:3026] PHP   2. include() C:\\wamp\\www\\reg\\public\\payment.php:2, referer: http://reg/
+[Thu May 25 15:50:20.000000 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:3026] PHP Fatal error:  Call to undefined function was_login() in C:\\wamp\\www\\reg\\public\\payment.php on line 4, referer: http://reg/
+[Thu May 25 15:50:20.000000 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:3026] PHP Stack trace:, referer: http://reg/
+[Thu May 25 15:50:20.000000 2017] [:error] [pid 476:tid 708] [client 127.0.0.1:3026] PHP   1. {main}() C:\\wamp\\www\\reg\\public\\payment.php:0, referer: http://reg/
+[Thu May 25 15:54:34.562500 2017] [:error] [pid 476:tid 576] [client 127.0.0.1:3081] PHP Notice:  Undefined variable: pdo in C:\\wamp\\www\\reg\\public\\login.php on line 18, referer: http://reg/
+[Thu May 25 15:54:34.562500 2017] [:error] [pid 476:tid 576] [client 127.0.0.1:3081] PHP Stack trace:, referer: http://reg/
+[Thu May 25 15:54:34.562500 2017] [:error] [pid 476:tid 576] [client 127.0.0.1:3081] PHP   1. {main}() C:\\wamp\\www\\reg\\public\\login.php:0, referer: http://reg/
+[Thu May 25 15:54:34.562500 2017] [:error] [pid 476:tid 576] [client 127.0.0.1:3081] PHP Fatal error:  Call to a member function prepare() on a non-object in C:\\wamp\\www\\reg\\public\\login.php on line 18, referer: http://reg/
+[Thu May 25 15:54:34.562500 2017] [:error] [pid 476:tid 576] [client 127.0.0.1:3081] PHP Stack trace:, referer: http://reg/
+[Thu May 25 15:54:34.562500 2017] [:error] [pid 476:tid 576] [client 127.0.0.1:3081] PHP   1. {main}() C:\\wamp\\www\\reg\\public\\login.php:0, referer: http://reg/
+[Thu May 25 15:55:08.562500 2017] [:error] [pid 476:tid 576] [client 127.0.0.1:3085] PHP Notice:  Undefined index: pdo in C:\\wamp\\www\\reg\\public\\login.php on line 18, referer: http://reg/
+[Thu May 25 15:55:08.562500 2017] [:error] [pid 476:tid 576] [client 127.0.0.1:3085] PHP Stack trace:, referer: http://reg/
+[Thu May 25 15:55:08.562500 2017] [:error] [pid 476:tid 576] [client 127.0.0.1:3085] PHP   1. {main}() C:\\wamp\\www\\reg\\public\\login.php:0, referer: http://reg/
+[Thu May 25 15:55:08.562500 2017] [:error] [pid 476:tid 576] [client 127.0.0.1:3085] PHP Fatal error:  Call to a member function prepare() on a non-object in C:\\wamp\\www\\reg\\public\\login.php on line 18, referer: http://reg/
+[Thu May 25 15:55:08.562500 2017] [:error] [pid 476:tid 576] [client 127.0.0.1:3085] PHP Stack trace:, referer: http://reg/
+[Thu May 25 15:55:08.562500 2017] [:error] [pid 476:tid 576] [client 127.0.0.1:3085] PHP   1. {main}() C:\\wamp\\www\\reg\\public\\login.php:0, referer: http://reg/
