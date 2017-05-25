@@ -1,5 +1,5 @@
 <?php
-include 'setting_path_inc.php';
+include_once '../setting_path_inc.php';
 
 if(!was_login()){
 	$titleName = 'Вход';
