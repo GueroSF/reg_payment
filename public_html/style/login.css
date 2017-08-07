@@ -1,0 +1,29 @@
+body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+}
+.login {
+    flex-direction: column;
+    margin: auto;
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid silver;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+.login span {
+    width: 60px;
+    display: inline-block;
+}
+.login [type='submit'] {
+    margin: auto;
+}
+.table {
+    display: flex;
+    text-align: center;
+}
+.table [type='number'] {
+    width: 60px;
+}

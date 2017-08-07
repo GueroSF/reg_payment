@@ -54,18 +54,19 @@ header a {
 .td1, .td3 {
 	width: 92px;
 }
+/* Возможно следущие два класса лишние */
+/*
 .table {
 	display: flex;
 	justify-content: space-around;
 	flex-wrap: wrap;
 	padding: 2px;
-	/*padding-top: 2px;
-	padding-bottom: 2px;*/
 	text-align: center;
 }
 .table [type='number'] {
 	width: 60px;
 }
+*/
 .paymentAdd {
 	margin: 0 2px;
 	border-radius: 5px;
@@ -96,18 +97,6 @@ header a {
 	display: flex;
 }
 
-
-.login {
-	flex-direction: column;
-	margin-top: 20%;
-}
-.login span {
-	width: 60px;
-	display: inline-block;
-}
-.login [type='submit'] {
-	margin: auto;
-}
 .link_to_add {
 	margin-top: 10%;
 }
