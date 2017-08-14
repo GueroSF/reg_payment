@@ -20,9 +20,6 @@ spl_autoload_register(function ($name) {
 });
 $oUser = new \model\User();
 session_start();
-//echo "<pre>";
-//var_dump($_SESSION,$oUser->was_login());
-//echo "</pre>";
 if (!$oUser->was_login()) {
     (new \view\ViewLoginForm())->render();
     exit;

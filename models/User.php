@@ -49,20 +49,10 @@ class User
 
 	public function was_login()
 	{
-		if (!$this->login()){
-            return false;
+	    if (!isset($_SESSION['loggedIn'])||!$_SESSION['loggedIn']){
+            return $this->login();
         }
         return true;
-
-	    if($this->login()){
-//			$_SESSION['loggedIn'] = true;
-            return true;
-		} else {
-//            $GLOBALS['login']['error'] = "Неверный логин или пароль";
-//			unset($_SESSION['loggedIn']);
-//			session_destroy();
-			return false;
-		}
 	}
 
 	public function logout(){
