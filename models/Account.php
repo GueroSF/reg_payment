@@ -18,17 +18,20 @@ class Account
 	 * Получение наименования всех счетов
 	 * @return array|bool
 	 */
-	public function selectAllAccounts()
+	public function getAccountName($id = false)
 	{
 		try {
 			$s = $this->getConnect()->query('SELECT * FROM buh_account');
-			return $s->fetchALL(\PDO::FETCH_ASSOC);
+			$aAccountInfo = $s->fetchALL();
 		} catch (\PDOException $e) {
 			$this->send($e,false);
 			return false;
 //			errorMessage('Ошибка получения счетов');
 		}
-
+        if (is_numeric($id)){
+		    return $aAccountInfo[$id];
+        }
+        return $aAccountInfo;
 	}
 
 	/**
@@ -56,7 +59,7 @@ class Account
 	 * @return array|bool
 	 */
 	public function getSumAllAccount(){
-		$accounts = $this->selectAllAccounts();
+		$accounts = $this->getAccountName();
 		try {
 			$sql = 'SELECT IFNULL(SUM(money),0) - (SELECT IFNULL(SUM(money),0) FROM `buh_transaction` WHERE `operations` = 2 AND `account` = :account) sum FROM `buh_transaction` WHERE `operations` = 1 AND `account` = :account';
 			$result = $this->getConnect()->prepare($sql);

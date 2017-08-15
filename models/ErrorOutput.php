@@ -11,7 +11,7 @@ namespace model;
 
 trait ErrorOutput
 {
-	public function send($e,$email=true){
+	public static function send($e,$email=true){
 		if ($email){
 			if(!mail('guerosf@yandex.ru','Error',$e->getMessage())){
 				echo 'беда! Письмо не отправленно';

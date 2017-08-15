@@ -3,10 +3,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <link rel="apple-touch-icon" sizes="180x180" href="icon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" href="icon/favicon-32x32.png" sizes="32x32">
+    <link rel="apple-touch-icon" sizes="180x180" href="http://<?= $_SERVER['HTTP_HOST'] ?>/icon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="http://<?= $_SERVER['HTTP_HOST'] ?>/icon/favicon-32x32.png" sizes="32x32">
     <title><?= $this->title ?></title>
-    <link rel="stylesheet" type="text/css" href="style/login.css">
+    <link rel="stylesheet" type="text/css" href="http://<?= $_SERVER['HTTP_HOST'] ?>/style/login.css">
 </head>
 <body>
 	<form class="table login" method="post">

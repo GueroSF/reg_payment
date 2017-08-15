@@ -9,7 +9,7 @@
 namespace model;
 
 
-class ViewProductOil extends ProductOil
+class ViewProductOil extends ProductOil implements HeaderPages
 {
     public $title = 'Продукты/бензин';
 
@@ -17,9 +17,7 @@ class ViewProductOil extends ProductOil
     public function render()
     {
         $aMoneyMonth = $this->getSum();
-//        $aMoneyMonth = array_merge($this->getPayment(),$this->getSum());
-        include_once '../views/head_page.html.php';
+        include_once self::HEAD;
         include_once '../views/product_oil.html.php';
-//	    echo 'Product oil';
     }
 }

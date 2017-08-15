@@ -16,7 +16,7 @@
 			</table>
 		</div>
 		<div class="view_detail">
-			<a href="?account=<?= $acc['id'];?>">Просмотр</a>	
+			<a href="account/<?= $acc['id'];?>">Просмотр</a>
 		</div>
 	</div>
 <?php endforeach; ?>

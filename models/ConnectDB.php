@@ -14,7 +14,7 @@ trait ConnectDB
 
 
 
-	public function getConnect()
+	public static function getConnect()
 	{
 		$options = [
 			\PDO::ATTR_ERRMODE            => \PDO::ERRMODE_EXCEPTION,
@@ -29,7 +29,7 @@ trait ConnectDB
 			$pdo = new \PDO($dsn,$username,$password,$options);
 			return $pdo;
 		} catch (\PDOException $e){
-			$this->send($e,false);
+//			$this->send($e,false);
 			return false;
 		}
 	}

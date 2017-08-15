@@ -11,14 +11,14 @@ namespace model;
 
 use model\Account;
 
-class ViewFirstPage extends Account
+class ViewFirstPage extends Account implements HeaderPages
 {
 	public $title = 'Главная';
 
 	public function render()
 	{
 
-		include_once '../views/head_page.html.php';
+		include_once self::HEAD;
 		include_once '../views/account_page.html.php';
 //		var_dump($this->getSumAllAccount());
 	}
