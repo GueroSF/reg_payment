@@ -6,7 +6,7 @@
  * Time: 16:50
  */
 
-namespace view;
+namespace model;
 
 
 use model\Account;

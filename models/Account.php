@@ -91,14 +91,14 @@ class Account
 	}
 
 	/**
-	 * Возращает средства внесенные
+	 * Показывает средства внесенные
 	 * на продуктовую карту
 	 *
 	 * @return bool|mixed
 	 */
 	public function getProductOil()
 	{
-		$todayMonth = date('n_Y', strtotime('-8 days'));
+		$todayMonth = date('n_Y', strtotime('-5 days'));
 		try {
 			$s = $this->getConnect()->query("SELECT SUM(payment) FROM `buh_product_oil` WHERE `month` = '$todayMonth'");
 			return $s->fetchCOLUMN();

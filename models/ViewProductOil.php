@@ -2,17 +2,24 @@
 /**
  * Created by PhpStorm.
  * User: guerosf
- * Date: 03.08.17
- * Time: 17:22
+ * Date: 15.08.17
+ * Time: 9:53
  */
 
-namespace view;
+namespace model;
 
 
-class ViewProductOil
+class ViewProductOil extends ProductOil
 {
-	public function render()
-	{
-		echo 'Product oil';
-	}
+    public $title = 'Продукты/бензин';
+
+
+    public function render()
+    {
+        $aMoneyMonth = $this->getSum();
+//        $aMoneyMonth = array_merge($this->getPayment(),$this->getSum());
+        include_once '../views/head_page.html.php';
+        include_once '../views/product_oil.html.php';
+//	    echo 'Product oil';
+    }
 }

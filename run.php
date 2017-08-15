@@ -6,8 +6,8 @@
  * Time: 12:57
  */
 
-use view\ViewFirstPage;
-use view\ViewProductOil;
+use model\ViewFirstPage;
+use model\ProductOil;
 
 spl_autoload_register(function ($name) {
 	$aNameClass = explode('\\',$name);
@@ -21,7 +21,7 @@ spl_autoload_register(function ($name) {
 $oUser = new \model\User();
 session_start();
 if (!$oUser->was_login()) {
-    (new \view\ViewLoginForm())->render();
+    (new \model\ViewLoginForm())->render();
     exit;
 }
 if (isset($_GET['logOut'])){
@@ -33,7 +33,13 @@ function managerUrl()
 	$aRawUrl = explode('/',$_SERVER['REQUEST_URI']);
 	switch ($aRawUrl[1]){
 		case ('product_oil'):
-			(new ViewProductOil())->render();
+		    $oViewProductOil = new \model\ViewProductOil();
+		    if (isset($_POST['action'])&&$_POST['action']=='addPayment'){
+                if (!$oViewProductOil->addPayment()){
+                    echo 'Какае-то ошибка';
+                }
+            }
+			$oViewProductOil->render();
 			break;
 		default:
 			(new ViewFirstPage())->render();

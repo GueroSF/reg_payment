@@ -1,5 +1,5 @@
 <?php /**
- * @var $this \view\ViewFirstPage
+ * @var $this \model\ViewFirstPage
  */
 ?>
 <?php foreach ($this->getSumAllAccount() as $acc): ?>
