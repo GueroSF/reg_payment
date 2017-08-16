@@ -51,13 +51,17 @@ class Category
 //            errorMessage('Ошибка при добавление платежа');
         }
         if(!empty($comm)){
+            echo "<pre>";
+            var_dump($aPlaceHolder);
+            echo "</pre>";
+//            exit;
             $sql = 'SELECT MAX(`id`) FROM `buh_transaction` WHERE 
                             `account` = :idAcc AND
                             `operations` = :idOp AND 
                             `category` = :idCat AND 
                             `money` = :money AND 
-                            `date_operations` = :data
-                            ';
+                            `date_operations` = :date
+                            ;';
             $s = $this-> getConnect() -> prepare($sql);
             $s -> execute($aPlaceHolder);
             $lastId = $s->fetchColumn();
@@ -74,10 +78,9 @@ class Category
 //                errorMessage('Ошибка при добавлении комментария к платежу');
             }
         }
-        return true;
         $url = $_SERVER['HTTP_REFERER'];
         header("Location: $url");
-        exit();
+        return true;
     }
 
     public function getCategory()
