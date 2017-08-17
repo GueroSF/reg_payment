@@ -18,13 +18,13 @@ class Account
 	 * Получение наименования всех счетов
 	 * @return array|bool
 	 */
-	public function getAccountName($id = false)
+	public static function getAccountName($id = false)
 	{
 		try {
-			$s = $this->getConnect()->query('SELECT * FROM buh_account');
+			$s = self::getConnect()->query('SELECT * FROM buh_account');
 			$aAccountInfo = $s->fetchALL();
 		} catch (\PDOException $e) {
-			$this->send($e,false);
+			self::send($e,false);
 			return false;
 //			errorMessage('Ошибка получения счетов');
 		}

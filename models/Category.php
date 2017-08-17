@@ -17,13 +17,16 @@ class Category
     public $iAccountId;
     public $iCategoryId;
 
-    public $sCategoryName;
-
     public function __construct($id)
     {
         $this->iAccountId = $id;
     }
 
+    /**
+     * Добавление платежа выбранной категории
+     *
+     * @return bool
+     */
     public function addPayment(){
         $aPlaceHolder = [
             ':idAcc' => $this->iAccountId,
@@ -32,18 +35,11 @@ class Category
             ':money' => $_POST['money'],
             ':date' => $_POST['date']
         ];
-        $idOp = $_POST['operation'];
-        $money = $_POST['money'];
-        $date = $_POST['date'];
         $comm = $_POST['comment'];
+        $oPDO = $this-> getConnect();
         try {
             $sql = 'INSERT INTO `buh_transaction`(`account`, `operations`, `category`, `money`, `date_operations`) VALUES (:idAcc,:idOp,:idCat,:money,:date)';
-            $insert = $this-> getConnect() ->prepare($sql);
-            /*$insert->bindValue(':idAcc', $this->iAccountId);
-            $insert->bindValue(':idOp', $idOp);
-            $insert->bindValue(':idCat', $this->iCategoryId);
-            $insert->bindValue(':money', $money);
-            $insert->bindValue(':date', $date);*/
+            $insert = $oPDO ->prepare($sql);
             $insert->execute($aPlaceHolder);
         } catch (\PDOException $e) {
             self::send($e,false);
@@ -55,16 +51,17 @@ class Category
             var_dump($aPlaceHolder);
             echo "</pre>";
 //            exit;
-            $sql = 'SELECT MAX(`id`) FROM `buh_transaction` WHERE 
+            /*$sql = 'SELECT MAX(`id`) FROM `buh_transaction` WHERE
                             `account` = :idAcc AND
                             `operations` = :idOp AND 
                             `category` = :idCat AND 
                             `money` = :money AND 
                             `date_operations` = :date
                             ;';
-            $s = $this-> getConnect() -> prepare($sql);
+            $s = $oPDO -> prepare($sql);
             $s -> execute($aPlaceHolder);
-            $lastId = $s->fetchColumn();
+            $lastId = $s->fetchColumn();*/
+            $lastId = $oPDO->lastInsertId();
             var_dump($lastId);
             try {
                 $sql = 'INSERT INTO `buh_comment_payment`(`transaction_id`, `comment`) VALUES (:id, :text)';
@@ -78,10 +75,16 @@ class Category
 //                errorMessage('Ошибка при добавлении комментария к платежу');
             }
         }
-        $url = $_SERVER['HTTP_REFERER'];
+        $url = '/account/'.$this->iAccountId.'/category/'.$this->iCategoryId;
         header("Location: $url");
         return true;
     }
+
+    /**
+     * Получение всех категорий счета (акаунта)
+     *
+     * @return array|bool
+     */
 
     public function getCategory()
     {
@@ -110,9 +113,15 @@ class Category
 //            errorMessage('Ошибка подсчета сумм категорий');
         }
         return $aCategorys;
-        include 'category_page.html.php';
     }
 
+    /**
+     * Получение массива id и name категории, или
+     * если передать true возвращается только имя
+     *
+     * @param bool $name
+     * @return bool|mixed
+     */
     public function getCategoryName($name = false){
         try {
             $s = $this->getConnect()->query("SELECT * FROM `buh_category` WHERE `id` = {$this->iCategoryId}");
@@ -128,6 +137,12 @@ class Category
         return $category;
     }
 
+
+    /**
+     * Возвращаетсяколичество денег выбранной категории
+     *
+     * @return bool|mixed
+     */
     public function getMoneyOfCategory(){
         try {
             $sql = 'SELECT IFNULL(SUM(money),0) - (SELECT IFNULL(SUM(`money`),0) FROM `buh_transaction` WHERE `operations` = 2 AND `account` = :account AND `category` = :cat) sum FROM `buh_transaction` WHERE `operations` = 1 AND `account` = :account AND `category` = :cat';
@@ -143,15 +158,13 @@ class Category
         return $result->fetchCOLUMN();
     }
 
-
+    /**
+     * Возвращаются все платежи в выбранной категории
+     *
+     * @return array|bool
+     */
     public function getPaymetsOfCategory()
     {
-//        $accountName = selectAccount($idAccount);
-
-//        $operations = selectOper();
-//        $titleName = $category['name'];
-//        include 'head_page.html.php';
-
         try {
             $sql = 'SELECT `buh_transaction`.`id`,`name`, `money`,`date_operations` `date`, IFNULL(`comment`,\'false\') `comm`
 				FROM `buh_transaction`
@@ -170,4 +183,27 @@ class Category
         }
         return $result->fetchALL();
     }
+
+    /**
+     * Добавление новой категории и платежа туда
+     *
+     * @return bool
+     */
+    public static function addNewCategory(){
+        $pdo = self::getConnect();
+        try {
+            $sql = 'INSERT INTO `buh_category` SET `name` = :name';
+            $insert = $pdo->prepare($sql);
+            $insert->bindValue(':name', $_POST['category']);
+            $insert->execute();
+        } catch (\PDOException $e) {
+            self::send($e,false);
+            return false;
+//            errorMessage('Ошибка добавления категории');
+        }
+        $oAddPayment = new Category($_POST['account']);
+        $oAddPayment->iCategoryId = $pdo->lastInsertId();
+        $oAddPayment->addPayment();
+    }
+
 }

@@ -10,7 +10,7 @@
 </head>
 <body>
 <header>
-	<a href="<?= $_SERVER['HTTP_REFERER'] ?>">Назад</a><a href="?logOut=exit">Выход</a>
+	<a href="<?= \model\Url::$btmBack ?>">Назад</a><a href="?logOut=exit">Выход</a>
 <!--	--><?php //if (isset($accountName)): ?>
 <!--		<span>--><?//=$accountName?><!--</span>-->
 <!--	--><?php //endif; ?>

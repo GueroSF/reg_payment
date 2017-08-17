@@ -14,6 +14,11 @@ class Payment
     use ConnectDB;
     use ErrorOutput;
 
+    /**
+     * Возвращает возможные операции (приход, расход)
+     *
+     * @return array|bool
+     */
     public static function getOperations()
     {
         try {

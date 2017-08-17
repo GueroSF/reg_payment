@@ -40,7 +40,7 @@
 			<a href="product_oil">Просмотр</a>
 		</div>
 </div>
-<div class="link_to_add"><a href="?add">Добавить категорию</a></div>
+<div class="link_to_add"><a href="category_add">Добавить категорию</a></div>
 </content>
 </body>
 </html>

@@ -1,5 +1,4 @@
 <?php /** @var $this \model\ViewCategory */ ?>
-<?php //var_dump($GLOBALS); ?>
 <div class="paymentAdd">
 	<div class="month_name"><span>Внести платёж: <b><?= $this->getCategoryName(true)?></b> <?= $this->getMoneyOfCategory() ?></span></div>
 	<form id="paymentAdd" class="table" action="" method="post">

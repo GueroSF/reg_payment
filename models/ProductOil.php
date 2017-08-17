@@ -14,7 +14,14 @@ class ProductOil
 	use ConnectDB;
 	use ErrorOutput;
 
-	    public function month($num = false){
+
+    /**
+     * 3 месяца: текущий 1, и -+1
+     *
+     * @param bool $num
+     * @return mixed
+     */
+	public function month($num = false){
         $aMoneyMonth[0]['num'] = date('n_Y', strtotime('-1 month'));
         $aMoneyMonth[1]['num'] = date('n_Y');
         $aMoneyMonth[2]['num'] = date('n_Y', strtotime('+1 month'));
@@ -23,6 +30,11 @@ class ProductOil
         else return $aMoneyMonth[$num]['num'];
     }
 
+    /**
+     * Возвращает количество внеснных денег по месяцам и платежи
+     *
+     * @return mixed
+     */
     public function getSum(){
         $aMoneyMonth = $this->month();
         try {
@@ -54,22 +66,11 @@ class ProductOil
         return $aMoneyMonth;
     }
 
-    public function getPayment(){
-        try {
-            $sql = 'SELECT `id`, `payment`, `comment`, `date_payment` FROM `buh_product_oil` WHERE `month` = :month ORDER BY `date_payment` DESC';
-            $result = $this->getConnect()->prepare($sql);
-            for ($i=0;$i<3;$i++){
-                $result->bindValue(':month', $this->month($i));
-                $result->execute();
-                $aMoneyMonth[$i]['payment'] = $result->fetchALL();
-            }
-            return $aMoneyMonth;
-        } catch (\PDOException $e) {
-            $this->send($e,false);
-//            errorMessage('Ошибка получения платежей');
-        }
-    }
-
+    /**
+     * Добавляет платеж
+     *
+     * @return bool
+     */
     public function addPayment(){
         $month = $_POST['month'];
         $payment = $_POST['payment'];
