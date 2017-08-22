@@ -29,18 +29,15 @@
 		<input type="submit" value="Добавить">
 	</form>
 </div>
-</content>
-</body>
 <script type="text/javascript">
-	const form = document.getElementById('addCategory');
-	form.addEventListener('submit', function (event) {
-		let money = form.querySelector('[name=money]');
-		let account = form.querySelector('[name=account]');
-		let operation = form.querySelector('[name=operation]');
-		if (money.value == ''||account.value == ''||operation.value==''){
-			event.preventDefault();
-			alert('Заполните поля!');
-		}
-	});
+    const form = document.getElementById('addCategory');
+    form.addEventListener('submit', function (event) {
+        let money = form.querySelector('[name=money]');
+        let account = form.querySelector('[name=account]');
+        let operation = form.querySelector('[name=operation]');
+        if (money.value == ''||account.value == ''||operation.value==''){
+            event.preventDefault();
+            alert('Заполните поля!');
+        }
+    });
 </script>
-</html>

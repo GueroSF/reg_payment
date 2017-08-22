@@ -41,6 +41,3 @@
 		</div>
 </div>
 <div class="link_to_add"><a href="category_add">Добавить категорию</a></div>
-</content>
-</body>
-</html>

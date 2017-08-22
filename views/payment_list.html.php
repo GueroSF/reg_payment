@@ -41,17 +41,14 @@
 		</div>
 	<?php endforeach ?>
 </div>
-</content>
-</body>
 <script type="text/javascript">
-	const form = document.getElementById('paymentAdd');
-	form.addEventListener('submit', function (event) {
-		let money = form.querySelector('[name=money]');
-		let cat = form.querySelector('[name=category]');
-		if (money.value == ''||cat.value == ''){
-			event.preventDefault();
-			alert('Заполните поля!');
-		}
-	});
+    const form = document.getElementById('paymentAdd');
+    form.addEventListener('submit', function (event) {
+        let money = form.querySelector('[name=money]');
+        let cat = form.querySelector('[name=category]');
+        if (money.value == ''||cat.value == ''){
+            event.preventDefault();
+            alert('Заполните поля!');
+        }
+    });
 </script>
-</html>

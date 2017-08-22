@@ -17,6 +17,3 @@
 		</div>
 	</div>
 <?php endforeach; ?>
-</content>
-</body>
-</html>
