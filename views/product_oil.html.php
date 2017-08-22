@@ -17,7 +17,7 @@
 		<input type="submit" value="Добавить">
 	</form>
 </div>
-<?php foreach ($aMoneyMonth as $money): if ($money['sum']=='0.00') continue; ?>
+<?php foreach ($this->getSum() as $money): if ($money['sum']=='0.00') continue; ?>
 	<div class="month">
 	    <div class="month_name">
             <?= model\NameMonth::get($money['num']) ?> <?= $money['sum'] ?>

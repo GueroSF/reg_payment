@@ -6,7 +6,7 @@
  * Time: 18:07
  */
 
-namespace model;
+namespace model\views;
 
 
 class ViewLoginForm

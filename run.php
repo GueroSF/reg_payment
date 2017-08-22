@@ -11,9 +11,17 @@ use model\User;
 
 spl_autoload_register(function ($name) {
 	$aNameClass = explode('\\',$name);
+//	echo "<pre>";
+//	var_dump($aNameClass);
+//	echo "</pre>";
+//	exit;
 	switch ($aNameClass[0]){
 		case ('view'):
 		case ('model'):
+		    if ($aNameClass[1]=='views'){
+                require_once 'models/views/'.$aNameClass[2].'.php';
+                break;
+            }
 			require_once 'models/'.$aNameClass[1].'.php';
 			break;
 	}
@@ -21,7 +29,7 @@ spl_autoload_register(function ($name) {
 $oUser = new User();
 session_start();
 if (!$oUser->was_login()) {
-    (new \model\ViewLoginForm())->render();
+    (new \model\views\ViewLoginForm())->render();
     exit;
 }
 if (isset($_GET['logOut'])){
