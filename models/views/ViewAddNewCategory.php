@@ -9,13 +9,14 @@
 namespace model;
 
 
-class ViewAddNewCategory implements HeaderPages
+use model\views\Layout;
+
+class ViewAddNewCategory
 {
+    use Layout;
+
     public $title = 'Добавление новой категории';
 
-    public function render()
-    {
-        include_once self::HEAD;
-        include_once '../views/add_category.html.php';
-    }
+    public $content = '../views/add_category.html.php';
+
 }

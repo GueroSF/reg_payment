@@ -6,20 +6,25 @@
  * Time: 10:34
  */
 
-namespace model;
+namespace model\views;
 
 
-class ViewCategory extends Category implements HeaderPages
+use model\Category;
+
+class ViewCategory extends Category
 {
+   use Layout;
+
     public $title = 'Категории';
 
     public function render($view = 'category')
     {
-        include_once self::HEAD;
+        include_once $this->header;
         if ($view == 'payments') {
             include_once '../views/payment_list.html.php';
         } else {
             include_once '../views/category_page.html.php';
         }
+        include_once $this->footer;
     }
 }
