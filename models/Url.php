@@ -9,6 +9,7 @@
 namespace model;
 
 
+use model\views\ViewAddNewCategory;
 use model\views\ViewCategory;
 use model\views\ViewFirstPage;
 use model\views\ViewProductOil;

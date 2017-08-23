@@ -6,7 +6,7 @@
  * Time: 11:30
  */
 
-namespace model;
+namespace model\views;
 
 
 use model\views\Layout;
