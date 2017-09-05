@@ -55,7 +55,7 @@ header a {
 	width: 92px;
 }
 /* Возможно следущие два класса лишние */
-/*
+
 .table {
 	display: flex;
 	justify-content: space-around;
@@ -66,7 +66,7 @@ header a {
 .table [type='number'] {
 	width: 60px;
 }
-*/
+
 .paymentAdd {
 	margin: 0 2px;
 	border-radius: 5px;
