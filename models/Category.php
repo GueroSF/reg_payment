@@ -17,6 +17,11 @@ class Category
     public $iAccountId;
     public $iCategoryId;
 
+    public $iOperation;
+    public $sMoney;
+    public $sDate;
+    public $sComment;
+
     public function __construct($id)
     {
         $this->iAccountId = $id;
@@ -27,15 +32,16 @@ class Category
      *
      * @return bool
      */
-    public function addPayment(){
+    public function addPayment($autoPayment = false)
+    {
         $aPlaceHolder = [
             ':idAcc' => $this->iAccountId,
-            ':idOp' => $_POST['operation'],
+            ':idOp' => $this->operation??$_POST['operation'],
             ':idCat' => $this->iCategoryId,
-            ':money' => $_POST['money'],
-            ':date' => $_POST['date']
+            ':money' => $this->sMoney??$_POST['money'],
+            ':date' => $this->sDate??$_POST['date']
         ];
-        $comm = $_POST['comment'];
+        $comm = $this->sComment??$_POST['comment'];
         $oPDO = $this-> getConnect();
         try {
             $sql = 'INSERT INTO `buh_transaction`(`account`, `operations`, `category`, `money`, `date_operations`) VALUES (:idAcc,:idOp,:idCat,:money,:date)';
@@ -75,6 +81,7 @@ class Category
 //                errorMessage('Ошибка при добавлении комментария к платежу');
             }
         }
+        if ($autoPayment) return true;
         $url = '/account/'.$this->iAccountId.'/category/'.$this->iCategoryId;
         header("Location: $url");
         return true;
