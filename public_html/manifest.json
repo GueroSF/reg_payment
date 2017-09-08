@@ -1,0 +1,12 @@
+{
+  "name": "Финансы",
+  "short_name": "Финансы",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "icon/icon_android.png",
+      "type": "image/png",
+      "sizes": "128x128"
+    }
+  ]
+}
