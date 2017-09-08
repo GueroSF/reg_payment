@@ -33,13 +33,16 @@ class AutoPayment
             echo 'ok';
         } else {
             $oPayment = new Category(2);
-            $oPayment->iCategoryId = ;
+            $oPayment->iCategoryId = 12;
             $oPayment->sComment = 'авто платеж';
             $oPayment->sMoney = 350;
             $oPayment->sDate = date('Y-m-d');
             $oPayment->iOperation = 1;
             if ($oPayment->addPayment(true)){
-
+                /** Здест нужно что то добавить вслучае если платеж прошел успешно
+                 * мысль: модальное окно (через сесси, отдельныйкомпанент, и в лайайт вписать
+                 * если есть сессиято добавит окошко
+                 */
             }
         }
     }
