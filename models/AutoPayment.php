@@ -14,6 +14,28 @@ class AutoPayment
     use ConnectDB;
     use ErrorOutput;
 
+    CONST TABLE_NAME = '`buh_autopayment`';
+
+    protected static function getLastTime()
+    {
+        $oPDO = self::getConnect();
+        $r = $oPDO->query('SELECT max(created_at) FROM '.self::TABLE_NAME.' WHERE account_id = 2 AND category_id = 12');
+        return (int) $r->fetchColumn();
+    }
+
+    protected static function inputTimePayment()
+    {
+        $oPDO = self::getConnect();
+        $time = time();
+        try {
+            $oPDO ->exec('INSERT INTO '.self::TABLE_NAME.' (`account_id`, `category_id` ,`created_at`) VALUE (2,12,'.$time.')');
+            return true;
+        } catch (\Exception $e) {
+            var_dump($e->getMessage());
+            return false;
+        }
+    }
+
 
     public static function run(){
 
@@ -23,15 +45,13 @@ class AutoPayment
             $qTime = strtotime('10-'.date('m-Y').' - 1 month');
         }
 
-//запрос к бд где возвращается дата последнего платежа
-
-        $timeLastPayment = $new2Time;
+        $timeLastPayment = self::getLastTime();
 
         $qTimePlus30Days = $qTime+(60*60*24*30);
 
-        if ($qTime<$timeLastPayment&&$qTimePlus30Days>$timeLastPayment){
-            echo 'ok';
-        } else {
+        if (!($qTime<$timeLastPayment&&$qTimePlus30Days>$timeLastPayment)){
+//            echo 'ok';
+//        } else {
             $oPayment = new Category(2);
             $oPayment->iCategoryId = 12;
             $oPayment->sComment = 'авто платеж';
@@ -39,10 +59,8 @@ class AutoPayment
             $oPayment->sDate = date('Y-m-d');
             $oPayment->iOperation = 1;
             if ($oPayment->addPayment(true)){
-                /** Здест нужно что то добавить вслучае если платеж прошел успешно
-                 * мысль: модальное окно (через сесси, отдельныйкомпанент, и в лайайт вписать
-                 * если есть сессиято добавит окошко
-                 */
+                self::inputTimePayment();
+                $_SESSION['AutoPayment'] = true;
             }
         }
     }

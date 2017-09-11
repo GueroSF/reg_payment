@@ -112,7 +112,7 @@ header a {
 	box-shadow: none;
 }
 
-@media screen and (max-width: 320px){
+@media screen and (max-width: 520px){
 	header a {
 		font-size: xx-large;
 	}

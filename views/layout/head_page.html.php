@@ -12,8 +12,5 @@
 <body>
 <header>
 	<a href="<?= \model\Url::$btmBack ?>">Назад</a><a href="?logOut=exit">Выход</a>
-<!--	--><?php //if (isset($accountName)): ?>
-<!--		<span>--><?//=$accountName?><!--</span>-->
-<!--	--><?php //endif; ?>
 </header>
 <content>

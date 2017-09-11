@@ -36,7 +36,7 @@ class Category
     {
         $aPlaceHolder = [
             ':idAcc' => $this->iAccountId,
-            ':idOp' => $this->operation??$_POST['operation'],
+            ':idOp' => $this->iOperation??$_POST['operation'],
             ':idCat' => $this->iCategoryId,
             ':money' => $this->sMoney??$_POST['money'],
             ':date' => $this->sDate??$_POST['date']
@@ -53,10 +53,6 @@ class Category
 //            errorMessage('Ошибка при добавление платежа');
         }
         if(!empty($comm)){
-            echo "<pre>";
-            var_dump($aPlaceHolder);
-            echo "</pre>";
-//            exit;
             /*$sql = 'SELECT MAX(`id`) FROM `buh_transaction` WHERE
                             `account` = :idAcc AND
                             `operations` = :idOp AND 
@@ -68,7 +64,7 @@ class Category
             $s -> execute($aPlaceHolder);
             $lastId = $s->fetchColumn();*/
             $lastId = $oPDO->lastInsertId();
-            var_dump($lastId);
+//            var_dump($lastId);
             try {
                 $sql = 'INSERT INTO `buh_comment_payment`(`transaction_id`, `comment`) VALUES (:id, :text)';
                 $insert = self::getConnect() ->prepare($sql);

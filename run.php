@@ -36,4 +36,6 @@ if (isset($_GET['logOut'])){
     $oUser->logout();
 }
 
+\model\AutoPayment::run();
+
 Url::manager($_SERVER['REQUEST_URI']);
