@@ -1,6 +1,6 @@
 <?php /** @var $this \model\ViewCategory */?>
 <?php foreach ($this->getCategory() as $category): ?>
-	<div class="month">
+	<div class="month <?php if ($category['sum'] == 0) echo 'hide'?>">
 		<div class="month_name"><span><?= $category['name'];?></span></div>
 		<div class="salary">
 			<table>
@@ -17,3 +17,6 @@
 		</div>
 	</div>
 <?php endforeach; ?>
+<div class="button">
+	<input type="button" id="button" name="" value="Показать скрытые">
+</div>

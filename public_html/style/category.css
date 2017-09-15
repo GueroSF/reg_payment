@@ -1,0 +1,9 @@
+.hide {
+	display: none;
+}
+
+.button {
+	margin-top: 10px;
+	margin-bottom: 5px;
+	text-align: center; 
+}

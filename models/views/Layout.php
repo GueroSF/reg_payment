@@ -15,6 +15,14 @@ trait Layout
     public $footer = '../views/layout/footer.html.php';
     protected $modal = '../views/layout/modal.html.php';
 
+    // const HTTP_HOST = $_SERVER['HTTP_HOST'];
+
+    // public $addressHost = "http://".$_SERVER['HTTP_HOST'];
+
+    protected $fileCSS;
+
+    protected $fileJS;
+
     public function render()
     {
         include_once $this->header;
@@ -25,5 +33,12 @@ trait Layout
         }
         include_once $this->content;
         include_once $this->footer;
+    }
+
+    public function getNameHost()
+    {
+        $hostName = "http://".$_SERVER['HTTP_HOST'];
+
+        return $hostName;
     }
 }

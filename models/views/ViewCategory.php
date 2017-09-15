@@ -19,6 +19,8 @@ class ViewCategory extends Category
 
     public function render($view = 'category')
     {
+        $this->fileCSS = 'category.css';
+        $this->fileJS = 'category.js';
         include_once $this->header;
         if ($view == 'payments') {
             include_once '../views/payment_list.html.php';
