@@ -1,6 +1,6 @@
 <?php /** @var $this \model\ViewCategory */?>
 <?php foreach ($this->getCategory() as $category): ?>
-	<div class="month <?php if ($category['sum'] == 0) echo 'hide'?>">
+	<div class="month<?php if ($category['sum'] == 0) echo ' hide'?>">
 		<div class="month_name"><span><?= $category['name'];?></span></div>
 		<div class="salary">
 			<table>
