@@ -7,3 +7,9 @@
 	margin-bottom: 5px;
 	text-align: center; 
 }
+
+@media screen and (max-width: 520px){
+	#button {
+		padding: 10px;
+	}
+}
