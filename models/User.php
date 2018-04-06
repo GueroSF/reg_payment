@@ -22,7 +22,7 @@ class User
 			$sql = 'SELECT COUNT(id), id FROM user WHERE name = :name AND pass = :pass GROUP BY id';
 			$r = $this->getConnect()->prepare($sql);
 			$r -> bindValue(':name', $_POST['name']);
-			$r -> bindValue('pass', $pass);
+			$r -> bindValue(':pass', $pass);
 			$r -> execute();
 
 		} catch (\PDOException $e) {
