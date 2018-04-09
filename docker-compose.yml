@@ -4,10 +4,6 @@
 
 version: '2'
 services:
-#  memcached:
-#    image: memcached:alpine
-#    container_name: payment-memcached
-
   mysql:
     image: mysql:5.7
     container_name: payment-mysql
@@ -41,3 +37,7 @@ services:
      - "8084:80"
     depends_on:
      - php-fpm
+
+#  memcached:
+#   image: memcached:alpine
+#   container_name: payment-memcached
