@@ -23,14 +23,15 @@ trait ConnectDB
 
 		$username = 'test_user_name';
 		$password = 'test_password';
-		$dsn = 'mysql:dbname=test_db;host=172.19.0.3;charset=utf8';
+		$dsn = 'mysql:dbname=test_db;host=172.19.0.2;charset=utf8';
 
 		try{
-			$pdo = new \PDO($dsn,$username,$password,$options);
-			return $pdo;
+			return new \PDO($dsn,$username,$password,$options);
 		} catch (\PDOException $e){
-//			$this->send($e,false);
-			return false;
+		    echo '<pre>';
+		    var_dump($e->getMessage());
+		    echo '</pre>';
+		    exit;
 		}
 	}
 }

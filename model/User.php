@@ -20,7 +20,7 @@ class User
 		$pass = md5($_POST['pass']);
 		try {
 			$sql = 'SELECT COUNT(id), id FROM user WHERE name = :name AND pass = :pass GROUP BY id';
-			$r = $this->getConnect()->prepare($sql);
+			$r = self::getConnect()->prepare($sql);
 			$r -> bindValue(':name', $_POST['name']);
 			$r -> bindValue(':pass', $pass);
 			$r -> execute();

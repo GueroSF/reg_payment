@@ -1,0 +1,14 @@
+{
+    "authors": [
+        {
+            "name": "Gosha",
+            "email": "guerosf@yandex.ru"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "model\\": "model/"
+        }
+    }
+}
