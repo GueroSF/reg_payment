@@ -36,23 +36,23 @@ class Category
     {
         $aPlaceHolder = [
             ':idAcc' => $this->iAccountId,
-            ':idOp' => $this->iOperation??$_POST['operation'],
+            ':idOp'  => $this->iOperation ?? $_POST['operation'],
             ':idCat' => $this->iCategoryId,
-            ':money' => $this->sMoney??$_POST['money'],
-            ':date' => $this->sDate??$_POST['date']
+            ':money' => $this->sMoney ?? $_POST['money'],
+            ':date'  => $this->sDate ?? $_POST['date'],
         ];
-        $comm = $this->sComment??$_POST['comment'];
-        $oPDO = $this-> getConnect();
+        $comm = $this->sComment ?? $_POST['comment'];
+        $oPDO = self::getConnect();
         try {
             $sql = 'INSERT INTO `buh_transaction`(`account`, `operations`, `category`, `money`, `date_operations`) VALUES (:idAcc,:idOp,:idCat,:money,:date)';
-            $insert = $oPDO ->prepare($sql);
+            $insert = $oPDO->prepare($sql);
             $insert->execute($aPlaceHolder);
         } catch (\PDOException $e) {
-            self::send($e,false);
+            self::send($e, false);
             return false;
 //            errorMessage('Ошибка при добавление платежа');
         }
-        if(!empty($comm)){
+        if (!empty($comm)) {
             /*$sql = 'SELECT MAX(`id`) FROM `buh_transaction` WHERE
                             `account` = :idAcc AND
                             `operations` = :idOp AND 
@@ -67,18 +67,18 @@ class Category
 //            var_dump($lastId);
             try {
                 $sql = 'INSERT INTO `buh_comment_payment`(`transaction_id`, `comment`) VALUES (:id, :text)';
-                $insert = self::getConnect() ->prepare($sql);
+                $insert = self::getConnect()->prepare($sql);
                 $insert->bindValue(':id', $lastId);
                 $insert->bindValue(':text', $comm);
                 $insert->execute();
             } catch (\PDOException $e) {
-                self::send($e,false);
+                self::send($e, false);
                 return false;
 //                errorMessage('Ошибка при добавлении комментария к платежу');
             }
         }
         if ($autoPayment) return true;
-        $url = '/account/'.$this->iAccountId.'/category/'.$this->iCategoryId;
+        $url = '/account/' . $this->iAccountId . '/category/' . $this->iCategoryId;
         header("Location: $url");
         return true;
     }
@@ -92,11 +92,13 @@ class Category
     public function getCategory()
     {
         try {
-            $s = $this->getConnect()->query("SELECT DISTINCT category id, name FROM `buh_transaction`
+            $s = $this->getConnect()->query(
+                "SELECT DISTINCT category id, name FROM `buh_transaction`
 							INNER JOIN buh_category ON buh_category.id = buh_transaction.category
-							WHERE `account` = {$this->iAccountId}");
+							WHERE `account` = {$this->iAccountId}"
+            );
         } catch (\PDOException $e) {
-            $this->send($e,false);
+            self::send($e, false);
             return false;
 //            errorMessage('Ошибка получения категорий счета');
         }
@@ -104,14 +106,14 @@ class Category
         try {
             $sql = 'SELECT IFNULL(SUM(money),0) - (SELECT IFNULL(SUM(money),0) FROM `buh_transaction` WHERE `operations` = 2 AND `account` = :account AND `category` = :cat) sum FROM `buh_transaction` WHERE `operations` = 1 AND `account` = :account AND `category` = :cat';
             $result = $this->getConnect()->prepare($sql);
-            foreach ($aCategorys as $key =>$cat) {
-                $result -> bindValue(':account', $this->iAccountId);
-                $result -> bindValue(':cat', $cat['id']);
-                $result -> execute();
+            foreach ($aCategorys as $key => $cat) {
+                $result->bindValue(':account', $this->iAccountId);
+                $result->bindValue(':cat', $cat['id']);
+                $result->execute();
                 $aCategorys[$key]['sum'] = $result->fetchCOLUMN();
             }
         } catch (\PDOException $e) {
-            $this->send($e,false);
+            self::send($e, false);
             return false;
 //            errorMessage('Ошибка подсчета сумм категорий');
         }
@@ -125,11 +127,12 @@ class Category
      * @param bool $name
      * @return bool|mixed
      */
-    public function getCategoryName($name = false){
+    public function getCategoryName($name = false)
+    {
         try {
             $s = $this->getConnect()->query("SELECT * FROM `buh_category` WHERE `id` = {$this->iCategoryId}");
         } catch (\PDOException $e) {
-            $this->send($e,false);
+            self::send($e, false);
             return false;
 //            errorMessage('Ошибка получения name категории');
         }
@@ -146,15 +149,16 @@ class Category
      *
      * @return bool|mixed
      */
-    public function getMoneyOfCategory(){
+    public function getMoneyOfCategory()
+    {
         try {
             $sql = 'SELECT IFNULL(SUM(money),0) - (SELECT IFNULL(SUM(`money`),0) FROM `buh_transaction` WHERE `operations` = 2 AND `account` = :account AND `category` = :cat) sum FROM `buh_transaction` WHERE `operations` = 1 AND `account` = :account AND `category` = :cat';
             $result = $this->getConnect()->prepare($sql);
-            $result -> bindValue(':account', $this->iAccountId);
-            $result -> bindValue(':cat', $this->iCategoryId);
-            $result -> execute();
+            $result->bindValue(':account', $this->iAccountId);
+            $result->bindValue(':cat', $this->iCategoryId);
+            $result->execute();
         } catch (\PDOException $e) {
-            $this->send($e,false);
+            self::send($e, false);
             return false;
 //            errorMessage('Ошибка подсчета сумм категорий');
         }
@@ -176,11 +180,11 @@ class Category
 				WHERE `account` = :acc AND `category` = :cat
 				ORDER BY `date_operations` DESC ,`buh_transaction`.`id` DESC';
             $result = $this->getConnect()->prepare($sql);
-            $result -> bindValue(':acc', $this->iAccountId);
-            $result -> bindValue(':cat', $this->iCategoryId);
-            $result -> execute();
+            $result->bindValue(':acc', $this->iAccountId);
+            $result->bindValue(':cat', $this->iCategoryId);
+            $result->execute();
         } catch (\PDOException $e) {
-            $this->send($e,false);
+            self::send($e, false);
             return false;
 //            errorMessage('Ошибка получения инфо о платежах в категории');
         }
@@ -192,7 +196,8 @@ class Category
      *
      * @return bool
      */
-    public static function addNewCategory(){
+    public static function addNewCategory()
+    {
         $pdo = self::getConnect();
         try {
             $sql = 'INSERT INTO `buh_category` SET `name` = :name';
@@ -200,7 +205,7 @@ class Category
             $insert->bindValue(':name', $_POST['category']);
             $insert->execute();
         } catch (\PDOException $e) {
-            self::send($e,false);
+            self::send($e, false);
             return false;
 //            errorMessage('Ошибка добавления категории');
         }
