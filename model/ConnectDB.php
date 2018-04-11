@@ -23,7 +23,7 @@ trait ConnectDB
 
 		$username = 'test_user_name';
 		$password = 'test_password';
-		$dsn = 'mysql:dbname=test_db;host=172.19.0.2;charset=utf8';
+		$dsn = 'mysql:dbname=test_db;host=payment-mysql;charset=utf8';
 
 		try{
 			return new \PDO($dsn,$username,$password,$options);
