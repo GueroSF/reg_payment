@@ -9,6 +9,8 @@
 use model\Url;
 use model\User;
 
+require_once 'config.php';
+
 spl_autoload_register(function ($name) {
 	$aNameClass = explode('\\',$name);
 //	echo "<pre>";
