@@ -196,20 +196,24 @@ class Category
      *
      * @return bool
      */
-    public static function addNewCategory()
+    public static function addNewCategory($data)
     {
+        if(empty($data['category']) || empty($data['account'])){
+            throw new \LogicException('can not be');
+        }
+
         $pdo = self::getConnect();
         try {
             $sql = 'INSERT INTO `buh_category` SET `name` = :name';
             $insert = $pdo->prepare($sql);
-            $insert->bindValue(':name', $_POST['category']);
+            $insert->bindValue(':name', $data['category']);
             $insert->execute();
         } catch (\PDOException $e) {
             self::send($e, false);
             return false;
 //            errorMessage('Ошибка добавления категории');
         }
-        $oAddPayment = new Category($_POST['account']);
+        $oAddPayment = new Category($data['account']);
         $oAddPayment->iCategoryId = $pdo->lastInsertId();
         $oAddPayment->addPayment();
     }

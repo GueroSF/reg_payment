@@ -9,7 +9,7 @@
 namespace model;
 
 
-class Payment
+class Operations
 {
     use ConnectDB;
     use ErrorOutput;
@@ -19,7 +19,7 @@ class Payment
      *
      * @return array|bool
      */
-    public static function getOperations()
+    public static function get()
     {
         try {
             $s = self::getConnect()->query('SELECT * FROM `buh_operation`');

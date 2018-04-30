@@ -1,22 +1,20 @@
-window.onload = function () {
+'use strict';
+const buttonHide = function () {
+        document.querySelector('.button_for_view_if_zero').classList.add('hide');
+};
 
-    function hideButton() {
-        document.querySelector('.button').classList.add('hide');
-    }
+window.onload = function () {
 
 	let hideMonth = document.querySelectorAll('.hide');
 
-	if ( hideMonth.length == 0 )
-	{
-		hideButton();
+    if (hideMonth.length == 0) {
+		buttonHide();
 	}
 
-	button.onclick = function () {
-        console.log(hideMonth);
-        for (let i = 0; i<hideMonth.length ; i++)
-        {
+	document.querySelector('.button_for_view_if_zero button').onclick = function () {
+        for (let i = 0, len = hideMonth.length; i < len; i++){
             hideMonth[i].classList.remove('hide');
-            hideButton();
+            buttonHide();
         }
     }
 };

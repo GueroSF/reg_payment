@@ -1,4 +1,4 @@
-<?php /** @var $this \model\ViewCategory */?>
+<?php /** @var $this \model\views\ViewCategory */?>
 <?php foreach ($this->getCategory() as $category): ?>
 	<div class="month<?php if ($category['sum'] == 0) echo ' hide'?>">
 		<div class="month_name"><span><?= $category['name'];?></span></div>
@@ -17,6 +17,6 @@
 		</div>
 	</div>
 <?php endforeach; ?>
-<div class="button">
-	<input type="button" id="button" name="" value="Показать скрытые">
+<div class="button_for_view_if_zero">
+    <button>Показать скрытые</button>
 </div>

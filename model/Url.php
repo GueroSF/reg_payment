@@ -31,7 +31,7 @@ class Url
 
     public static function manager($url){
         if (isset($_POST['action'])&&$_POST['action']=='addCategory'){
-            Category::addNewCategory();
+            Category::addNewCategory($_POST);
         }
         $aRawUrl = explode('/',$url);
 //        if (count($aRawUrl)>5) header("Location: ".self::homeUrl());

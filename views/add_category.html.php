@@ -19,7 +19,7 @@
 			<input type="number" step="0.01" name="money">
 			<select name="operation">
 				<option></option>
-				<?php foreach (\model\Payment::getOperations() as $op): ?>
+				<?php foreach (\model\Operations::get() as $op): ?>
 					<option value="<?= $op['id']; ?>"><?= $op['name']; ?></option>
 				<?php endforeach ?>
 			</select>

@@ -2,14 +2,14 @@
 	display: none;
 }
 
-.button {
+.button_for_view_if_zero {
 	margin-top: 10px;
 	margin-bottom: 5px;
 	text-align: center; 
 }
 
 @media screen and (max-width: 520px){
-	#button {
+	.button_for_view_if_zero button {
 		padding: 10px;
 	}
 }
