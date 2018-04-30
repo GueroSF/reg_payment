@@ -12,8 +12,6 @@ namespace model;
 trait ConnectDB
 {
 
-
-
 	public static function getConnect()
 	{
 		$options = [
