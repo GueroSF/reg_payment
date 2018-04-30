@@ -20,7 +20,13 @@ class Url
 
     public static function homeUrl()
     {
-        return 'https://'.$_SERVER['HTTP_HOST'];
+        $protocol = 'https://';
+
+        if (defined('APP_DEV')){
+            $protocol = 'http://';
+        }
+
+        return $protocol.$_SERVER['HTTP_HOST'];
     }
 
     public static function manager($url){
