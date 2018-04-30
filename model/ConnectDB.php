@@ -21,9 +21,9 @@ trait ConnectDB
 			\PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC,
 		];
 
-		$username = 'test_user_name';
-		$password = 'test_password';
-		$dsn = 'mysql:dbname=test_db;host=payment-mysql;charset=utf8';
+		$username = DB_NAME;
+		$password = DB_PWD;
+		$dsn = DB_DSN;
 
 		try{
 			return new \PDO($dsn,$username,$password,$options);

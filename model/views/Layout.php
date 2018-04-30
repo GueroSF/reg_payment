@@ -9,6 +9,8 @@
 namespace model\views;
 
 
+use model\Url;
+
 trait Layout
 {
     public $header = '../views/layout/head_page.html.php';
@@ -37,8 +39,6 @@ trait Layout
 
     public function getNameHost()
     {
-        $hostName = "http://".$_SERVER['HTTP_HOST'];
-
-        return $hostName;
+        return Url::homeUrl();
     }
 }

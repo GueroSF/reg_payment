@@ -20,7 +20,7 @@ class Url
 
     public static function homeUrl()
     {
-        return 'http://'.$_SERVER['HTTP_HOST'];
+        return 'https://'.$_SERVER['HTTP_HOST'];
     }
 
     public static function manager($url){
