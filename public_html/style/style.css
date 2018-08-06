@@ -16,8 +16,8 @@ header {
 header a {
 	padding: 5px;
 }
-.month,
-.paymentAdd {
+.month {
+/*.paymentAdd {*/
 	max-width: 320px;
 }
 
