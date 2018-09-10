@@ -19,9 +19,24 @@ header a {
 }
 
 header nav,
-header .calculator {
+#calculator_btn {
 	display: inline-block;
 	/*margin-left: 20px;*/
+}
+
+#calculator {
+	border-radius: 3px;
+	padding: 5px;
+	position: absolute;
+	left: 10px;
+	top: 30px;
+	background: gainsboro;
+	min-height: 50px;
+}
+
+#calculator .result {
+	margin-top: 10px;
+	text-align: center;
 }
 
 

@@ -7,5 +7,11 @@
  */
 ?>
 </main>
+<div id="calculator" hidden>
+    <input type="text">
+    <div class="result">
+        <span></span>
+    </div>
+</div>
 </body>
 </html>

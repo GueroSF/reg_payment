@@ -3,7 +3,7 @@
 	<div class="month_name"><span>Внести платёж: <b><?= $this->getCategoryName(true)?></b> <?= $this->getMoneyOfCategory() ?></span></div>
 	<form id="paymentAdd" class="table" action="" method="post">
 		<input type="date" name="date" value="<?= date('Y-m-d'); ?>">
-		<input type="number" step="0.01" name="money">
+		<input type="number" step="0.01" name="money" min="0">
 		<select name="operation">
 			<option></option>
 			<?php foreach (\model\Operations::get() as $op): ?>

@@ -3,7 +3,7 @@
 	<div class="month_name"><span>Внести платёж</span></div>
 	<form id="addPayment" action="" method="post" class="table">
 		<input type="date" name="date" value="<?= date('Y-m-d') ?>">
-		<input type="number" step="0.01" name="payment">
+		<input type="number" step="0.01" min="0" name="payment">
 		<label for="month">За:</label>
 		<select name="month">
 			<option></option>

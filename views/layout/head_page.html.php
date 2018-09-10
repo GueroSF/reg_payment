@@ -11,6 +11,7 @@
 	<?php if (!empty($this->fileCSS)): ?>
 		<link rel="stylesheet" type="text/css" href="<?= $this->getNameHost() ?>/style/<?= $this->fileCSS ?>">
 	<?php endif; ?>
+    <script type="text/javascript" src="<?= $this->getNameHost() ?>/js/calculator.js"></script>
 	<?php if ( !empty($this->fileJS) ): ?>
 		<script type="text/javascript" src="<?= $this->getNameHost() ?>/js/<?= $this->fileJS ?>"></script>
 	<?php endif; ?>
@@ -21,7 +22,7 @@
         <a href="<?= \model\Url::$btmBack ?>">Назад</a>
         <a href="?logOut=exit">Выход</a>
     </nav>
-    <div class="calculator">
+    <div id="calculator_btn">
         <label>
             <span>calc</span>
             <input type="checkbox" name="calculator">
