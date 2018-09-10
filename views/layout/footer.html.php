@@ -6,6 +6,6 @@
  * Time: 14:27
  */
 ?>
-</content>
+</main>
 </body>
 </html>

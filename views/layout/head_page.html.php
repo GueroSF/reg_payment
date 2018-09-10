@@ -17,6 +17,15 @@
 </head>
 <body>
 <header>
-	<a href="<?= \model\Url::$btmBack ?>">Назад</a><a href="?logOut=exit">Выход</a>
+    <nav>
+        <a href="<?= \model\Url::$btmBack ?>">Назад</a>
+        <a href="?logOut=exit">Выход</a>
+    </nav>
+    <div class="calculator">
+        <label>
+            <span>calc</span>
+            <input type="checkbox" name="calculator">
+        </label>
+    </div>
 </header>
-<content>
+<main>
