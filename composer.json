@@ -6,11 +6,13 @@
         }
     ],
     "require": {
-        "php": ">=7.1.0"
+        "php": ">=7.1.0",
+        "doctrine/orm": "^2.6"
     },
     "autoload": {
         "psr-4": {
-            "model\\": "model/"
+            "model\\": "model/",
+            "src\\": "src/"
         }
     },
     "scripts": {
