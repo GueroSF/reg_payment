@@ -8,6 +8,7 @@ namespace src\components;
 
 
 use Doctrine\ORM\EntityManager;
+use Psr\Http\Message\ServerRequestInterface;
 use src\documents\User;
 
 class Authentication
@@ -18,60 +19,64 @@ class Authentication
     private $entityManager;
 
     /**
+     * @var ServerRequestInterface
+     */
+    private $request;
+
+    /**
      * Authentication constructor.
      * @param EntityManager $entityManager
+     * @param ServerRequestInterface $request
      */
-    public function __construct(EntityManager $entityManager)
+    public function __construct(EntityManager $entityManager, ServerRequestInterface $request)
     {
         $this->entityManager = $entityManager;
+        $this->request = $request;
     }
 
-    public function login()
+    public function login(): bool
     {
-        if (empty($_POST['pass']) || empty($_POST['name'])) {
+        $name = $this->request->getParsedBody()['name'] ?? null;
+        $pass = $this->request->getParsedBody()['pass'] ?? null;
+
+        if ($name === null || $pass === null) {
             return false;
         }
 
-        $name = $_POST['name'];
-        $pass = md5($_POST['pass']);
-
-        $userRepo = $this->entityManager->getRepository(User::class);
-
-        $user = $userRepo->findOneBy(
-            [
-                'name' => $name,
-                'pass' => $pass,
-            ]
-        );
-
-        if ($user !== null) {
+        if ($this->findUser($name, $pass)) {
             $_SESSION['loggedIn'] = true;
 
             return true;
         }
 
         unset($_SESSION['loggedIn']);
-        unset($_POST['pass']);
-        unset($_POST['name']);
         $GLOBALS['login']['error'] = "Неверный логин или пароль";
-        session_destroy();
 
         return false;
     }
 
-    public function wasLogin()
+    public function wasLogin(): bool
     {
-        if (!isset($_SESSION['loggedIn']) || !$_SESSION['loggedIn']) {
-            return $this->login();
-        }
-
-        return true;
+        return isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] !== true;
     }
 
-    public function logout()
+    public function logout(): void
     {
         unset($_SESSION['loggedIn']);
-        session_destroy();
-        header('Location: .');
+    }
+
+    private function findUser(string $name, string $pass): bool
+    {
+
+        $userRepo = $this->entityManager->getRepository(User::class);
+
+        /** @var User $user */
+        $user = $userRepo->findOneBy(['name' => $name]);
+
+        if ($user === null) {
+            return false;
+        }
+
+        return password_verify($pass, $user->getPass());
     }
 }

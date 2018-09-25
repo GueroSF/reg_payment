@@ -19,5 +19,13 @@ $dbParams = [
     'host' => 'payment-mysql',
 ];
 
-$config = Setup::createAnnotationMetadataConfiguration([], defined('APP_DEV'), null, null, false);
+$config = Setup::createAnnotationMetadataConfiguration(
+    [__DIR__ . '/src'],
+    defined('APP_DEV'),
+    null,
+    null,
+    false
+);
 $entityManager = EntityManager::create($dbParams, $config);
+
+$request = \Zend\Diactoros\ServerRequestFactory::fromGlobals();

@@ -7,28 +7,25 @@
  */
 
 use model\Url;
-use model\User;
 
 require_once __DIR__ . '/bootstrap.php';
 
-//$userRepository = $entityManager->getRepository(\src\documents\User::class);
-//$users = $userRepository->findAll();
-//
-//foreach ($users as $user) {
-//    var_export($user);
-//}
 
-//exit;
-
-$auth = new \src\components\Authentication($entityManager);
+$auth = new \src\components\Authentication($entityManager, $request);
 
 session_start();
-if (!$auth->wasLogin()) {
+if (!$auth->wasLogin() && !$auth->login()) {
+
+    session_destroy();
+
     (new \model\views\ViewLoginForm())->render();
     exit;
 }
-if (isset($_GET['logOut'])) {
+if (isset($request->getQueryParams()['logOut'])) {
     $auth->logout();
+    session_destroy();
+    header('Location: ' . Url::homeUrl());
+    exit;
 }
 
 \model\AutoPayment::run();

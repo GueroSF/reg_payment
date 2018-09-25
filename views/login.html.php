@@ -11,8 +11,8 @@
 </head>
 <body>
 	<form class="table login" method="post">
-		<label><span>Имя:</span><input type="text" name="name" autofocus></label><br>
-		<label><span> Пароль:</span><input type="password" name="pass"></label><br>
+		<label><span>Имя:</span><input type="text" name="name" autofocus required></label><br>
+		<label><span> Пароль:</span><input type="password" name="pass" required></label><br>
         <?php if (!empty($GLOBALS['login']['error'])): ?>
             <div style="background: red">
                 <?= $GLOBALS['login']['error'] ?>

@@ -7,7 +7,8 @@
     ],
     "require": {
         "php": ">=7.1.0",
-        "doctrine/orm": "^2.6"
+        "doctrine/orm": "^2.6",
+        "zendframework/zend-diactoros": "^1.8"
     },
     "autoload": {
         "psr-4": {
