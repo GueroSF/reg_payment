@@ -9,57 +9,76 @@
 namespace model;
 
 
+use Doctrine\ORM\EntityManager;
 use model\views\ViewAddNewCategory;
 use model\views\ViewCategory;
 use model\views\ViewFirstPage;
 use model\views\ViewProductOil;
+use Psr\Http\Message\ServerRequestInterface;
 
 class Url
 {
+    private $entityManager;
+    private $request;
+
+    public function __construct(EntityManager $entityManager, ServerRequestInterface $request)
+    {
+        $this->entityManager = $entityManager;
+        $this->request = $request;
+    }
+
     public static $btmBack = '.';
 
     public static function homeUrl()
     {
         $protocol = 'https://';
 
-        if (defined('APP_DEV')){
+        if (defined('APP_DEV')) {
             $protocol = 'http://';
         }
 
-        return $protocol.$_SERVER['HTTP_HOST'];
+        return $protocol . $_SERVER['HTTP_HOST'];
     }
 
-    public static function manager($url){
-        if (isset($_POST['action'])&&$_POST['action']=='addCategory'){
-            Category::addNewCategory($_POST);
+    public function manager()
+    {
+        $url = $this->request->getUri()->getPath();
+        $body = $this->request->getParsedBody();
+
+        if (isset($body['action']) && $body['action'] === 'addCategory') {
+            Category::addNewCategory($body);
         }
-        $aRawUrl = explode('/',$url);
-//        if (count($aRawUrl)>5) header("Location: ".self::homeUrl());
-        switch ($aRawUrl[1]){
+        $rawUrl = explode('/', $url);
+//        if (count($rawUrl)>5) header("Location: ".self::homeUrl());
+        switch ($rawUrl[1]) {
             case ('product_oil'):
                 $oViewProductOil = new ViewProductOil();
-                if (isset($_POST['action'])&&$_POST['action']=='addPayment'){
-                    if (!$oViewProductOil->addPayment()){
+                if (isset($body['action']) && $body['action'] === 'addPayment') {
+                    if (!$oViewProductOil->addPayment()) {
                         echo 'Какае-то ошибка';
                     }
                 }
                 $oViewProductOil->render();
                 break;
             case ('account'):
-                if (empty($aRawUrl[2])) header("Location: ".self::homeUrl());
-                $oCategory = new ViewCategory($aRawUrl[2]);
-                if (isset($aRawUrl[3])&&$aRawUrl[3]=='category'){
-                    if (empty($aRawUrl[4])) header("Location: ".self::getNewUrl($aRawUrl,3));
-                    $oCategory->iCategoryId = $aRawUrl[4];
-                    if (isset($_POST['action'])&&$_POST['action']=='addPayment'){
-                        if (!$oCategory->addPayment()){
+                if (empty($rawUrl[2])) {
+                    header("Location: " . self::homeUrl());
+                }
+                $oCategory = new ViewCategory($rawUrl[2]);
+                if (isset($rawUrl[3]) && $rawUrl[3] === 'category') {
+                    if (empty($rawUrl[4])) {
+                        header("Location: " . self::getNewUrl($rawUrl, 3));
+                    }
+                    $oCategory->iCategoryId = $rawUrl[4];
+                    if (isset($body['action']) && $body['action'] === 'addPayment') {
+                        if (!$oCategory->addPayment()) {
                             echo 'Какае-то ошибка';
                         }
                     }
-                    self::$btmBack = self::getNewUrl($aRawUrl,3);
+                    self::$btmBack = self::getNewUrl($rawUrl, 3);
                     $oCategory->render('payments');
                     break;
-                } /*elseif (is_numeric($aRawUrl[3])) {
+                } /*elseif (is_numeric($rawUrl[3])) {
                     header("Location: ".self::homeUrl());
                 }*/
                 /** TODO добавить обработку не правильных адресов */
@@ -75,8 +94,10 @@ class Url
         }
     }
 
-    public static function getNewUrl(array $aUrl,int $key){
-        array_splice($aUrl,$key);
-        return rtrim(implode('/',$aUrl),'/');
+    public static function getNewUrl(array $aUrl, int $key)
+    {
+        array_splice($aUrl, $key);
+
+        return rtrim(implode('/', $aUrl), '/');
     }
 }

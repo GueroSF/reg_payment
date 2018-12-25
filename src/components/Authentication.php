@@ -57,7 +57,7 @@ class Authentication
 
     public function wasLogin(): bool
     {
-        return isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] !== true;
+        return isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] === true;
     }
 
     public function logout(): void

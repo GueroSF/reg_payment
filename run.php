@@ -30,4 +30,6 @@ if (isset($request->getQueryParams()['logOut'])) {
 
 \model\AutoPayment::run();
 
-Url::manager($_SERVER['REQUEST_URI']);
+$url = new Url($entityManager, $request);
+
+$url->manager();
