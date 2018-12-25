@@ -1,0 +1,21 @@
+{% extends 'layout/base.html.twig' %}
+
+{% block title %}Вход{% endblock %}
+
+{% block stylesheets %}
+    <link href="/style/login.css" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+    <form class="table login" method="post">
+        <label><span>Имя:</span><input type="text" name="name" autofocus required></label><br>
+        <label><span> Пароль:</span><input type="password" name="pass" required></label><br>
+        <?php if (!empty($GLOBALS['login']['error'])): ?>
+        <div style="background: red">
+            <?= $GLOBALS['login']['error'] ?>
+        </div>
+        <?php endif; ?>
+        <input type="hidden" name="action" value="login">
+        <input type="submit" value="Вход">
+    </form>
+{% endblock %}
