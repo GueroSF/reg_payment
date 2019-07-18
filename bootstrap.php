@@ -28,4 +28,4 @@ $config = Setup::createAnnotationMetadataConfiguration(
 );
 $entityManager = EntityManager::create($dbParams, $config);
 
-$request = \Zend\Diactoros\ServerRequestFactory::fromGlobals();
+//$request = \Zend\Diactoros\ServerRequestFactory::fromGlobals();

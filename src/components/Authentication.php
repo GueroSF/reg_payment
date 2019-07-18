@@ -32,6 +32,8 @@ class Authentication
     {
         $this->entityManager = $entityManager;
         $this->request = $request;
+
+        session_start();
     }
 
     public function login(): bool
@@ -49,8 +51,7 @@ class Authentication
             return true;
         }
 
-        unset($_SESSION['loggedIn']);
-        $GLOBALS['login']['error'] = "Неверный логин или пароль";
+        $this->removeVariableAndDestroySession();
 
         return false;
     }
@@ -62,7 +63,13 @@ class Authentication
 
     public function logout(): void
     {
+        $this->removeVariableAndDestroySession();
+    }
+
+    private function removeVariableAndDestroySession(): void
+    {
         unset($_SESSION['loggedIn']);
+        session_destroy();
     }
 
     private function findUser(string $name, string $pass): bool
