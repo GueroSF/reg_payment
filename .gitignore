@@ -4,3 +4,6 @@
 /vendor/
 config.php
 /data_base/dump.sql
+
+
+/var
