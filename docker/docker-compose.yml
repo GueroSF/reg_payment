@@ -1,16 +1,16 @@
 version: "3.7"
 services:
-  mysql:
-    image: mysql:5.7
-    container_name: payment-mysql
+  mariadb:
+    image: mariadb:10.4
+    container_name: payment-mariadb
     working_dir: /app
     volumes:
       - ./../:/app
     environment:
-      - MYSQL_ROOT_PASSWORD=123
-      - MYSQL_DATABASE=test_db
-      - MYSQL_USER=test_user_name
-      - MYSQL_PASSWORD=test_password
+      - MYSQL_ROOT_PASSWORD=db_docker_123
+      - MYSQL_DATABASE=db_reg
+      - MYSQL_USER=db_reg_username
+      - MYSQL_PASSWORD=db_reg_password
     ports:
       - "8085:3306"
 
