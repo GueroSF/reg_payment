@@ -16,3 +16,7 @@ RUN apt-get update \
 RUN apt-get update \
     && curl -sS https://getcomposer.org/installer -o composer-setup.php \
     && php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+
+RUN apt-get update \
+    && curl -sL https://deb.nodesource.com/setup_12.x | bash - \
+    && apt-get install -y nodejs

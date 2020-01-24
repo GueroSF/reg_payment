@@ -1,13 +1,11 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: guerosf
- * Date: 19.01.2020
- */
+declare(strict_types=1);
 
 namespace App\Controller\Web;
 
 
+use App\Entity\Account;
+use App\Entity\Transaction;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -25,6 +23,16 @@ class AccountController extends AbstractController
      */
     public function index(): Response
     {
+        $repo = $this->getDoctrine()->getRepository(Account::class);
+
+        $accounts = $repo->findAll();
+
+        $repo2 = $this->getDoctrine()->getRepository(Transaction::class);
+
+        $tr = $repo2->find(1);
+
+        $name = $tr->getCategory()->getName();
+
         return $this->render('account/index.html.twig');
     }
 }
