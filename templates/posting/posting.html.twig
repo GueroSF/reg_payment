@@ -1,0 +1,59 @@
+{% extends 'posting/layout.html.twig' %}
+
+{% block posting_content %}
+    <div class="paymentAdd">
+        <div class="month_name">
+            <span>Внести платёж: <b>{{ category.name }}</b> {{ category.sum | app_money }}</span></div>
+            {{ form(form) }}
+{#        <form id="paymentAdd" class="table" action="" method="post">#}
+{#            <input type="date" name="date" value="<?= date('Y-m-d'); ?>">#}
+{#            <input type="number" step="0.01" name="money">#}
+{#            <select name="operation">#}
+{#                <option></option>#}
+{#                <?php foreach (\model\Operations::get() as $op): ?>#}
+{#                <option value="<?= $op['id']; ?>"><?= $op['name']; ?></option>#}
+{#                <?php endforeach ?>#}
+{#            </select>#}
+{#            <textarea name="comment" maxlength="100" rows="2"></textarea>#}
+{#            <input type="hidden" name="account" value="<?= $this->iAccountId ?>">#}
+{#            <input type="hidden" name="category" value="<?= $this->iCategoryId ?>">#}
+{#            <input type="hidden" name="action" value="addPayment">#}
+{#            <input type="submit" value="Добавить">#}
+{#        </form>#}
+
+    </div>
+    <div class="paymentList">
+        <div class="month_name">Платежи внесенные ранее:</div>
+        <div class="table">
+            <div class="td1">Дата платежа</div>
+            <div class="td2">Сумма</div>
+            <div class="td3">Операция</div>
+        </div>
+        {% for posting in postings %}
+        <div class="payment">
+            <div class="table">
+                <div class="td1">{{ posting.dateOperation | date('d.m.Y') }}<?= $payment['date']; ?></div>
+                <div class="td2">{{ posting.money | app_money }}</div>
+                <div class="td3">{{ posting_type(posting) }}</div>
+            </div>
+            {% if posting.comment is not null %}
+            <div class="comment">
+                <span class="td1">Комм:</span>
+                <span class="comm">{{ posting.comment.comment }}</span>
+            </div>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+{#    <script type="text/javascript">#}
+{#        const form = document.getElementById('paymentAdd');#}
+{#        form.addEventListener('submit', function (event) {#}
+{#            let money = form.querySelector('[name=money]');#}
+{#            let cat = form.querySelector('[name=category]');#}
+{#            if (money.value == ''||cat.value == ''){#}
+{#                event.preventDefault();#}
+{#                alert('Заполните поля!');#}
+{#            }#}
+{#        });#}
+{#    </script>#}
+{% endblock %}

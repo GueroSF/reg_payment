@@ -8,28 +8,15 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * BuhCategory
  *
- * @ORM\Table(name="buh_category")
+ * @ORM\Table(name="category")
  * @ORM\Entity(repositoryClass="App\Repository\CategoryRepository")
  */
-class Category
+class Category extends AbstractBaseEntity
 {
     /**
-     * @ORM\Id
-     * @ORM\Column(type="integer", nullable=false)
-     */
-    private int $id;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="name", type="string", length=25, nullable=false)
      */
     private string $name;
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
 
     public function getName(): ?string
     {

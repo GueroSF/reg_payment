@@ -1,0 +1,43 @@
+{% extends 'posting/layout.html.twig' %}
+
+{% block posting_content %}
+    {% for account in accounts %}
+        <div class="month">
+            <div class="month_name"><span>{{ account.name }}</span></div>
+            <div class="salary">
+                <table>
+                    <tr>
+                        <td>Всего</td>
+                    </tr>
+                    <tr>
+                        <td>{{ account.sum | app_money }}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="view_detail">
+                <a href="{{ path('web_trans_account', {id: account.id}) }}">Просмотр</a>
+            </div>
+        </div>
+    {% endfor %}
+    {#    <div class="month">#}
+    {#        <div class="month_name"><span>Одолжено</span></div>#}
+    {#        <div class="salary">#}
+    {#            <table>#}
+    {#                <tr>#}
+    {#                    <td>"-" должен</td>#}
+    {#                </tr>#}
+    {#                <tr>#}
+    {#                    <td><?= $this->getCredits() ?></td>#}
+    {#                </tr>#}
+    {#            </table>#}
+    {#        </div>#}
+    {#    </div>#}
+    {#    <div class="month">#}
+    {#        <div class="month_name">Продукты/бензин</div>#}
+    {#        <div class="salary"><?= $this->getProductOil() ?></div>#}
+    {#        <div class="view_detail">#}
+    {#            <a href="product_oil">Просмотр</a>#}
+    {#        </div>#}
+    {#    </div>#}
+    {#    <div class="link_to_add"><a href="category_add">Добавить категорию</a></div>#}
+{% endblock %}

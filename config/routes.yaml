@@ -1,3 +1,3 @@
 homepage:
     path: /
-    controller: App\Controller\Web\AccountController::index
+    controller: App\Controller\Web\PostingController::accounts

@@ -1,0 +1,25 @@
+{% extends 'posting/layout.html.twig' %}
+
+{% block posting_content %}
+    {% for category in categories %}
+    <div class="month{{ category.sum == 0 ? ' hide' : '' }}">
+        <div class="month_name"><span>{{ category.name }}</span></div>
+        <div class="salary">
+            <table>
+                <tr>
+                    <td>Всего</td>
+                </tr>
+                <tr>
+                    <td>{{ category.sum | app_money }}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="view_detail">
+            <a href="{{ path('web_trans_postings', {accountId: category.accountId, categoryId: category.id}) }}">Просмотр</a>
+        </div>
+    </div>
+    {% endfor %}
+    <div class="button_for_view_if_zero">
+        <button>Показать скрытые</button>
+    </div>
+{% endblock %}
