@@ -56,7 +56,13 @@ class PostingController extends AbstractController
      */
     public function allPostings(PreparePostingData $service, Account $account, Category $category): Response
     {
-        $form = $this->createForm(PostingType::class);
+        $form = $this->createForm(
+            PostingType::class,
+            [
+                'account' => $account,
+                'category' => $category
+            ]
+        );
 
         $postings = $this->getDoctrine()->getRepository(Posting::class)
             ->findByAccountAndCategory($account, $category);

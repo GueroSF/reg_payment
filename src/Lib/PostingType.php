@@ -9,8 +9,18 @@ class PostingType
     public const RECEIVED = 1;
     public const SPENT = 2;
 
+    private const AS_TEXT = [
+        self::RECEIVED => 'Приход',
+        self::SPENT    => 'Расход',
+    ];
+
     public static function typeAsText(int $type): string
     {
-        return self::RECEIVED === $type ? 'Приход' : 'Расход';
+        return self::AS_TEXT[$type];
+    }
+
+    public static function getAllTypes(): array
+    {
+        return self::AS_TEXT;
     }
 }
