@@ -18,12 +18,12 @@ class Comment extends AbstractBaseEntity
      *
      * @ORM\Column(type="string", length=255, nullable=false)
      */
-    private string $comment;
+    private ?string $comment = null;
 
     /**
      * @ORM\OneToOne(targetEntity="Posting", inversedBy="comment")
      */
-    private Posting $posting;
+    private ?Posting $posting = null;
 
     public function getComment(): ?string
     {

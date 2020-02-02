@@ -1,13 +1,15 @@
 {% extends 'base.html.twig' %}
 
 {% block stylesheets %}
+    {{ parent() }}
     {{ encore_entry_link_tags('posting') }}
 {% endblock %}
 
 {% block body %}
     <header>
-{#        <a href="{{ path(app.request.headers.get('referer')) }}">Назад</a>#}
-        <a href="#">Назад</a>
+        {% if backUrl is not null %}
+            <a href="{{ backUrl }}">Назад</a>
+        {% endif %}
         <a href="{{ path('app_logout') }}">Выход</a>
     </header>
     <main>

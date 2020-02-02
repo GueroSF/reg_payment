@@ -16,39 +16,39 @@ class Posting extends AbstractBaseEntity
     /**
      * @ORM\Column(type="decimal", precision=10, scale=2, nullable=false)
      */
-    private float $money;
+    private ?float $money = null;
 
     /**
      * @ORM\Column(name="date_operation", type="date", nullable=false)
      */
-    private \DateTimeInterface $dateOperation;
+    private ?\DateTimeInterface $dateOperation = null;
 
     /**
      * @ORM\ManyToOne(targetEntity="Account", inversedBy="id")
      * @ORM\JoinColumn(nullable=false)
      */
-    private Account $account;
+    private ?Account $account = null;
 
     /**
      * @ORM\Column(type="integer", nullable=false, length=1)
      */
-    private int $type;
+    private ?int $type = null;
 
     /**
      * @ORM\ManyToOne(targetEntity="Category", inversedBy="id")
      * @ORM\JoinColumn(nullable=false)
      */
-    private Category $category;
+    private ?Category $category = null;
 
     /**
-     * @ORM\OneToOne(targetEntity="Comment", mappedBy="posting")
+     * @ORM\OneToOne(targetEntity="Comment", mappedBy="posting", cascade={"all"})
      */
-    private ?Comment $comment;
+    private ?Comment $comment = null;
 
     /**
      * @ORM\Column(name="deleted_at", type="datetime", nullable=true)
      */
-    private ?\DateTimeInterface $deletedAt;
+    private ?\DateTimeInterface $deletedAt = null;
 
     public function getMoney(): ?float
     {

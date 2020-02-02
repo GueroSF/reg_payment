@@ -5,10 +5,11 @@ namespace App\Controller\Web;
 use App\Entity\Account;
 use App\Entity\Category;
 use App\Entity\Posting;
-use App\Form\PostingType;
+use App\Form\PostingFormType;
 use App\Service\PreparePostingData;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -26,7 +27,10 @@ class PostingController extends AbstractController
     {
         return $this->render(
             'posting/accounts.html.twig',
-            ['accounts' => $service->getAllAccounts()]
+            [
+                'accounts' => $service->getAllAccounts(),
+                'backUrl'  => null,
+            ]
         );
     }
 
@@ -41,7 +45,10 @@ class PostingController extends AbstractController
     {
         return $this->render(
             'posting/categories.html.twig',
-            ['categories' => $service->getAllCategoriesForAccount($account)]
+            [
+                'categories' => $service->getAllCategoriesForAccount($account),
+                'backUrl'    => $this->generateUrl('web_trans_accounts'),
+            ]
         );
     }
 
@@ -57,10 +64,13 @@ class PostingController extends AbstractController
     public function allPostings(PreparePostingData $service, Account $account, Category $category): Response
     {
         $form = $this->createForm(
-            PostingType::class,
+            PostingFormType::class,
             [
-                'account' => $account,
-                'category' => $category
+                'account'  => $account,
+                'category' => $category,
+            ],
+            [
+                'action' => $this->generateUrl('web_trans_create_posting'),
             ]
         );
 
@@ -72,7 +82,42 @@ class PostingController extends AbstractController
             [
                 'form'     => $form->createView(),
                 'postings' => $postings,
-                'category' => $service->getCategory($account, $category)
+                'category' => $service->getCategory($account, $category),
+                'backUrl'  => $this->generateUrl('web_trans_account', ['id' => $account->getId()]),
+            ]
+        );
+    }
+
+    /**
+     * @Route("/posting-create", methods={"POST"}, name="create_posting")
+     */
+    public function createNewPosting(Request $request): Response
+    {
+        $form = $this->createForm(
+            PostingFormType::class,
+            null,
+            ['data_class' => Posting::class]
+        );
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            /** @var Posting $posting */
+            $posting = $form->getData();
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($posting);
+            $em->flush();
+
+            $account = $posting->getAccount();
+            $category = $posting->getCategory();
+        }
+
+        return $this->redirectToRoute(
+            'web_trans_postings',
+            [
+                'accountId'  => $account->getId(),
+                'categoryId' => $category->getId(),
             ]
         );
     }
