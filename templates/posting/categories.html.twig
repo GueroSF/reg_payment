@@ -1,5 +1,10 @@
 {% extends 'posting/layout.html.twig' %}
 
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('category') }}
+{% endblock %}
+
 {% block posting_content %}
     {% for category in categories %}
     <div class="month{{ category.sum == 0 ? ' hide' : '' }}">
