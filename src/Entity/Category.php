@@ -16,7 +16,7 @@ class Category extends AbstractBaseEntity
     /**
      * @ORM\Column(name="name", type="string", length=25, nullable=false)
      */
-    private string $name;
+    private ?string $name = null;
 
     /**
      * @ORM\Column(name="additional_type", type="string", nullable=true, length=25)

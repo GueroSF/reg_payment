@@ -5,6 +5,7 @@ namespace App\Controller\Web;
 use App\Entity\Account;
 use App\Entity\Category;
 use App\Entity\Posting;
+use App\Form\CategoryFormType;
 use App\Form\PostingFormType;
 use App\Service\PreparePostingData;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
@@ -54,7 +55,7 @@ class PostingController extends AbstractController
     }
 
     /**
-     * @Route("/account/{accountId}/category/{categoryId}", name="postings", methods={"GET"})
+     * @Route("/account/{accountId}/category/{categoryId}", name="postings", methods={"GET", "POST"})
      * @ParamConverter("account", options={"id"="accountId"})
      * @ParamConverter("category", options={"id"="categoryId"})
      *
@@ -136,6 +137,44 @@ class PostingController extends AbstractController
             'web_trans_account',
             [
                 'id' => $account->getId(),
+            ]
+        );
+    }
+
+    /**
+     * @Route("/create-category", name="create_category", methods={"GET", "POST"})
+     */
+    public function createCategory(Request $request): Response
+    {
+        $form = $this->createForm(CategoryFormType::class);
+
+        if ($request->isMethod('POST')) {
+            $form->handleRequest($request);
+
+            if ($form->isSubmitted() && $form->isValid()) {
+                $category = $form->getData();
+
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($category);
+                $em->flush();
+
+                $account = $form->get('account')->getData();
+
+                return $this->redirectToRoute(
+                    'web_trans_postings',
+                    [
+                        'accountId'  => $account->getId(),
+                        'categoryId' => $category->getId(),
+                    ]
+                );
+            }
+        }
+
+        return $this->render(
+            '/posting/create-category.html.twig',
+            [
+                'form' => $form->createView(),
+                'backUrl'    => $this->generateUrl('web_trans_accounts'),
             ]
         );
     }
