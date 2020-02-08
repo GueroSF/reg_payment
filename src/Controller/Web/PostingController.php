@@ -29,6 +29,7 @@ class PostingController extends AbstractController
             'posting/accounts.html.twig',
             [
                 'accounts' => $service->getAllAccounts(),
+                'credit'   => $service->getSumOnCreditCategory(),
                 'backUrl'  => null,
             ]
         );

@@ -37,4 +37,13 @@ class CategoryRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function findByAdditionalType(string $type): ?Category
+    {
+        return $this->createQueryBuilder('c')
+            ->where('c.additionalType = :type')
+            ->setParameter('type', $type)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
 }

@@ -6,6 +6,7 @@ namespace App\Service;
 
 use App\Entity\Account;
 use App\Entity\Category;
+use App\Lib\CategoryAdditionalType;
 use App\Lib\DTO\AccountDTO;
 use App\Lib\DTO\CategoryDTO;
 use App\Repository\PostingRepository;
@@ -73,6 +74,21 @@ class PreparePostingData
         }
 
         return $this->postingRepo->removeByAccountAndCategory($account, $category);
+    }
+
+    public function getSumOnCreditCategory(): float
+    {
+        $creditCategory = $this->mr
+            ->getRepository(Category::class)
+            ->findByAdditionalType(CategoryAdditionalType::CREDIT);
+
+        if ($creditCategory === null) {
+            return 0;
+        }
+
+        $sum = $this->postingRepo->calcSumForAdditionalTypeInCategory($creditCategory);
+
+        return abs($sum);
     }
 
     private function getCategories(Account $account): iterable

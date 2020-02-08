@@ -82,27 +82,37 @@ class PostingRepository extends ServiceEntityRepository
         return $received - $spent;
     }
 
-    private function prepareReceived(Account $account, ?Category $category = null): Query
+    public function calcSumForAdditionalTypeInCategory(Category $category): float
+    {
+        $received = $this->prepareReceived(null, $category)->getSingleScalarResult();
+        $spent = $this->prepareSpent(null, $category)->getSingleScalarResult();
+
+        return $received - $spent;
+    }
+
+    private function prepareReceived(Account $account = null, Category $category = null): Query
     {
         return $this->prepareSqlForSum(PostingType::RECEIVED, $account, $category);
     }
 
-    private function prepareSpent(Account $account, ?Category $category = null): Query
+    private function prepareSpent(Account $account = null, Category $category = null): Query
     {
         return $this->prepareSqlForSum(PostingType::SPENT, $account, $category);
     }
 
-    private function prepareSqlForSum(int $type, Account $account, ?Category $category): Query
+    private function prepareSqlForSum(int $type, ?Account $account, ?Category $category): Query
     {
         $sql = $this->createQueryBuilder('q')
             ->select('COALESCE(SUM(q.money),0)')
             ->where('q.type = :type')
-            ->andWhere('q.account = :account')
             ->andWhere('q.deletedAt is NULL')
-            ->setParameters([
-                'type'    => $type,
-                'account' => $account,
-            ]);
+            ->setParameter('type', $type);
+
+        if ($account !== null) {
+            $sql
+                ->andWhere('q.account = :account')
+                ->setParameter('account', $account);
+        }
 
         if ($category !== null) {
             $sql
