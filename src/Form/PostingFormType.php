@@ -13,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class PostingFormType extends AbstractType
 {
@@ -30,6 +31,7 @@ class PostingFormType extends AbstractType
                 [
                     'html5' => true,
                     'attr'  => ['min' => 0],
+                    'label' => false,
                 ]
             )
             ->add(
@@ -38,6 +40,7 @@ class PostingFormType extends AbstractType
                 [
                     'widget' => 'single_text',
                     'data'   => new \DateTime(),
+                    'label' => false,
                 ]
             )
             ->add(
@@ -45,6 +48,7 @@ class PostingFormType extends AbstractType
                 ChoiceType::class,
                 [
                     'choices' => array_flip(\App\Lib\PostingType::getAllTypes()),
+                    'label' => false,
                 ]
             );
         if ($account === null) {
@@ -67,7 +71,7 @@ class PostingFormType extends AbstractType
             $builder->add(
                 'category',
                 EntityType::class,
-                $this->getEntityOptions(Category::class)
+                $this->getEntityOptions(Category::class),
             );
         } else {
             $builder->add(
@@ -84,7 +88,8 @@ class PostingFormType extends AbstractType
                 'comment',
                 CommentFormType::class,
                 [
-                    'required' => false
+                    'required' => false,
+                    'label' => false,
                 ]
             )
             ->add(
@@ -97,6 +102,12 @@ class PostingFormType extends AbstractType
 
     }
 
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefault('block_name' , 'table');
+    }
+
+
     private function getEntityOptions(string $className): array
     {
         return [
@@ -104,7 +115,7 @@ class PostingFormType extends AbstractType
             'query_builder' => function (EntityRepository $entityRepository) {
                 return $entityRepository->createQueryBuilder('e');
             },
-            'choice_label'  => 'name',
+            'choice_label'  => false,
         ];
     }
 }
