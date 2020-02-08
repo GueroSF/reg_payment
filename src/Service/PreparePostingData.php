@@ -59,12 +59,26 @@ class PreparePostingData
      */
     public function getAllCategoriesForAccount(Account $account): iterable
     {
-        $categoryRepo = $this->mr->getRepository(Category::class);
-
-        $categories = $categoryRepo->findByAccount($account);
+        $categories = $this->getCategories($account);
 
         foreach ($categories as $category) {
             yield $this->getCategory($account, $category);
         }
+    }
+
+    public function removePostingFor(Account $account, Category $category): int
+    {
+        if ($this->postingRepo->calcSumForCategory($account, $category) !== 0.0) {
+            throw new \RangeException('Sum in category is not zero');
+        }
+
+        return $this->postingRepo->removeByAccountAndCategory($account, $category);
+    }
+
+    private function getCategories(Account $account): iterable
+    {
+        $categoryRepo = $this->mr->getRepository(Category::class);
+
+        return $categoryRepo->findByAccount($account);
     }
 }

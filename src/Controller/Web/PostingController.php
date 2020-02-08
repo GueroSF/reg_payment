@@ -53,7 +53,7 @@ class PostingController extends AbstractController
     }
 
     /**
-     * @Route("/account/{accountId}/category/{categoryId}", name="postings")
+     * @Route("/account/{accountId}/category/{categoryId}", name="postings", methods={"GET"})
      * @ParamConverter("account", options={"id"="accountId"})
      * @ParamConverter("category", options={"id"="categoryId"})
      *
@@ -118,6 +118,23 @@ class PostingController extends AbstractController
             [
                 'accountId'  => $account->getId(),
                 'categoryId' => $category->getId(),
+            ]
+        );
+    }
+
+    /**
+     * @Route("/account/{accountId}/category/{categoryId}/delete", name="delete", methods={"GET"})
+     * @ParamConverter("account", options={"id"="accountId"})
+     * @ParamConverter("category", options={"id"="categoryId"})
+     */
+    public function removeCategory(PreparePostingData $service, Account $account, Category $category): Response
+    {
+        $result = $service->removePostingFor($account, $category);
+
+        return $this->redirectToRoute(
+            'web_trans_account',
+            [
+                'id' => $account->getId(),
             ]
         );
     }

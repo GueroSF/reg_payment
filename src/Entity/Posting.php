@@ -8,7 +8,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 /**
  * @ORM\Table(name="posting")
  * @ORM\Entity(repositoryClass="App\Repository\PostingRepository")
- * @Gedmo\SoftDeleteable(fieldName="deleteAt", timeAware=true)
+ * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=true)
  */
 class Posting extends AbstractBaseEntity
 {

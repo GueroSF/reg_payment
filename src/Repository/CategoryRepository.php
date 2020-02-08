@@ -32,6 +32,7 @@ class CategoryRepository extends ServiceEntityRepository
             ->innerJoin(Posting::class, 'p')
             ->where('c.id = p.category')
             ->andWhere('p.account = :account')
+            ->andWhere('p.deletedAt is NULL')
             ->setParameter('account', $account)
             ->getQuery()
             ->getResult();
