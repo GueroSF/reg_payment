@@ -18,6 +18,11 @@ class Category extends AbstractBaseEntity
      */
     private string $name;
 
+    /**
+     * @ORM\Column(name="additional_type", type="string", nullable=true, length=25)
+     */
+    private ?string $additionalType = null;
+
     public function getName(): ?string
     {
         return $this->name;
@@ -30,5 +35,15 @@ class Category extends AbstractBaseEntity
         return $this;
     }
 
+    public function getAdditionalType(): ?string
+    {
+        return $this->additionalType;
+    }
 
+    public function setAdditionalType(?string $additionalType): self
+    {
+        $this->additionalType = $additionalType;
+
+        return $this;
+    }
 }
