@@ -102,12 +102,6 @@ class PostingFormType extends AbstractType
 
     }
 
-    public function configureOptions(OptionsResolver $resolver)
-    {
-        $resolver->setDefault('block_name' , 'table');
-    }
-
-
     private function getEntityOptions(string $className): array
     {
         return [
