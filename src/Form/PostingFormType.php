@@ -13,11 +13,10 @@ use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class PostingFormType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         /** @var Account $account */
         $account = $builder->getData()['account'] ?? null;
@@ -29,18 +28,20 @@ class PostingFormType extends AbstractType
                 'money',
                 NumberType::class,
                 [
-                    'html5' => true,
-                    'attr'  => ['min' => 0],
-                    'label' => false,
+                    'html5'    => true,
+                    'attr'     => ['min' => 0],
+                    'label'    => false,
+                    'row_attr' => $this->getRowAttr('money'),
                 ]
             )
             ->add(
                 'dateOperation',
                 DateType::class,
                 [
-                    'widget' => 'single_text',
-                    'data'   => new \DateTime(),
-                    'label' => false,
+                    'widget'   => 'single_text',
+                    'data'     => new \DateTime(),
+                    'label'    => false,
+                    'row_attr' => $this->getRowAttr('date-operation'),
                 ]
             )
             ->add(
@@ -48,15 +49,16 @@ class PostingFormType extends AbstractType
                 ChoiceType::class,
                 [
                     'choices' => array_flip(\App\Lib\PostingType::getAllTypes()),
-                    'label' => false,
+                    'label'   => false,
+                    'row_attr' => $this->getRowAttr('type'),
                 ]
             );
         if ($account === null) {
             $builder->add(
                 'account',
                 EntityType::class,
-                $this->getEntityOptions(Account::class)
-            );
+                $this->getEntityOptions(Account::class),
+                );
         } else {
             $builder->add(
                 'account',
@@ -72,7 +74,7 @@ class PostingFormType extends AbstractType
                 'category',
                 EntityType::class,
                 $this->getEntityOptions(Category::class),
-            );
+                );
         } else {
             $builder->add(
                 'category',
@@ -89,7 +91,8 @@ class PostingFormType extends AbstractType
                 CommentFormType::class,
                 [
                     'required' => false,
-                    'label' => false,
+                    'label'    => false,
+                    'row_attr' => $this->getRowAttr('comment'),
                 ]
             )
             ->add(
@@ -97,9 +100,17 @@ class PostingFormType extends AbstractType
                 SubmitType::class,
                 [
                     'label' => 'Добавить',
+                    'row_attr' => $this->getRowAttr('btn-save'),
                 ]
             );
 
+    }
+
+    private function getRowAttr(string $fieldName): array
+    {
+        return [
+            'class' => sprintf('reg-posting-form-%s', $fieldName),
+        ];
     }
 
     private function getEntityOptions(string $className): array
