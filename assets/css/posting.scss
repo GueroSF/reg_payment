@@ -20,11 +20,21 @@ header a {
   padding: 5px;
 }
 
-.month,
 .payment-add {
-  max-width: 320px;
-}
+  form div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
 
+    input {
+      min-height: 30px;
+    }
+
+    button {
+      min-height: 36px;
+    }
+  }
+}
 
 .month {
   margin: 2px 2px 0 2px;
