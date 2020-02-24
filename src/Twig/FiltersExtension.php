@@ -9,7 +9,7 @@ use Twig\TwigFilter;
 
 class FiltersExtension extends AbstractExtension
 {
-    public function getFilters()
+    public function getFilters(): array
     {
         return [
             new TwigFilter('app_money', [$this, 'moneyFormat'])
@@ -18,6 +18,11 @@ class FiltersExtension extends AbstractExtension
 
     public function moneyFormat(float $money): string
     {
-        return number_format($money, 2, '.', ',');
+        if (count(explode('.', (string) $money)) === 1) {
+            return number_format($money, 0, '.', ' ');
+        }
+
+        return number_format($money, 2, '.', ' ');
+
     }
 }
