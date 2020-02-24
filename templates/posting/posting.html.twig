@@ -1,14 +1,14 @@
 {% extends 'posting/layout.html.twig' %}
 
 {% block posting_content %}
-    <div class="paymentAdd">
-        <div class="month_name">
+    <div class="payment-add">
+        <div class="month-name">
             <span>Внести платёж: <b>{{ category.name }}</b> {{ category.sum | app_money }}</span>
         </div>
         {{ form(form) }}
     </div>
-    <div class="paymentList">
-        <div class="month_name">Платежи внесенные ранее:</div>
+    <div class="payment-list">
+        <div class="month-name">Платежи внесенные ранее:</div>
         <div class="table">
             <div class="td1">Дата платежа</div>
             <div class="td2">Сумма</div>

@@ -3,7 +3,7 @@
 {% block posting_content %}
     {% for account in accounts %}
         <div class="month">
-            <div class="month_name"><span>{{ account.name }}</span></div>
+            <div class="month-name"><span>{{ account.name }}</span></div>
             <div class="salary">
                 <table>
                     <tr>
@@ -14,14 +14,14 @@
                     </tr>
                 </table>
             </div>
-            <div class="view_detail">
+            <div class="view-detail">
                 <a href="{{ path('web_trans_account', {id: account.id}) }}">Просмотр</a>
             </div>
         </div>
     {% endfor %}
         {% if credit != 0 %}
             <div class="month">
-                <div class="month_name"><span>Одолжено</span></div>
+                <div class="month-name"><span>Одолжено</span></div>
                 <div class="salary">
                     <table>
                         <tr>
@@ -31,5 +31,5 @@
                 </div>
             </div>
         {% endif %}
-        <div class="link_to_add"><a href="{{ path('web_trans_create_category') }}">Добавить категорию</a></div>
+        <div class="link-to-add"><a href="{{ path('web_trans_create_category') }}">Добавить категорию</a></div>
 {% endblock %}

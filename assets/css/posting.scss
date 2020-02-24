@@ -21,7 +21,7 @@ header a {
 }
 
 .month,
-.paymentAdd {
+.payment-add {
   max-width: 320px;
 }
 
@@ -40,8 +40,8 @@ header a {
   background: darkseagreen;
 }
 
-.view_detail,
-.month_name,
+.view-detail,
+.month-name,
 .salary,
 .swallow {
   border-radius: 5px;
@@ -53,9 +53,9 @@ header a {
   background: white;
 }
 
-.link_to_add,
-.month_name,
-.view_detail {
+.link-to-add,
+.month-name,
+.view-detail {
   width: 100%;
   text-align: center;
 }
@@ -78,25 +78,25 @@ header a {
   width: 60px;
 }
 
-.paymentAdd {
+.payment-add {
   margin: 0 2px;
   border-radius: 5px;
   background: powderblue;
   padding-bottom: 5px;
 }
 
-.paymentList {
+.payment-list {
   background: honeydew;
   padding: 5px;
   border-radius: 5px;
   margin-bottom: 5px;
 }
 
-.paymentList > .table {
+.payment-list > .table {
   background: silver;
 }
 
-.paymentList .payment:nth-child(2n) {
+.payment-list .payment:nth-child(2n) {
   background: lightgrey;
 }
 
@@ -113,11 +113,11 @@ header a {
   display: flex;
 }
 
-.link_to_add {
+.link-to-add {
   margin-top: 10%;
 }
 
-.link_to_add a {
+.link-to-add a {
   display: block;
   box-shadow: 0 0 10px silver;
   text-decoration: none;
@@ -126,7 +126,7 @@ header a {
   padding: 5px;
 }
 
-.link_to_add a:hover {
+.link-to-add a:hover {
   box-shadow: none;
 }
 
@@ -134,14 +134,14 @@ header a {
   display: none;
 }
 
-.button_for_view_if_zero {
+.button-for-view-if-zero {
   margin-top: 10px;
   margin-bottom: 5px;
   text-align: center;
 }
 
 @media screen and (max-width: 520px) {
-  .button_for_view_if_zero button {
+  .button-for-view-if-zero button {
     padding: 10px;
   }
 }
@@ -150,8 +150,8 @@ header a {
   header a {
     font-size: xx-large;
   }
-  .link_to_add a,
-  .view_detail a {
+  .link-to-add a,
+  .view-detail a {
     font-size: x-large;
   }
 }

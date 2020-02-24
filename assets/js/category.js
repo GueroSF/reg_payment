@@ -3,7 +3,7 @@
 window.addEventListener('load', function() {
 
     const button = {
-        element: document.querySelector('.button_for_view_if_zero'),
+        element: document.querySelector('.button-for-view-if-zero'),
         hide: function() {
             this.element.classList.add('hide');
         }
