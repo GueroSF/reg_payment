@@ -1,49 +1,38 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Log in!{% endblock %}
+{% block title %}Вход{% endblock %}
 
 {% block stylesheets %}
     {{ encore_entry_link_tags('login-page') }}
 {% endblock %}
 
 {% block body %}
-<form method="post" class="table login">
+<form method="post" class="login-form">
     {% if app.user %}
         <div class="mb-3">
             You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
         </div>
     {% endif %}
 
-    <div>
-        <label>
-            <span>Имя:</span>
-            <input type="text" value="{{ last_username }}" name="username" required autofocus>
-        </label>
+    <div class="field-name">
+        <label for="field-name">Имя:</label>
+        <input id="field-name" type="text" value="{{ last_username }}" name="username" required autofocus>
     </div>
-    <div>
-        <label>
-            <span>Пароль:</span>
-            <input type="password" name="password" required>
-        </label>
+    <div class="field-password">
+        <label for="field-password">Пароль:</label>
+        <input id="field-password" type="password" name="password" required>
     </div>
 
     {% if error %}
-        <div style="background: red";>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        <div class="error">
+            <span>{{ error.messageKey|trans(error.messageData, 'security') }}</span>
+        </div>
     {% endif %}
 
     <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
-    {#
-        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-        See https://symfony.com/doc/current/security/remember_me.html
-
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" name="_remember_me"> Remember me
-            </label>
-        </div>
-    #}
-
-    <button type="submit">Вход</button>
+    <div class="btn-submit">
+        <button type="submit">Вход</button>
+    </div>
 </form>
 {% endblock %}
