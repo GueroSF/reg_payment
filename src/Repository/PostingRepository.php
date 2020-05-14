@@ -61,7 +61,7 @@ class PostingRepository extends ServiceEntityRepository
                 'category' => $category,
             ])
             ->orderBy('p.dateOperation', 'DESC')
-            ->orderBy('p.id', 'DESC')
+            ->addOrderBy('p.id', 'DESC')
             ->getQuery()
             ->getResult();
     }
