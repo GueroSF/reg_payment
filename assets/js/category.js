@@ -1,7 +1,6 @@
 'use strict';
 
 window.addEventListener('load', function() {
-
     const button = {
         element: document.querySelector('.button-for-view-if-zero'),
         hide: function() {
@@ -16,7 +15,6 @@ window.addEventListener('load', function() {
 
         return;
     }
-
 
     button.element.addEventListener('click', function() {
         hiddenMonths.forEach(function (element) {
