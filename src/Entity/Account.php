@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
-use App\Entity\Traits\FieldCreatedAtTrait;
 use App\Lib\Interfaces\DictionaryInterface;
 use Doctrine\ORM\Mapping as ORM;
 

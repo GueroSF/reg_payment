@@ -9,8 +9,7 @@ use App\Entity\Posting;
 use App\Lib\Interfaces\DictionaryInterface;
 use App\Lib\PostingType;
 use App\Repository\CategoryRepository;
-use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\EntityRepository;
+use App\Service\ToastManager;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\QuestionHelper;
@@ -19,7 +18,6 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\ChoiceQuestion;
 use Symfony\Component\Console\Question\Question;
-use Symfony\Component\Console\Style\SymfonyStyle;
 
 class RegPostingCreateCommand extends Command
 {
@@ -35,13 +33,13 @@ class RegPostingCreateCommand extends Command
     private QuestionHelper $helper;
 
     private ManagerRegistry $mr;
+    private ToastManager $toast;
 
-    /**
-     * @required
-     */
-    public function setManagerRegistry(ManagerRegistry $managerRegistry): void
+    public function __construct(ManagerRegistry $mr, ToastManager $toast)
     {
-        $this->mr = $managerRegistry;
+        parent::__construct();
+        $this->mr = $mr;
+        $this->toast = $toast;
     }
 
     protected function configure()
@@ -96,7 +94,27 @@ class RegPostingCreateCommand extends Command
         $em->persist($posting);
         $em->flush();
 
+        $this->createToastMessage();
+
         return 0;
+    }
+
+    private function createToastMessage(): void
+    {
+        $title = 'Создана запись';
+        $text = sprintf(
+            "Аккаунт: %s\nКатегория: %s\nОперация: %s\nСумма %f",
+            $this->account->getName(),
+            $this->category->getName(),
+            PostingType::typeAsText($this->type),
+            $this->money
+        );
+
+        if ($this->comment !== null) {
+            $text .= sprintf("\nКомментарий %s", $this->comment);
+        }
+
+        $this->toast->createSuccess($title, $text);
     }
 
     private function extractDateOperation(InputInterface $input, OutputInterface $output): \DateTimeInterface
