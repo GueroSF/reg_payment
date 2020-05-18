@@ -22,7 +22,7 @@ class ToastMessageRepository extends ServiceEntityRepository
     public function findAllUnread(): array
     {
         return $this->createQueryBuilder('t')
-            ->andWhere('t.readAt = null')
+            ->andWhere('t.readAt is NULL')
             ->orderBy('t.id', 'ASC')
             ->getQuery()
             ->getResult();
