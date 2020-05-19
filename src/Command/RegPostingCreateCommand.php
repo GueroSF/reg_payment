@@ -201,7 +201,7 @@ class RegPostingCreateCommand extends Command
         }
 
         $dictionaryName = null;
-        if (!(null === $dictionaryId && in_array((int)$dictionaryId, array_keys($list)))) {
+        if (!(null !== $dictionaryId && in_array($dictionaryId, array_keys($list)))) {
             $question = new ChoiceQuestion(
                 sprintf('Choice %s: ', $dictionary instanceof Account ? 'account' : 'category'),
                 array_map(fn(DictionaryInterface $dictionary) => $dictionary->getName(), $list)
