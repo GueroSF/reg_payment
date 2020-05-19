@@ -12,7 +12,8 @@ interface Message {
     url: string,
     type: ToastType,
     title: string,
-    text: string | null
+    text: string | null,
+    createdAt: string
 }
 
 class Toast {
@@ -67,6 +68,13 @@ class Toast {
 
             message.appendChild(textWrap);
         }
+
+        const timeWrap = this._doc.createElement('small');
+        timeWrap.innerText = messageData.createdAt;
+        const timeContainer = this._doc.createElement('div');
+        timeContainer.appendChild(timeWrap);
+        timeContainer.classList.add('time');
+        message.appendChild(timeContainer);
 
         return message;
     }
