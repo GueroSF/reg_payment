@@ -103,7 +103,7 @@ class RegPostingCreateCommand extends Command
     {
         $title = 'Создана запись';
         $text = sprintf(
-            "Аккаунт: %s\nКатегория: %s\nОперация: %s\nСумма %f",
+            "Аккаунт: %s\nКатегория: %s\nОперация: %s\nСумма: %f",
             $this->account->getName(),
             $this->category->getName(),
             PostingType::typeAsText($this->type),
@@ -111,7 +111,7 @@ class RegPostingCreateCommand extends Command
         );
 
         if ($this->comment !== null) {
-            $text .= sprintf("\nКомментарий %s", $this->comment);
+            $text .= sprintf("\nКомментарий: %s", $this->comment);
         }
 
         $this->toast->createSuccess($title, $text);

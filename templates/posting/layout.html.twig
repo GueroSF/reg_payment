@@ -3,6 +3,13 @@
 {% block stylesheets %}
     {{ parent() }}
     {{ encore_entry_link_tags('posting') }}
+    {{ encore_entry_link_tags('toast') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    {{ encore_entry_script_tags('toast') }}
 {% endblock %}
 
 {% block body %}
@@ -15,4 +22,5 @@
     <main>
         {% block posting_content %}{% endblock %}
     </main>
+    {% include '/posting/_toast-message.html.twig' %}
 {% endblock %}
