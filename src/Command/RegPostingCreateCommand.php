@@ -103,7 +103,7 @@ class RegPostingCreateCommand extends Command
     {
         $title = 'Создана запись';
         $text = sprintf(
-            "Аккаунт: %s\nКатегория: %s\nОперация: %s\nСумма: %f",
+            "Аккаунт: %s\nКатегория: %s\nОперация: %s\nСумма: %01.2f",
             $this->account->getName(),
             $this->category->getName(),
             PostingType::typeAsText($this->type),
