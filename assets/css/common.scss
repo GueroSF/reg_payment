@@ -1,0 +1,67 @@
+:root {
+    --page-background: #fff;
+    --text-color: #18171b;
+    --button-background-color: lightgrey;
+    --link-color: #006dcb;
+    --link-hover-color: #0088fe;
+
+    --gray-lightest: #fafafa;
+    --form-input-background: #fff;
+    --form-input-color: #444;;
+    --form-input-border-color: #ccc;
+
+    --header-top-background: silver;
+
+    --month-background: lightsteelblue;
+    --payment-add-background: powderblue;
+    --payment-list-background: honeydew;
+    --payment-odd-background: lightgrey;
+
+    --payment-table-head: silver;
+}
+
+body.dark {
+    --page-background: #36393e;
+    --text-color: silver;
+    --button-background-color: darkgray;
+    --link-color: #42a7ff;
+    --link-hover-color: #0f8fff;
+
+    --gray-lightest: #1e2125;
+    --form-input-background: #414449;
+    --form-input-color: silve;
+    --form-input-border-color: #5f6165;
+
+    --header-top-background: #1e2125;
+
+    --month-background: #364558;
+    --payment-add-background: steelblue;
+    --payment-list-background: #232523;
+    --payment-odd-background: #565656;
+
+    --payment-table-head: gray;
+}
+
+body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    background: var(--page-background);
+    color: var(--text-color);
+}
+
+input, textarea, select {
+    background: var(--form-input-background);
+    border-color: var(--form-input-border-color);
+    color: var(--form-input-color);
+}
+
+button {
+    background-color: var(--button-background-color);
+}
+
+a {
+    color: var(--link-color);
+}

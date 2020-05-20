@@ -8,10 +8,29 @@
     <link rel="manifest" href="/manifest.json">
     <title>{% block title %}Welcome!{% endblock %}</title>
     {% block stylesheets %}
+        {{ encore_entry_link_tags('common') }}
     {% endblock %}
     {% block javascripts %}{% endblock %}
 </head>
 <body>
 {% block body %}{% endblock %}
+<footer>
+    <div>
+        <button id="toggle-theme">toggle</button>
+    </div>
+    <script>
+        if (null !== localStorage.getItem('reg-theme')) {
+            document.body.classList.add('dark');
+        }
+
+        document.querySelector('#toggle-theme').addEventListener('click', () => {
+            if (document.body.classList.toggle('dark')) {
+                localStorage.setItem('reg-theme', 'dark');
+            } else {
+                localStorage.removeItem('reg-theme');
+            }
+        })
+    </script>
+</footer>
 </body>
 </html>

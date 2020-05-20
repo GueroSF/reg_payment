@@ -15,6 +15,7 @@ Encore
     .addEntry('category', './assets/js/category.js')
     .addEntry('toast', './assets/js/toast.ts')
 
+    .addStyleEntry('common', './assets/css/common.scss')
     .addStyleEntry('login-page', './assets/css/login-page.scss')
     .addStyleEntry('posting', './assets/css/posting.scss')
 

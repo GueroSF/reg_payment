@@ -1,10 +1,3 @@
-body {
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 main {
   display: flex;
   flex-direction: column;
@@ -13,7 +6,7 @@ main {
 header {
   text-align: center;
   width: 100%;
-  background: silver;
+  background: var(--header-top-background);
 }
 
 header a {
@@ -38,8 +31,7 @@ header a {
 
 .month {
   margin: 2px 2px 0 2px;
-  /*border: 1px solid grey;*/
-  background-color: lightsteelblue;
+  background-color: var(--month-background);
   border-radius: 5px;
   display: flex;
   flex-wrap: wrap;
@@ -60,7 +52,7 @@ header a {
 
 .salary,
 .swallow {
-  background: white;
+  background: var(--form-input-background);
 }
 
 .link-to-add,
@@ -70,44 +62,42 @@ header a {
   text-align: center;
 }
 
-.td1, .td3 {
-  width: 92px;
-}
-
-/* Возможно следущие два класса лишние */
-
 .table {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  padding: 2px;
-  text-align: center;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 2px;
+    text-align: center;
 }
 
 .table [type='number'] {
-  width: 60px;
+    width: 60px;
+}
+
+.td1, .td3 {
+  width: 92px;
 }
 
 .payment-add {
   margin: 0 2px;
   border-radius: 5px;
-  background: powderblue;
+  background-color: var(--payment-add-background);
   padding-bottom: 5px;
 }
 
 .payment-list {
-  background: honeydew;
+  background: var(--payment-list-background);
   padding: 5px;
   border-radius: 5px;
   margin-bottom: 5px;
 }
 
 .payment-list > .table {
-  background: silver;
+  background: var(--payment-table-head);
 }
 
 .payment-list .payment:nth-child(2n) {
-  background: lightgrey;
+  background: var(--payment-odd-background);
 }
 
 .payment {
