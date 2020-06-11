@@ -22,7 +22,7 @@
 
 body.dark {
     --page-background: #36393e;
-    --text-color: silver;
+    --text-color: #f0f0f0;
     --button-background-color: darkgray;
     --link-color: #42a7ff;
     --link-hover-color: #0f8fff;
@@ -64,4 +64,8 @@ button {
 
 a {
     color: var(--link-color);
+
+    &:hover {
+        color: var(--link-hover-color);
+    }
 }
