@@ -8,32 +8,34 @@
 {% endblock %}
 
 {% block posting_content %}
-    {% for category in categoriesNotNullSum %}
-    <div class="item">
-        <div class="name"><span>{{ category.name }}</span></div>
-        <div class="sum">
-            <span>{{ category.sum | app_money }}</span>
-        </div>
-        <div class="action">
-            <a href="{{ path('web_trans_postings', {accountId: category.accountId, categoryId: category.id}) }}">Просмотр</a>
-        </div>
-    </div>
-    {% endfor %}
-    {% if categoriesWithNull %}
-        <div class="toggle-hidden-item">
-            <button>Показать скрытые</button>
-        </div>
-        {% for category in categoriesWithNull %}
-            <div class="item hide">
+    <div class="list">
+        {% for category in categoriesNotNullSum %}
+            <div class="item">
                 <div class="name"><span>{{ category.name }}</span></div>
                 <div class="sum">
                     <span>{{ category.sum | app_money }}</span>
                 </div>
                 <div class="action">
                     <a href="{{ path('web_trans_postings', {accountId: category.accountId, categoryId: category.id}) }}">Просмотр</a>
-                    <a href="{{ path('web_trans_delete', {accountId: category.accountId, categoryId: category.id}) }}">Удалить</a>
                 </div>
             </div>
         {% endfor %}
-    {% endif %}
+        {% if categoriesWithNull %}
+            <div class="toggle-hidden-item">
+                <button>Показать скрытые</button>
+            </div>
+            {% for category in categoriesWithNull %}
+                <div class="item hide">
+                    <div class="name"><span>{{ category.name }}</span></div>
+                    <div class="sum">
+                        <span>{{ category.sum | app_money }}</span>
+                    </div>
+                    <div class="action">
+                        <a href="{{ path('web_trans_postings', {accountId: category.accountId, categoryId: category.id}) }}">Просмотр</a>
+                        <a href="{{ path('web_trans_delete', {accountId: category.accountId, categoryId: category.id}) }}">Удалить</a>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
 {% endblock %}

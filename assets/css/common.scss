@@ -1,47 +1,29 @@
 :root {
     --page-background: #fff;
     --text-color: #18171b;
-    --button-background-color: lightgrey;
-    --link-color: #006dcb;
-    --link-hover-color: #0088fe;
 
-    --gray-lightest: #fafafa;
     --form-input-background: #fff;
     --form-input-color: #444;;
     --form-input-border-color: #ccc;
 
-    --header-top-background: silver;
+    --button-background-color: lightgrey;
 
-    --month-background: lightsteelblue;
-    --sum-background-color: #fff;
-    --payment-add-background: powderblue;
-    --payment-list-background: honeydew;
-    --payment-odd-background: lightgrey;
-
-    --payment-table-head: silver;
+    --link-color: #006dcb;
+    --link-hover-color: #0088fe;
 }
 
 body.dark {
     --page-background: #36393e;
     --text-color: #f0f0f0;
-    --button-background-color: darkgray;
-    --link-color: #42a7ff;
-    --link-hover-color: #0f8fff;
 
-    --gray-lightest: #1e2125;
     --form-input-background: #414449;
     --form-input-color: silve;
     --form-input-border-color: #5f6165;
 
-    --header-top-background: #1e2125;
+    --button-background-color: darkgray;
 
-    --month-background: #364558;
-    --sum-background-color: #626277;
-    --payment-add-background: steelblue;
-    --payment-list-background: #232523;
-    --payment-odd-background: #565656;
-
-    --payment-table-head: gray;
+    --link-color: #42a7ff;
+    --link-hover-color: #0f8fff;
 }
 
 body {

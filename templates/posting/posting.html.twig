@@ -3,33 +3,35 @@
 {% block title %}Posting{% endblock %}
 
 {% block posting_content %}
-    <div class="payment-add">
-        <div class="month-name">
-            <span>Внести платёж: <b>{{ category.name }}</b> {{ category.sum | app_money }}</span>
-        </div>
-        {{ form(form) }}
-    </div>
-    <div class="payment-list">
-        <div class="month-name">Платежи внесенные ранее:</div>
-        <div class="table">
-            <div class="td1">Дата платежа</div>
-            <div class="td2">Сумма</div>
-            <div class="td3">Операция</div>
-        </div>
-        {% for posting in postings %}
-        <div class="payment">
-            <div class="table">
-                <div class="td1">{{ posting.dateOperation | date('d.m.Y') }}<?= $payment['date']; ?></div>
-                <div class="td2">{{ posting.money | app_money }}</div>
-                <div class="td3">{{ posting_type(posting) }}</div>
+    <div class="posting-container">
+        <div class="wrapper-form-add-payment">
+            <div class="name">
+                <span>Внести платёж: <strong>{{ category.name }}</strong> {{ category.sum | app_money }}</span>
             </div>
-            {% if posting.comment is not null %}
-            <div class="comment">
-                <span class="td1">Комм:</span>
-                <span class="comm">{{ posting.comment.comment }}</span>
-            </div>
-            {% endif %}
+            {{ form(form) }}
         </div>
-        {% endfor %}
+        <div class="wrapper-posting-list">
+            <div class="wrapper-table">
+                <table>
+                    <tr>
+                        <th>Дата платежа</th>
+                        <th>Сумма</th>
+                        <th>Операция</th>
+                    </tr>
+                    {% for posting in postings %}
+                        <tr>
+                            <td>{{ posting.dateOperation | date('d.m.Y') }}</td>
+                            <td class="sum">{{ posting.money | app_money }}</td>
+                            <td>{{ posting_type(posting) }}</td>
+                        </tr>
+                        {% if posting.comment is not null %}
+                            <tr class="comment">
+                                <td colspan="3">{{ posting.comment.comment }}</td>
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
     </div>
 {% endblock %}
