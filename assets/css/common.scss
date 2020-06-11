@@ -13,6 +13,7 @@
     --header-top-background: silver;
 
     --month-background: lightsteelblue;
+    --sum-background-color: #fff;
     --payment-add-background: powderblue;
     --payment-list-background: honeydew;
     --payment-odd-background: lightgrey;
@@ -35,6 +36,7 @@ body.dark {
     --header-top-background: #1e2125;
 
     --month-background: #364558;
+    --sum-background-color: #626277;
     --payment-add-background: steelblue;
     --payment-list-background: #232523;
     --payment-odd-background: #565656;
@@ -74,4 +76,6 @@ a {
     min-width: 85px;
     padding: 3px;
     text-align: center;
+    border-radius: 2px;
+    background-color: var(--sum-background-color);
 }
