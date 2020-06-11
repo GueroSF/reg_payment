@@ -1,26 +1,21 @@
 'use strict';
 
 window.addEventListener('load', function() {
-    const button = {
-        element: document.querySelector('.button-for-view-if-zero'),
-        hide: function() {
-            this.element.classList.add('hide');
-        }
-    };
+    let hiddenItem = true;
 
-    const hiddenMonths = document.querySelectorAll('.hide');
+    document.querySelectorAll('.toggle-hidden-item button').forEach(btn => {
+        const hiddenElements = document.querySelectorAll('.item.hide');
 
-    if (hiddenMonths.length === 0) {
-        button.hide();
+        btn.addEventListener('click', () => {
+            if (hiddenItem === true) {
+                hiddenElements.forEach(el => el.classList.remove('hide'));
+                btn.innerText = 'Скрыть';
+            } else {
+                hiddenElements.forEach(el => el.classList.add('hide'));
+                btn.innerText = 'Показать';
+            }
 
-        return;
-    }
-
-    button.element.addEventListener('click', function() {
-        hiddenMonths.forEach(function (element) {
-            element.classList.remove('hide');
-        });
-
-        button.hide();
+            hiddenItem = !hiddenItem;
+        })
     })
 });

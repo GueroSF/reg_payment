@@ -45,11 +45,23 @@ class PostingController extends AbstractController
      */
     public function account(PreparePostingData $service, Account $account): Response
     {
+        $categoriesNotNullSum = [];
+        $categoriesWithNull = [];
+
+        foreach ($service->getAllCategoriesForAccount($account) as $categoryDTO) {
+            if ($categoryDTO->getSum() === 0.0) {
+                $categoriesWithNull[] = $categoryDTO;
+            } else {
+                $categoriesNotNullSum[] = $categoryDTO;
+            }
+        }
+
         return $this->render(
             'posting/categories.html.twig',
             [
-                'categories' => $service->getAllCategoriesForAccount($account),
-                'backUrl'    => $this->generateUrl('web_trans_accounts'),
+                'categoriesNotNullSum' => $categoriesNotNullSum,
+                'categoriesWithNull'   => $categoriesWithNull,
+                'backUrl'              => $this->generateUrl('web_trans_accounts'),
             ]
         );
     }
@@ -173,8 +185,8 @@ class PostingController extends AbstractController
         return $this->render(
             '/posting/create-category.html.twig',
             [
-                'form' => $form->createView(),
-                'backUrl'    => $this->generateUrl('web_trans_accounts'),
+                'form'    => $form->createView(),
+                'backUrl' => $this->generateUrl('web_trans_accounts'),
             ]
         );
     }

@@ -4,29 +4,29 @@
 
 {% block posting_content %}
     {% for account in accounts %}
-        <div class="month">
-            <div class="month-name"><span>{{ account.name }}</span></div>
-            <div class="salary">
-                <div class="sum">
-                    <span>{{ account.sum | app_money }}</span>
-                </div>
+        <div class="item">
+            <div class="name">
+                <span>{{ account.name }}</span>
             </div>
-            <div class="view-detail">
+            <div class="sum">
+                <span>{{ account.sum | app_money }}</span>
+            </div>
+            <div class="action">
                 <a href="{{ path('web_trans_account', {id: account.id}) }}">Просмотр</a>
             </div>
         </div>
     {% endfor %}
-        {% if credit != 0 %}
-            <div class="month">
-                <div class="month-name"><span>Одолжено</span></div>
-                <div class="salary">
-                    <table>
-                        <tr>
-                            <td>{{ credit | app_money }}</td>
-                        </tr>
-                    </table>
-                </div>
+    {% if credit != 0 %}
+        <div class="item credit">
+            <div class="name">
+                <span>Одолжено</span>
             </div>
-        {% endif %}
-        <div class="link-to-add"><a href="{{ path('web_trans_create_category') }}">Добавить категорию</a></div>
+            <div class="sum">
+                <span>{{ credit | app_money }}</span>
+            </div>
+        </div>
+    {% endif %}
+    <div class="wrapper-link-to-add">
+        <a class="link-to-add" href="{{ path('web_trans_create_category') }}">Добавить категорию</a>
+    </div>
 {% endblock %}

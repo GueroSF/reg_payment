@@ -72,10 +72,6 @@ a {
     }
 }
 
-.sum {
-    min-width: 85px;
-    padding: 3px;
-    text-align: center;
-    border-radius: 2px;
-    background-color: var(--sum-background-color);
+.hide {
+    display: none!important;
 }
