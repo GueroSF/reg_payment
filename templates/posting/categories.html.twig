@@ -12,14 +12,9 @@
     <div class="month{{ category.sum == 0 ? ' hide' : '' }}">
         <div class="month-name"><span>{{ category.name }}</span></div>
         <div class="salary">
-            <table>
-                <tr>
-                    <td>Всего</td>
-                </tr>
-                <tr>
-                    <td>{{ category.sum | app_money }}</td>
-                </tr>
-            </table>
+            <div class="sum">
+                <span>{{ category.sum | app_money }}</span>
+            </div>
         </div>
         <div class="view-detail">
             <a href="{{ path('web_trans_postings', {accountId: category.accountId, categoryId: category.id}) }}">Просмотр</a>

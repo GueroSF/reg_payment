@@ -7,14 +7,9 @@
         <div class="month">
             <div class="month-name"><span>{{ account.name }}</span></div>
             <div class="salary">
-                <table>
-                    <tr>
-                        <td>Всего</td>
-                    </tr>
-                    <tr>
-                        <td>{{ account.sum | app_money }}</td>
-                    </tr>
-                </table>
+                <div class="sum">
+                    <span>{{ account.sum | app_money }}</span>
+                </div>
             </div>
             <div class="view-detail">
                 <a href="{{ path('web_trans_account', {id: account.id}) }}">Просмотр</a>
