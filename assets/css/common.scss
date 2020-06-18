@@ -1,3 +1,5 @@
+@import "common-variable";
+
 :root {
     --page-background: #fff;
     --text-color: #18171b;
@@ -10,6 +12,7 @@
 
     --link-color: #006dcb;
     --link-hover-color: #0088fe;
+
 }
 
 body.dark {
@@ -48,10 +51,21 @@ button {
 
 a {
     color: var(--link-color);
+    font-size: x-large;
+
+    @media (min-width: $screen-size-phone) {
+        font-size: unset;
+    }
 
     &:hover {
         color: var(--link-hover-color);
     }
+}
+
+.btn {
+    border: 2px solid #42a7ff;
+    border-radius: 4px;
+    color: #42a7ff;
 }
 
 .hide {

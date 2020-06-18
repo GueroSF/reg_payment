@@ -21,8 +21,10 @@
             </div>
         {% endfor %}
         {% if categoriesWithNull %}
-            <div class="toggle-hidden-item">
-                <button>Показать скрытые</button>
+            <div class="additional-action">
+                <div class="toggle-hidden-item">
+                    <button>Показать скрытые</button>
+                </div>
             </div>
             {% for category in categoriesWithNull %}
                 <div class="item hide">

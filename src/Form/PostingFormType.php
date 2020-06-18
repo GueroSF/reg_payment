@@ -109,7 +109,7 @@ class PostingFormType extends AbstractType
     private function getRowAttr(string $fieldName): array
     {
         return [
-            'class' => sprintf('reg-posting-form-%s', $fieldName),
+            'class' => sprintf('reg-posting field-%s', $fieldName),
         ];
     }
 

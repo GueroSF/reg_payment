@@ -1,36 +1,51 @@
 {% extends 'posting/layout.html.twig' %}
 
-{% block title %}Posting{% endblock %}
+{% block title %}Категория: {{ category.name }}{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('posting-js') }}
+{% endblock %}
 
 {% block posting_content %}
+    <div class="posting-header">
+        <div>
+            <strong>{{ category.name }}</strong> {{ category.sum | app_money }}
+        </div>
+    </div>
     <div class="posting-container">
         <div class="wrapper-form-add-payment">
-            <div class="name">
-                <span>Внести платёж: <strong>{{ category.name }}</strong> {{ category.sum | app_money }}</span>
+            <div class="wrapper-btn">
+                <button class="btn header-btn btn-toggle" id="collapsed-form-add">
+                    <div>Внести платёж</div>
+                    <div class="character">+</div>
+                </button>
             </div>
-            {{ form(form) }}
+            <div class="form-container collapsed">
+                {{ form(form) }}
+            </div>
         </div>
         <div class="wrapper-posting-list">
-            <div class="wrapper-table">
-                <table>
-                    <tr>
-                        <th>Дата платежа</th>
-                        <th>Сумма</th>
-                        <th>Операция</th>
-                    </tr>
-                    {% for posting in postings %}
-                        <tr>
-                            <td>{{ posting.dateOperation | date('d.m.Y') }}</td>
-                            <td class="sum">{{ posting.money | app_money }}</td>
-                            <td>{{ posting_type(posting) }}</td>
-                        </tr>
+            <div class="posting-list-header">
+                <div>Дата платежа</div>
+                <div>Сумма</div>
+                <div>Операция</div>
+            </div>
+            <div class="posting-list">
+                {% for posting in postings %}
+                    <div class="posting-item">
+                        <div class="posting-info">
+                            <div>{{ posting.dateOperation | date('d.m.Y') }}</div>
+                            <div>{{ posting.money | app_money }}</div>
+                            <div>{{ posting_type(posting) }}</div>
+                        </div>
                         {% if posting.comment is not null %}
-                            <tr class="comment">
-                                <td colspan="3">{{ posting.comment.comment }}</td>
-                            </tr>
+                            <div class="posting-comment">
+                                <span>{{ posting.comment.comment }}</span>
+                            </div>
                         {% endif %}
-                    {% endfor %}
-                </table>
+                    </div>
+                {% endfor %}
             </div>
         </div>
     </div>
