@@ -48,11 +48,13 @@ class PostingRepository extends ServiceEntityRepository
     /**
      * @param Account $account
      * @param Category $category
+     * @param int|null $limit
+     * @param int|null $offset
      * @return Posting[] | iterable
      */
-    public function findByAccountAndCategory(Account $account, Category $category): iterable
+    public function findByAccountAndCategory(Account $account, Category $category, ?int $limit, ?int $offset): iterable
     {
-        return $this->createQueryBuilder('p')
+        $qb = $this->createQueryBuilder('p')
             ->where('p.account = :account')
             ->andWhere('p.category = :category')
             ->andWhere('p.deletedAt is NULL')
@@ -62,6 +64,16 @@ class PostingRepository extends ServiceEntityRepository
             ])
             ->orderBy('p.dateOperation', 'DESC')
             ->addOrderBy('p.id', 'DESC')
+        ;
+
+        if (null !== $limit && null !== $offset) {
+            $qb
+                ->setMaxResults($limit)
+                ->setFirstResult($offset)
+            ;
+        }
+
+        return $qb
             ->getQuery()
             ->getResult();
     }

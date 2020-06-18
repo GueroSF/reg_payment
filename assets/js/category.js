@@ -16,6 +16,6 @@ window.addEventListener('load', function() {
             }
 
             hiddenItem = !hiddenItem;
-        })
-    })
+        });
+    });
 });

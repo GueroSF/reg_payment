@@ -4,6 +4,13 @@
 
 {% block javascripts %}
     {{ parent() }}
+    <script>
+        const postingConfig = {
+            limit: {{ limit }},
+            amount: {{ amount }},
+            url: '{{ loadUrl }}'
+        };
+    </script>
     {{ encore_entry_script_tags('posting-js') }}
 {% endblock %}
 
@@ -32,21 +39,11 @@
                 <div>Операция</div>
             </div>
             <div class="posting-list">
-                {% for posting in postings %}
-                    <div class="posting-item">
-                        <div class="posting-info">
-                            <div>{{ posting.dateOperation | date('d.m.Y') }}</div>
-                            <div>{{ posting.money | app_money }}</div>
-                            <div>{{ posting_type(posting) }}</div>
-                        </div>
-                        {% if posting.comment is not null %}
-                            <div class="posting-comment">
-                                <span>{{ posting.comment.comment }}</span>
-                            </div>
-                        {% endif %}
-                    </div>
-                {% endfor %}
+                {% include 'posting/_posting-list.html.twig' with {'postings' : postings} %}
             </div>
+        </div>
+        <div>
+            <button class="btn" id="load-postings">load</button>
         </div>
     </div>
 {% endblock %}

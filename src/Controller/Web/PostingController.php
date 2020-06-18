@@ -67,7 +67,7 @@ class PostingController extends AbstractController
     }
 
     /**
-     * @Route("/account/{accountId}/category/{categoryId}", name="postings", methods={"GET", "POST"})
+     * @Route("/account/{accountId}/category/{categoryId}", name="postings", methods={"GET"})
      * @ParamConverter("account", options={"id"="accountId"})
      * @ParamConverter("category", options={"id"="categoryId"})
      *
@@ -75,7 +75,7 @@ class PostingController extends AbstractController
      * @param Category $category
      * @return Response
      */
-    public function allPostings(PreparePostingData $service, Account $account, Category $category): Response
+    public function postings(PreparePostingData $service, Account $account, Category $category): Response
     {
         $form = $this->createForm(
             PostingFormType::class,
@@ -88,18 +88,51 @@ class PostingController extends AbstractController
             ]
         );
 
-        $postings = $this->getDoctrine()->getRepository(Posting::class)
-            ->findByAccountAndCategory($account, $category);
+        $limit = 10;
+        $postings = $this->limitPosting($account, $category, $limit, 0);
+        $amount = count($postings);
 
         return $this->render(
             'posting/posting.html.twig',
             [
                 'form'     => $form->createView(),
+                'loadUrl'  => $this->generateUrl(
+                    'web_trans_postings_ajax',
+                    [
+                        'accountId'  => $account->getId(),
+                        'categoryId' => $category->getId(),
+                    ]
+                ),
+                'limit'    => $limit,
+                'amount'   => $amount,
                 'postings' => $postings,
                 'category' => $service->getCategory($account, $category),
                 'backUrl'  => $this->generateUrl('web_trans_account', ['id' => $account->getId()]),
             ]
         );
+    }
+
+    /**
+     * @Route("/account/{accountId}/category/{categoryId}", name="postings_ajax", methods={"POST"})
+     * @ParamConverter("account", options={"id"="accountId"})
+     * @ParamConverter("category", options={"id"="categoryId"})
+     */
+    public function ajaxPostings(Request $request, Account $account, Category $category): Response
+    {
+        $body = json_decode($request->getContent(), true);
+
+        $postings = $this->limitPosting($account, $category, $body['limit'], $body['offset']);
+
+        return $this->json([
+            'amount' => count($postings),
+            'html'   => $this->renderView('posting/_posting-list.html.twig', ['postings' => $postings])
+        ]);
+    }
+
+    private function limitPosting(Account $account, Category $category, ?int $limit = null, ?int $offset = null): array
+    {
+        return $this->getDoctrine()->getRepository(Posting::class)
+            ->findByAccountAndCategory($account, $category, $limit, $offset);
     }
 
     /**

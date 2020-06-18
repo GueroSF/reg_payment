@@ -1,0 +1,14 @@
+{% for posting in postings %}
+    <div class="posting-item">
+        <div class="posting-info">
+            <div>{{ posting.dateOperation | date('d.m.Y') }}</div>
+            <div>{{ posting.money | app_money }}</div>
+            <div>{{ posting_type(posting) }}</div>
+        </div>
+        {% if posting.comment is not null %}
+            <div class="posting-comment">
+                <span>{{ posting.comment.comment }}</span>
+            </div>
+        {% endif %}
+    </div>
+{% endfor %}
