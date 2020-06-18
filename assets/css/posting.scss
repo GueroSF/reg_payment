@@ -126,21 +126,15 @@ main {
     margin: 5px 0;
     box-sizing: border-box;
 
-    .btn-toggle {
-        width: 100%;
-        background: unset;
-        cursor: pointer;
-
-        display: flex;
-        justify-content: space-between;
-
-        padding: 10px;
-    }
-
     .form-container {
         margin-top: 5px;
         padding-top: 5px;
         border-top: 1px solid silver;
+    }
+
+    .header-btn {
+        display: flex;
+        justify-content: space-between;
     }
 
     .collapsed {
