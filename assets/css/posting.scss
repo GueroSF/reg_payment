@@ -216,3 +216,36 @@ main {
         }
     }
 }
+
+
+form[name="category_form"] {
+    margin-top: 10px;
+    padding: 5px;
+}
+#category_form {
+    width: 100%;
+
+    div {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+
+        label {
+            width: 30%;
+        }
+
+        input,
+        select {
+            height: 40px;
+            width: 70%;
+            box-sizing: border-box;
+        }
+
+        &:nth-child(3) {
+            justify-content: center;
+            button {
+                height: 40px;
+            }
+        }
+    }
+}
