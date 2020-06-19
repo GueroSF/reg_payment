@@ -19,7 +19,8 @@ class LoadingPosting {
             return;
         }
 
-        this.btn.addEventListener('click', this.handlerClick(document.querySelector('.posting-list')))
+        this.btn.addEventListener('click', this.handlerClick(document.querySelector('.posting-list')));
+        this.status = this.btn.querySelector('.status');
     }
 
     checkAmount(amount) {
@@ -32,6 +33,7 @@ class LoadingPosting {
 
     handlerClick(htmlList) {
         return () => {
+            this._loadingBegin();
             this.offset += this.limit;
             fetch(this.url, {
                 method: 'POST',
@@ -39,14 +41,45 @@ class LoadingPosting {
             })
                 .then(res => res.json())
                 .then(data => {
+                    this._loadingFinish();
                     if (this.checkAmount(data.amount)) {
                         this.removeButton();
                     }
                     htmlList.innerHTML += data.html;
                 })
+                .catch(err => {
+                    this._loadingError();
+                    this.offset -= this.limit;
+                    console.error(err);
+                })
             ;
         }
     }
+
+    _loadingBegin() {
+        this._toggleIcon(true, 'error');
+        this._toggleIcon(true, 'finish');
+        this._toggleIcon(false, 'begin');
+    }
+
+    _loadingFinish() {
+        this._toggleIcon(true, 'begin');
+        this._toggleIcon(false, 'finish');
+    }
+
+    _loadingError() {
+        this._toggleIcon(true, 'begin');
+        this._toggleIcon(false, 'error');
+    }
+
+    _toggleIcon(needHidden, token) {
+        if (needHidden === true) {
+            this.status.classList.remove(token);
+        } else {
+            this.status.classList.add(token);
+        }
+    }
+
 }
 
 window.addEventListener('load', () => {

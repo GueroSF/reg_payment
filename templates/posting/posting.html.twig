@@ -23,7 +23,7 @@
     <div class="posting-container">
         <div class="wrapper-form-add-payment">
             <div class="wrapper-btn">
-                <button class="btn btn-toggle header-btn" id="collapsed-form-add">
+                <button class="btn header-btn" id="collapsed-form-add">
                     <div>Внести платёж</div>
                     <div class="character">+</div>
                 </button>
@@ -42,8 +42,11 @@
                 {% include 'posting/_posting-list.html.twig' with {'postings' : postings} %}
             </div>
         </div>
-        <div>
-            <button class="btn" id="load-postings">load</button>
+        <div class="wrapper-loading-btn">
+            <button class="btn" id="load-postings">
+                <div>Загрузить еще</div>
+                <div class="status begin"></div>
+            </button>
         </div>
     </div>
 {% endblock %}

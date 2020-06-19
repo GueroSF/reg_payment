@@ -220,6 +220,39 @@ main {
     }
 }
 
+.wrapper-loading-btn {
+    width: 100%;
+    margin-top: 10px;
+
+    #load-postings {
+        display: flex;
+        justify-content: center;
+    }
+
+    .status {
+        margin-left: 3px;
+        &.finish::after {
+            content: "\270C";
+        }
+
+        &.error::after {
+            content: "\2620";
+        }
+
+        &.begin::after {
+            content: ".";
+            animation: loading 1.5s infinite;
+        }
+
+        @keyframes loading {
+            0% {content: ""}
+            33% {content: ".";}
+            66% {content: "..";}
+            100% {content: "...";}
+        }
+    }
+}
+
 
 form[name="category_form"] {
     margin-top: 10px;
