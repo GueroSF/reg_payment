@@ -46,11 +46,7 @@ class PreparePostingData
         $accountRepo = $this->mr->getRepository(Account::class);
 
         foreach ($accountRepo->findAll() as $account) {
-            yield new AccountDTO(
-                $account->getId(),
-                $account->getName(),
-                $this->postingRepo->calcSumForAccount($account)
-            );
+            yield $this->createAccountDTO($account);
         }
     }
 
@@ -89,6 +85,15 @@ class PreparePostingData
         $sum = $this->postingRepo->calcSumForAdditionalTypeInCategory($creditCategory);
 
         return abs($sum);
+    }
+
+    public function createAccountDTO(Account $account): AccountDTO
+    {
+        return new AccountDTO(
+            $account->getId(),
+            $account->getName(),
+            $this->postingRepo->calcSumForAccount($account)
+        );
     }
 
     private function getCategories(Account $account): iterable

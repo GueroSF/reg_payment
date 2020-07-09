@@ -59,6 +59,7 @@ class PostingController extends AbstractController
         return $this->render(
             'posting/categories.html.twig',
             [
+                'account'              => $service->createAccountDTO($account),
                 'categoriesNotNullSum' => $categoriesNotNullSum,
                 'categoriesWithNull'   => $categoriesWithNull,
                 'backUrl'              => $this->generateUrl('web_trans_accounts'),

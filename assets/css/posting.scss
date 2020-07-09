@@ -79,7 +79,7 @@ main {
     box-shadow: 0 3px 5px var(--box-shadow-header);
 }
 
-.posting-header ~ .posting-container {
+.posting-header ~ .after-posting-header {
     margin-top: $posting-header-height;
 }
 

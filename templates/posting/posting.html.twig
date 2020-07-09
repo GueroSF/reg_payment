@@ -15,12 +15,8 @@
 {% endblock %}
 
 {% block posting_content %}
-    <div class="posting-header">
-        <div>
-            <strong>{{ category.name }}</strong> {{ category.sum | app_money }}
-        </div>
-    </div>
-    <div class="posting-container">
+    {% include 'posting/_posting-header.html.twig' with {'dto': category} only %}
+    <div class="posting-container after-posting-header">
         <div class="wrapper-form-add-payment">
             <div class="wrapper-btn">
                 <button class="btn header-btn" id="collapsed-form-add">

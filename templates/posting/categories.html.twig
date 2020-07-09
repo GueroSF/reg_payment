@@ -8,7 +8,8 @@
 {% endblock %}
 
 {% block posting_content %}
-    <div class="list">
+    {% include 'posting/_posting-header.html.twig' with {'dto': account} only %}
+    <div class="list after-posting-header">
         {% for category in categoriesNotNullSum %}
             <div class="item">
                 <div class="name"><span>{{ category.name }}</span></div>
