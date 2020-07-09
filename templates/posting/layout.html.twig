@@ -4,6 +4,7 @@
     {{ parent() }}
     {{ encore_entry_link_tags('posting') }}
     {{ encore_entry_link_tags('toast') }}
+    {{ encore_entry_link_tags('last-operations') }}
 {% endblock %}
 
 {% block javascripts %}
@@ -23,5 +24,6 @@
         {% block posting_content %}{% endblock %}
     </main>
 
+    {% include 'posting/additional/_last-posting-operations.html.twig' %}
     {% include 'posting/additional/_toast-message.html.twig' %}
 {% endblock %}

@@ -1,0 +1,11 @@
+<section class="last-operations-container">
+    {% for posting in last_operation() %}
+        <div class="last-operation">
+            <div>{{ posting.account.name}}</div>
+            <div>{{ posting.category.name }}</div>
+            <div>{{ posting_type(posting) }}</div>
+            <div>{{ posting.money | app_money }}</div>
+        </div>
+{#        {{ dump(posting) }}#}
+    {% endfor %}
+</section>

@@ -6,6 +6,7 @@ namespace App\Service;
 
 use App\Entity\Account;
 use App\Entity\Category;
+use App\Entity\Posting;
 use App\Lib\CategoryAdditionalType;
 use App\Lib\DTO\AccountDTO;
 use App\Lib\DTO\CategoryDTO;
@@ -26,6 +27,14 @@ class PreparePostingData
     {
         $this->mr = $mr;
         $this->postingRepo = $postingRepo;
+    }
+
+    /**
+     * @return array | Posting[]
+     */
+    public function getLastOperations(int $limit = 5): array
+    {
+        return $this->postingRepo->findBy([], ['dateOperation' => 'DESC', 'id' => 'DESC'], $limit);
     }
 
     public function getCategory(Account $account, Category $category): CategoryDTO

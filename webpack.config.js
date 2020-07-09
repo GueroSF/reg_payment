@@ -19,6 +19,7 @@ Encore
     .addStyleEntry('common', './assets/css/common.scss')
     .addStyleEntry('login-page', './assets/css/login-page.scss')
     .addStyleEntry('posting', './assets/css/posting.scss')
+    .addStyleEntry('last-operations', './assets/css/last-operations.scss')
 
     .splitEntryChunks()
 
