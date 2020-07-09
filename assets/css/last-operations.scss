@@ -1,6 +1,74 @@
 @import "common-variable";
 
+$distance: 120px;
+
 .last-operations-container {
     position: fixed;
-    right: 0;
+    top: $header-height-mobile + 40px;
+    @media (min-width: $screen-size-phone) {
+        top: $header-height + 40px;
+    }
+
+    .toggle-label {
+        position: inherit;
+        top: inherit;
+        width: 10px;
+        color: #fff;
+        background-color: #0058B9;
+        padding: 7px;
+        right: 0;
+        cursor: pointer;
+
+        transition: right .2s;
+        z-index: 3;
+        -webkit-transform: translateZ(0);
+        -webkit-backface-visibility: hidden;
+
+        span:after {
+            content: "<";
+        }
+    }
+
+    #toggle-visible-last-operation:checked {
+        &~.toggle-label {
+            right: $distance;
+
+            span:after {
+                content: ">";
+            }
+        }
+
+        &~.last-operation-list {
+            right: 0;
+        }
+    }
+
+    .last-operation-list {
+        z-index: 2;
+        position: inherit;
+        top: inherit;
+        width: $distance;
+        right: -$distance;
+        box-sizing: border-box;
+        background-color: var(--header-top-background);
+        padding: 5px;
+
+        transition: right .2s;
+        -webkit-transform: translateZ(0);
+        -webkit-backface-visibility: hidden;
+
+        .last-operation {
+            z-index: inherit;
+            font-size: x-small;
+
+            table {
+                width: 100%;
+                border-bottom: 1px silver solid;
+                text-align: center;
+                td {
+                    width: 50%;
+                }
+            }
+        }
+    }
 }
