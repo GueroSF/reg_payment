@@ -8,6 +8,7 @@ use App\Entity\Comment;
 use App\Entity\Posting;
 use App\Lib\Interfaces\DictionaryInterface;
 use App\Lib\PostingType;
+use App\Lib\ToastMessageType;
 use App\Repository\CategoryRepository;
 use App\Service\ToastManager;
 use Doctrine\Persistence\ManagerRegistry;
@@ -65,38 +66,46 @@ class RegPostingCreateCommand extends Command
 
     protected function interact(InputInterface $input, OutputInterface $output)
     {
-        $this->account = $this->extractAccount($input, $output);
-        $this->category = $this->extractCategory($input, $output);
-        $this->money = $this->extractMoney($input, $output);
-        $this->type = $this->extractType($input, $output);
-        $this->comment = $input->getOption('comment');
-        $this->date = $this->extractDateOperation($input, $output);
+        $this->extractAllData($input, $output);
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $posting = new Posting();
-        $posting
-            ->setAccount($this->account)
-            ->setCategory($this->category)
-            ->setType($this->type)
-            ->setMoney($this->money)
-            ->setDateOperation($this->date);
+        $this->extractAllData($input, $output);
 
-        if ($this->comment !== null) {
-            $comment = new Comment();
-            $comment->setComment($this->comment);
+        try {
+            $posting = new Posting();
+            $posting
+                ->setAccount($this->account)
+                ->setCategory($this->category)
+                ->setType($this->type)
+                ->setMoney($this->money)
+                ->setDateOperation($this->date);
 
-            $posting->setComment($comment);
+            if ($this->comment !== null) {
+                $comment = new Comment();
+                $comment->setComment($this->comment);
+
+                $posting->setComment($comment);
+            }
+
+            $em = $this->mr->getManager();
+            $em->persist($posting);
+            $em->flush();
+
+            $this->createToastMessage();
+        } catch (\Throwable $throwable) {
+            $this->createErrorToastMessage($throwable);
+
+            return 1;
         }
 
-        $em = $this->mr->getManager();
-        $em->persist($posting);
-        $em->flush();
-
-        $this->createToastMessage();
-
         return 0;
+    }
+
+    private function createErrorToastMessage(\Throwable $throwable): void
+    {
+        $this->toast->create('Ошибка', $throwable->getMessage(), ToastMessageType::ERROR);
     }
 
     private function createToastMessage(): void
@@ -115,6 +124,16 @@ class RegPostingCreateCommand extends Command
         }
 
         $this->toast->createSuccess($title, $text);
+    }
+
+    private function extractAllData(InputInterface $input, OutputInterface $output): void
+    {
+        $this->account = $this->extractAccount($input, $output);
+        $this->category = $this->extractCategory($input, $output);
+        $this->money = $this->extractMoney($input, $output);
+        $this->type = $this->extractType($input, $output);
+        $this->comment = $input->getOption('comment');
+        $this->date = $this->extractDateOperation($input, $output);
     }
 
     private function extractDateOperation(InputInterface $input, OutputInterface $output): \DateTimeInterface
