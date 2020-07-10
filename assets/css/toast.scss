@@ -1,3 +1,5 @@
+@import "common-variable";
+
 .toast-container {
     position: fixed;
     right: 5px;
@@ -6,12 +8,14 @@
 }
 
 .toast {
-    background: white;
+    background: var(--page-background);
     margin: 5px;
     padding: 5px;
     border: 0.5px solid silver;
     border-radius: 3px;
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+
+    color: var(--text-color);
 
     .title-container,
     .text {
@@ -21,7 +25,7 @@
 
     &.success {
         .title-container {
-            background: darkseagreen;
+            background: var(--posting-list-header-bg-color);
         }
     }
 
