@@ -32,7 +32,7 @@ class PreparePostingData
     /**
      * @return array | Posting[]
      */
-    public function getLastOperations(int $limit = 5): array
+    public function getLastOperations(int $limit = 7): array
     {
         return $this->postingRepo->findBy([], ['dateOperation' => 'DESC', 'id' => 'DESC'], $limit);
     }
