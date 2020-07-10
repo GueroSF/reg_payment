@@ -1,6 +1,6 @@
 @import "common-variable";
 
-$distance: 120px;
+$distance: 150px;
 
 .last-operations-container {
     position: fixed;
@@ -57,9 +57,24 @@ $distance: 120px;
         -webkit-transform: translateZ(0);
         -webkit-backface-visibility: hidden;
 
+        .calculator-last-operation {
+            margin-top: 5px;
+            text-align: center;
+            font-size: small;
+        }
+
         .last-operation {
+            display: flex;
             z-index: inherit;
             font-size: x-small;
+
+            .checkbox-wrapper {
+                align-self: center;
+            }
+
+            .table-wrapper {
+                width: 100%;
+            }
 
             table {
                 width: 100%;

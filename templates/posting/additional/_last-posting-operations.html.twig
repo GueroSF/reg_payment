@@ -6,17 +6,33 @@
     <div class="last-operation-list">
         {% for posting in last_operation() %}
             <div class="last-operation">
-                <table>
-                    <tr>
-                        <td>{{ posting.account.name}}</td>
-                        <td>{{ posting.category.name }}</td>
-                    </tr>
-                    <tr>
-                        <td>{{ posting_type(posting) }}</td>
-                        <td>{{ posting.money | app_money }}</td>
-                    </tr>
-                </table>
+                <div class="checkbox-wrapper">
+                    <input
+                        type="checkbox"
+                        class="math-checkbox"
+                        id="last-posting-{{ posting.id }}"
+                        data-money="{{ posting.money }}"
+                        data-type="{{ posting.type }}"
+                    >
+                </div>
+                <div class="table-wrapper">
+                    <label for="last-posting-{{ posting.id }}">
+                        <table>
+                            <tr>
+                                <td>{{ posting.account.name}}</td>
+                                <td>{{ posting.category.name }}</td>
+                            </tr>
+                            <tr>
+                                <td>{{ posting_type(posting) }}</td>
+                                <td>{{ posting.money | app_money }}</td>
+                            </tr>
+                        </table>
+                    </label>
+                </div>
             </div>
         {% endfor %}
+        <div class="calculator-last-operation hide">
+            <span></span>
+        </div>
     </div>
 </section>
