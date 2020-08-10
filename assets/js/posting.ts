@@ -1,13 +1,20 @@
-'use strict';
+declare const postingConfig;
 
 class LoadingPosting {
+
+    private url: string;
+    private readonly limit: number;
+    private readonly amount: number;
+
+    private offset = 0;
+
+    private btn: HTMLButtonElement;
+    private status: HTMLElement;
 
     constructor(config) {
         this.url = config.url;
         this.limit = config.limit;
         this.amount = config.amount;
-
-        this.offset = 0;
     }
 
     run() {
@@ -83,8 +90,8 @@ class LoadingPosting {
 }
 
 window.addEventListener('load', () => {
-    const btn = document.querySelector('#collapsed-form-add');
-    const character = btn.querySelector('.character');
+    const btn: HTMLButtonElement = document.querySelector('#collapsed-form-add');
+    const character: HTMLDivElement = btn.querySelector('.character');
     const formContainer = document.querySelector('.form-container');
 
     btn.addEventListener('click', () => {
