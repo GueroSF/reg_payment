@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace App\EventSubscriber\LoginGate;
 
 
-use App\Exception\LoginGate\LoginGateException;
+use App\Exceptions\LoginGate\LoginGateException;
 use App\Lib\ToastMessageType;
 use App\Service\ToastManager;
 use App\Service\LoginGate\Storage;

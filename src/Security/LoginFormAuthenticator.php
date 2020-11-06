@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Security;
 
-use App\Exception\LoginGate\TooManyRequestsLoginGateException;
+use App\Exceptions\LoginGate\TooManyRequestsLoginGateException;
 use App\Service\LoginGate\LoginGate;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
