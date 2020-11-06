@@ -17,7 +17,7 @@
 
     <div class="field-name">
         <label for="field-name">Имя:</label>
-        <input id="field-name" type="text" value="{{ last_username }}" name="username" required autofocus>
+        <input id="field-name" type="text" value="{{ last_username }}" name="username" required autofocus autocomplete="off">
     </div>
     <div class="field-password">
         <label for="field-password">Пароль:</label>
@@ -26,7 +26,7 @@
 
     {% if error %}
         <div class="error">
-            <span>{{ error.messageKey|trans(error.messageData, 'security') }}</span>
+            <span>{{ error.messageKey }}</span>
         </div>
     {% endif %}
 
