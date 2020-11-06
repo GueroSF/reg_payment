@@ -13,4 +13,8 @@ class TooManyRequestsLoginGateException extends LoginGateException
         parent::__construct($message, $code, $previous);
     }
 
+    public function getMessageKey()
+    {
+        return $this->getMessage();
+    }
 }
