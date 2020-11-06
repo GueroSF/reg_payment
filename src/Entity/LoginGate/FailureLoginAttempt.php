@@ -23,7 +23,7 @@ class FailureLoginAttempt
     private ?string $username = null;
 
     /**
-     * @ORM\Column(type="string", length=11)
+     * @ORM\Column(type="string", length=50)
      */
     private ?string $ip = null;
 
