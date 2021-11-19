@@ -1,6 +1,6 @@
 version: "3.7"
 services:
-  reg-mariadb:
+  payment-mariadb:
     image: mariadb:10.4
     container_name: payment-mariadb
     working_dir: /app
@@ -14,8 +14,12 @@ services:
     ports:
       - "127.0.0.1:8085:3306"
 
-  reg-php-fpm:
-    build: ./php-fpm
+  payment-php-fpm:
+    build:
+      args:
+        user: user74
+        uid: 1000
+      context: ./php-fpm
     container_name: payment-php-fpm
     working_dir: /app
     environment:
@@ -24,7 +28,8 @@ services:
       - ./../:/app
       - ./php-fpm/php-ini-overrides.ini:/etc/php/7.4/fpm/conf.d/99-overrides.ini
 
-  reg-webserver:
+
+  payment-webserver:
     image: nginx:alpine
     container_name: payment-webserver
     working_dir: /app
@@ -34,4 +39,4 @@ services:
     ports:
      - "127.0.0.1:8084:80"
     links:
-     - reg-php-fpm
+     - payment-php-fpm

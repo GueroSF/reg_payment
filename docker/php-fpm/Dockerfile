@@ -1,22 +1,37 @@
-FROM phpdockerio/php74-fpm:latest
+FROM php:7.4-fpm-alpine
 
-WORKDIR "/app"
+# Arguments defined in docker-compose.yml
+ARG user
+ARG uid
 
-# Fix debconf warnings upon build
-ARG DEBIAN_FRONTEND=noninteractive
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
-RUN apt-get update \
-    && apt-get -y --no-install-recommends install php7.4-mysql php7.4-xdebug \
-    && apt-get clean; rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
+RUN set -xe && \
+    apk add --update icu libuv && \
+    apk add --no-cache autoconf && \
+    apk add --virtual .build-deps --no-cache --update \
+        file g++ gcc libc-dev make bash pkgconf re2c zlib-dev icu-dev && \
+    apk add --upgrade gnu-libiconv && \
+    apk add --update nghttp2-dev nodejs npm libuv && \
+    apk add --update git curl fish && \
+    pecl install xdebug && \
+    docker-php-ext-configure intl && \
+    docker-php-ext-install sockets iconv opcache intl bcmath && \
+    docker-php-ext-enable sockets xdebug intl bcmath && \
+    { find /usr/local/lib -type f -print0 | xargs -0r strip --strip-all -p 2>/dev/null || true; }
 
-RUN apt-get update \
-    && apt-get -y install git fish\
-    && apt-get clean; rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
+RUN apk del -f .build-deps && \
+    rm -rf /tmp/* /usr/local/lib/php/doc/* /var/cache/apk/*
 
-RUN apt-get update \
-    && curl -sS https://getcomposer.org/installer -o composer-setup.php \
-    && php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
 
-RUN apt-get update \
-    && curl -sL https://deb.nodesource.com/setup_12.x | bash - \
-    && apt-get install -y nodejs
+RUN docker-php-ext-install pdo pdo_mysql
+
+RUN addgroup -S $user -g $uid && adduser -S $user -u $uid -G $user -h /home/$user
+RUN mkdir -p /home/$user/.composer && \
+    mkdir -p /home/$user/.ssh && \
+    chown -R $user:$user /home/$user
+
+WORKDIR /app
+
+USER $user
