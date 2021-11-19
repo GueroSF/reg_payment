@@ -6,6 +6,7 @@ namespace App\Service;
 
 use App\Entity\Account;
 use App\Entity\Category;
+use App\Entity\Posting;
 use App\Lib\CategoryAdditionalType;
 use App\Lib\DTO\AccountDTO;
 use App\Lib\DTO\CategoryDTO;
@@ -28,6 +29,14 @@ class PreparePostingData
         $this->postingRepo = $postingRepo;
     }
 
+    /**
+     * @return array | Posting[]
+     */
+    public function getLastOperations(int $limit = 7): array
+    {
+        return $this->postingRepo->findBy([], ['dateOperation' => 'DESC', 'id' => 'DESC'], $limit);
+    }
+
     public function getCategory(Account $account, Category $category): CategoryDTO
     {
         return new CategoryDTO(
@@ -46,11 +55,7 @@ class PreparePostingData
         $accountRepo = $this->mr->getRepository(Account::class);
 
         foreach ($accountRepo->findAll() as $account) {
-            yield new AccountDTO(
-                $account->getId(),
-                $account->getName(),
-                $this->postingRepo->calcSumForAccount($account)
-            );
+            yield $this->createAccountDTO($account);
         }
     }
 
@@ -89,6 +94,15 @@ class PreparePostingData
         $sum = $this->postingRepo->calcSumForAdditionalTypeInCategory($creditCategory);
 
         return abs($sum);
+    }
+
+    public function createAccountDTO(Account $account): AccountDTO
+    {
+        return new AccountDTO(
+            $account->getId(),
+            $account->getName(),
+            $this->postingRepo->calcSumForAccount($account)
+        );
     }
 
     private function getCategories(Account $account): iterable

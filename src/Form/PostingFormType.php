@@ -29,7 +29,7 @@ class PostingFormType extends AbstractType
                 NumberType::class,
                 [
                     'html5'    => true,
-                    'attr'     => ['min' => 0],
+                    'attr'     => ['min' => 0, 'step' => '0.01'],
                     'label'    => false,
                     'row_attr' => $this->getRowAttr('money'),
                 ]
@@ -109,7 +109,7 @@ class PostingFormType extends AbstractType
     private function getRowAttr(string $fieldName): array
     {
         return [
-            'class' => sprintf('reg-posting-form-%s', $fieldName),
+            'class' => sprintf('reg-posting field-%s', $fieldName),
         ];
     }
 

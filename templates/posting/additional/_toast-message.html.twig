@@ -1,0 +1,14 @@
+<script>
+    const holderMessages = [];
+    {% for message in toast_messages() %}
+        holderMessages.push(
+            {
+                url: '{{ path('toast_mark_as_read', {id: message.id}) }}',
+                type: {{ message.type }},
+                title: '{{ message.title }}',
+                text: '{{ message.text | e('js') }}',
+                createdAt: '{{ message.createdAt | date('d.m.Y H:i') }}'
+            }
+        );
+    {% endfor %}
+</script>

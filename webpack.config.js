@@ -13,7 +13,11 @@ Encore
     .setPublicPath('/build')
 
     .addEntry('category', './assets/js/category.js')
+    .addEntry('toast', './assets/js/toast.ts')
+    .addEntry('last-operations', './assets/js/last-operations.ts')
+    .addEntry('posting-js', './assets/js/posting.ts')
 
+    .addStyleEntry('common', './assets/css/common.scss')
     .addStyleEntry('login-page', './assets/css/login-page.scss')
     .addStyleEntry('posting', './assets/css/posting.scss')
 
@@ -32,6 +36,7 @@ Encore
     })
 
     .enableSassLoader()
+    .enableTypeScriptLoader()
 ;
 
 module.exports = Encore.getWebpackConfig();

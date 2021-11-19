@@ -24,8 +24,8 @@ class Posting extends AbstractBaseEntity
     private ?\DateTimeInterface $dateOperation = null;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Account", inversedBy="id")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity="Account")
+     * @ORM\JoinColumn(nullable=false, referencedColumnName="id")
      */
     private ?Account $account = null;
 
@@ -35,7 +35,7 @@ class Posting extends AbstractBaseEntity
     private ?int $type = null;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Category", inversedBy="id")
+     * @ORM\ManyToOne(targetEntity="Category")
      * @ORM\JoinColumn(nullable=false)
      */
     private ?Category $category = null;

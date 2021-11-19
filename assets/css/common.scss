@@ -1,0 +1,77 @@
+@import "common-variable";
+
+:root {
+    --page-background: #fff;
+    --text-color: #18171b;
+
+    --form-input-background: #fff;
+    --form-input-color: #444;;
+    --form-input-border-color: #ccc;
+
+    --button-background-color: lightgrey;
+
+    --link-color: #006dcb;
+    --link-hover-color: #0088fe;
+
+}
+
+body.dark {
+    --page-background: #36393e;
+    --text-color: #f0f0f0;
+
+    --form-input-background: #414449;
+    --form-input-color: silve;
+    --form-input-border-color: #5f6165;
+
+    --button-background-color: darkgray;
+
+    --link-color: #42a7ff;
+    --link-hover-color: #0f8fff;
+}
+
+body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    background: var(--page-background);
+    color: var(--text-color);
+}
+
+input, textarea, select {
+    background: var(--form-input-background);
+    border-color: var(--form-input-border-color);
+    color: var(--form-input-color);
+}
+
+button {
+    background-color: var(--button-background-color);
+}
+
+a {
+    color: var(--link-color);
+    font-size: x-large;
+
+    @media (min-width: $screen-size-phone) {
+        font-size: unset;
+    }
+
+    &:hover {
+        color: var(--link-hover-color);
+    }
+}
+
+.btn {
+    border: 2px solid #42a7ff;
+    border-radius: 4px;
+    color: #42a7ff;
+    cursor: pointer;
+    padding: 10px;
+    width: 100%;
+    background: unset;
+}
+
+.hide {
+    display: none!important;
+}

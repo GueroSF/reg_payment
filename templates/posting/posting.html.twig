@@ -1,35 +1,48 @@
 {% extends 'posting/layout.html.twig' %}
 
-{% block title %}Posting{% endblock %}
+{% block title %}Категория: {{ category.name }}{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        const postingConfig = {
+            limit: {{ limit }},
+            amount: {{ amount }},
+            url: '{{ loadUrl }}'
+        };
+    </script>
+    {{ encore_entry_script_tags('posting-js') }}
+{% endblock %}
 
 {% block posting_content %}
-    <div class="payment-add">
-        <div class="month-name">
-            <span>Внести платёж: <b>{{ category.name }}</b> {{ category.sum | app_money }}</span>
-        </div>
-        {{ form(form) }}
-    </div>
-    <div class="payment-list">
-        <div class="month-name">Платежи внесенные ранее:</div>
-        <div class="table">
-            <div class="td1">Дата платежа</div>
-            <div class="td2">Сумма</div>
-            <div class="td3">Операция</div>
-        </div>
-        {% for posting in postings %}
-        <div class="payment">
-            <div class="table">
-                <div class="td1">{{ posting.dateOperation | date('d.m.Y') }}<?= $payment['date']; ?></div>
-                <div class="td2">{{ posting.money | app_money }}</div>
-                <div class="td3">{{ posting_type(posting) }}</div>
+    {% include 'posting/_posting-header.html.twig' with {'dto': category} only %}
+    <div class="posting-container after-posting-header">
+        <div class="wrapper-form-add-payment">
+            <div class="wrapper-btn">
+                <button class="btn header-btn" id="collapsed-form-add">
+                    <div>Внести платёж</div>
+                    <div class="character">+</div>
+                </button>
             </div>
-            {% if posting.comment is not null %}
-            <div class="comment">
-                <span class="td1">Комм:</span>
-                <span class="comm">{{ posting.comment.comment }}</span>
+            <div class="form-container collapsed">
+                {{ form(form) }}
             </div>
-            {% endif %}
         </div>
-        {% endfor %}
+        <div class="wrapper-posting-list">
+            <div class="posting-list-header">
+                <div>Дата платежа</div>
+                <div>Сумма</div>
+                <div>Операция</div>
+            </div>
+            <div class="posting-list">
+                {% include 'posting/_posting-list.html.twig' with {'postings' : postings} %}
+            </div>
+        </div>
+        <div class="wrapper-loading-btn">
+            <button class="btn" id="load-postings">
+                <div>Загрузить еще</div>
+                <div class="status"></div>
+            </button>
+        </div>
     </div>
 {% endblock %}

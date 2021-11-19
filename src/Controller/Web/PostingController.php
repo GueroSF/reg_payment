@@ -45,17 +45,30 @@ class PostingController extends AbstractController
      */
     public function account(PreparePostingData $service, Account $account): Response
     {
+        $categoriesNotNullSum = [];
+        $categoriesWithNull = [];
+
+        foreach ($service->getAllCategoriesForAccount($account) as $categoryDTO) {
+            if ($categoryDTO->getSum() === 0.0) {
+                $categoriesWithNull[] = $categoryDTO;
+            } else {
+                $categoriesNotNullSum[] = $categoryDTO;
+            }
+        }
+
         return $this->render(
             'posting/categories.html.twig',
             [
-                'categories' => $service->getAllCategoriesForAccount($account),
-                'backUrl'    => $this->generateUrl('web_trans_accounts'),
+                'account'              => $service->createAccountDTO($account),
+                'categoriesNotNullSum' => $categoriesNotNullSum,
+                'categoriesWithNull'   => $categoriesWithNull,
+                'backUrl'              => $this->generateUrl('web_trans_accounts'),
             ]
         );
     }
 
     /**
-     * @Route("/account/{accountId}/category/{categoryId}", name="postings", methods={"GET", "POST"})
+     * @Route("/account/{accountId}/category/{categoryId}", name="postings", methods={"GET"})
      * @ParamConverter("account", options={"id"="accountId"})
      * @ParamConverter("category", options={"id"="categoryId"})
      *
@@ -63,7 +76,7 @@ class PostingController extends AbstractController
      * @param Category $category
      * @return Response
      */
-    public function allPostings(PreparePostingData $service, Account $account, Category $category): Response
+    public function postings(PreparePostingData $service, Account $account, Category $category): Response
     {
         $form = $this->createForm(
             PostingFormType::class,
@@ -76,18 +89,51 @@ class PostingController extends AbstractController
             ]
         );
 
-        $postings = $this->getDoctrine()->getRepository(Posting::class)
-            ->findByAccountAndCategory($account, $category);
+        $limit = 10;
+        $postings = $this->limitPosting($account, $category, $limit, 0);
+        $amount = count($postings);
 
         return $this->render(
             'posting/posting.html.twig',
             [
                 'form'     => $form->createView(),
+                'loadUrl'  => $this->generateUrl(
+                    'web_trans_postings_ajax',
+                    [
+                        'accountId'  => $account->getId(),
+                        'categoryId' => $category->getId(),
+                    ]
+                ),
+                'limit'    => $limit,
+                'amount'   => $amount,
                 'postings' => $postings,
                 'category' => $service->getCategory($account, $category),
                 'backUrl'  => $this->generateUrl('web_trans_account', ['id' => $account->getId()]),
             ]
         );
+    }
+
+    /**
+     * @Route("/account/{accountId}/category/{categoryId}", name="postings_ajax", methods={"POST"})
+     * @ParamConverter("account", options={"id"="accountId"})
+     * @ParamConverter("category", options={"id"="categoryId"})
+     */
+    public function ajaxPostings(Request $request, Account $account, Category $category): Response
+    {
+        $body = json_decode($request->getContent(), true);
+
+        $postings = $this->limitPosting($account, $category, $body['limit'], $body['offset']);
+
+        return $this->json([
+            'amount' => count($postings),
+            'html'   => $this->renderView('posting/_posting-list.html.twig', ['postings' => $postings])
+        ]);
+    }
+
+    private function limitPosting(Account $account, Category $category, ?int $limit = null, ?int $offset = null): array
+    {
+        return $this->getDoctrine()->getRepository(Posting::class)
+            ->findByAccountAndCategory($account, $category, $limit, $offset);
     }
 
     /**
@@ -173,8 +219,8 @@ class PostingController extends AbstractController
         return $this->render(
             '/posting/create-category.html.twig',
             [
-                'form' => $form->createView(),
-                'backUrl'    => $this->generateUrl('web_trans_accounts'),
+                'form'    => $form->createView(),
+                'backUrl' => $this->generateUrl('web_trans_accounts'),
             ]
         );
     }

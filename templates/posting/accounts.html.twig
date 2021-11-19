@@ -3,35 +3,48 @@
 {% block title %}Главная{% endblock %}
 
 {% block posting_content %}
-    {% for account in accounts %}
-        <div class="month">
-            <div class="month-name"><span>{{ account.name }}</span></div>
-            <div class="salary">
-                <table>
-                    <tr>
-                        <td>Всего</td>
-                    </tr>
-                    <tr>
-                        <td>{{ account.sum | app_money }}</td>
-                    </tr>
-                </table>
+    <div class="list">
+        {% for account in accounts %}
+            <div class="item">
+                <div class="name">
+                    <span>{{ account.name }}</span>
+                </div>
+                <div class="sum">
+                    <span>{{ account.sum | app_money }}</span>
+                </div>
+                <div class="action">
+                    <a href="{{ path('web_trans_account', {id: account.id}) }}">Просмотр</a>
+                </div>
             </div>
-            <div class="view-detail">
-                <a href="{{ path('web_trans_account', {id: account.id}) }}">Просмотр</a>
-            </div>
-        </div>
-    {% endfor %}
+        {% endfor %}
         {% if credit != 0 %}
-            <div class="month">
-                <div class="month-name"><span>Одолжено</span></div>
-                <div class="salary">
-                    <table>
-                        <tr>
-                            <td>{{ credit | app_money }}</td>
-                        </tr>
-                    </table>
+            <div class="item credit">
+                <div class="name">
+                    <span>Одолжено</span>
+                </div>
+                <div class="sum">
+                    <span>{{ credit | app_money }}</span>
                 </div>
             </div>
         {% endif %}
-        <div class="link-to-add"><a href="{{ path('web_trans_create_category') }}">Добавить категорию</a></div>
+    </div>
+    <div class="additional-action">
+        <div class="wrapper-link-to-add">
+            <a class="link-to-add" href="{{ path('web_trans_create_category') }}">Добавить категорию</a>
+        </div>
+        <div class="wrapper-toggle-theme">
+            <div>
+                <button class="btn" id="toggle-theme">toggle theme</button>
+            </div>
+            <script>
+                document.querySelector('#toggle-theme').addEventListener('click', () => {
+                    if (document.body.classList.toggle('dark')) {
+                        localStorage.setItem('reg-theme', 'dark');
+                    } else {
+                        localStorage.removeItem('reg-theme');
+                    }
+                })
+            </script>
+        </div>
+    </div>
 {% endblock %}

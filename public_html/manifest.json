@@ -1,12 +1,14 @@
 {
-  "name": "Финансы",
-  "short_name": "Финансы",
-  "display": "standalone",
-  "icons": [
-    {
-      "src": "icon/icon_android.png",
-      "type": "image/png",
-      "sizes": "128x128"
-    }
-  ]
+    "manifest_version": 2,
+    "version": "2",
+    "name": "Финансы",
+    "short_name": "Финансы",
+    "display": "standalone",
+    "icons": [
+        {
+            "src": "icon/icon_android.png",
+            "type": "image/png",
+            "sizes": "128x128"
+        }
+    ]
 }

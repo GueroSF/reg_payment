@@ -8,30 +8,37 @@
 {% endblock %}
 
 {% block posting_content %}
-    {% for category in categories %}
-    <div class="month{{ category.sum == 0 ? ' hide' : '' }}">
-        <div class="month-name"><span>{{ category.name }}</span></div>
-        <div class="salary">
-            <table>
-                <tr>
-                    <td>Всего</td>
-                </tr>
-                <tr>
-                    <td>{{ category.sum | app_money }}</td>
-                </tr>
-            </table>
-        </div>
-        <div class="view-detail">
-            <a href="{{ path('web_trans_postings', {accountId: category.accountId, categoryId: category.id}) }}">Просмотр</a>
-        </div>
-        {% if category.sum == 0 %}
-            <div>
-                <a href="{{ path('web_trans_delete', {accountId: category.accountId, categoryId: category.id}) }}">Удалить</a>
+    {% include 'posting/_posting-header.html.twig' with {'dto': account} only %}
+    <div class="list after-posting-header">
+        {% for category in categoriesNotNullSum %}
+            <div class="item">
+                <div class="name"><span>{{ category.name }}</span></div>
+                <div class="sum">
+                    <span>{{ category.sum | app_money }}</span>
+                </div>
+                <div class="action">
+                    <a href="{{ path('web_trans_postings', {accountId: category.accountId, categoryId: category.id}) }}">Просмотр</a>
+                </div>
             </div>
+        {% endfor %}
+        {% if categoriesWithNull %}
+            <div class="additional-action">
+                <div class="toggle-hidden-item">
+                    <button class="btn">Показать скрытые</button>
+                </div>
+            </div>
+            {% for category in categoriesWithNull %}
+                <div class="item hide">
+                    <div class="name"><span>{{ category.name }}</span></div>
+                    <div class="sum">
+                        <span>{{ category.sum | app_money }}</span>
+                    </div>
+                    <div class="action">
+                        <a href="{{ path('web_trans_postings', {accountId: category.accountId, categoryId: category.id}) }}">Просмотр</a>
+                        <a href="{{ path('web_trans_delete', {accountId: category.accountId, categoryId: category.id}) }}">Удалить</a>
+                    </div>
+                </div>
+            {% endfor %}
         {% endif %}
-    </div>
-    {% endfor %}
-    <div class="button-for-view-if-zero">
-        <button>Показать скрытые</button>
     </div>
 {% endblock %}

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
-use App\Entity\Traits\FieldCreatedAtTrait;
+use App\Lib\Interfaces\DictionaryInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="account")
  * @ORM\Entity(repositoryClass="App\Repository\AccountRepository")
  */
-class Account extends AbstractBaseEntity
+class Account extends AbstractBaseEntity implements DictionaryInterface
 {
     /**
      * @ORM\Column(name="name", type="string", length=25, nullable=false)
