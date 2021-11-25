@@ -7,8 +7,8 @@ use App\Entity\Category;
 use App\Entity\Posting;
 use App\Lib\PostingType;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\ORM\Query;
+use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * @method Posting|null find($id, $lockMode = null, $lockVersion = null)
