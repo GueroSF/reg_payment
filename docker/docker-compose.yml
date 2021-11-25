@@ -23,11 +23,10 @@ services:
     container_name: payment-php-fpm
     working_dir: /app
     environment:
-      - PHP_IDE_CONFIG="serverName=reg-payment"
       - XDG_DATA_HOME=/app/var/fish_history
     volumes:
       - ./../:/app
-      - ./php-fpm/php-ini-overrides.ini:/etc/php/7.4/fpm/conf.d/99-overrides.ini
+      - ./php-fpm/php-ini-overrides.ini:/usr/local/etc/php/conf.d/99-overrides.ini
 
 
   payment-webserver:

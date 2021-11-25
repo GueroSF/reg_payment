@@ -12,6 +12,7 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "ext-pdo": "*",
+        "ext-json": "*",
         "antishov/doctrine-extensions-bundle": "^1.4",
         "gedmo/doctrine-extensions": "^2.4",
         "sensio/framework-extra-bundle": "^5.1",
