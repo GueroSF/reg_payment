@@ -16,7 +16,3 @@ services:
     App\Twig\:
         resource: '../src/Twig'
         tags: ['twig.extension']
-
-    App\Service\LoginGate\LoginGate:
-        arguments:
-            $maxAttempts: '%env(int:LOGIN_GATE_MAX_ATTEMPTS)%'

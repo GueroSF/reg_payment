@@ -19,14 +19,19 @@ class SecurityController extends AbstractController
             return $this->redirectToRoute('target_path');
         }
 
-        $error = $authenticationUtils->getLastAuthenticationError();
-        $lastUsername = $authenticationUtils->getLastUsername();
+        $errorMessage = null;
+        if (null !== $error = $authenticationUtils->getLastAuthenticationError()) {
+            $errorMessage = $error->getMessageKey();
+            foreach ($error->getMessageData() as $key => $value) {
+                $errorMessage = str_replace($key, $value, $errorMessage);
+            }
+        }
 
         return $this->render(
             'security/login.html.twig',
             [
-                'last_username' => $lastUsername,
-                'error' => $error
+                'last_username' => $authenticationUtils->getLastUsername(),
+                'error_message' => $errorMessage
             ]
         );
     }

@@ -17,16 +17,16 @@
 
     <div class="field-name">
         <label for="field-name">Имя:</label>
-        <input id="field-name" type="text" value="{{ last_username }}" name="username" required autofocus autocomplete="off">
+        <input id="field-name" type="text" value="{{ last_username }}" name="_username" required autofocus autocomplete="off">
     </div>
     <div class="field-password">
         <label for="field-password">Пароль:</label>
-        <input id="field-password" type="password" name="password" required>
+        <input id="field-password" type="password" name="_password" required>
     </div>
 
-    {% if error %}
+    {% if error_message != null %}
         <div class="error">
-            <span>{{ error.messageKey }}</span>
+            <span>{{ error_message }}</span>
         </div>
     {% endif %}
 
